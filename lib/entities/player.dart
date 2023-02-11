@@ -2,8 +2,7 @@ library player;
 
 import 'package:intl/intl.dart';
 
-class Player {  
-
+class Player {
   Player._();
 
   static final Player _instance = Player._();
@@ -14,9 +13,13 @@ class Player {
 
   String name = "Allan";
   int money = 3870;
+  int tapAttack = 1;
+  int passiveAttack = 0;
 
-  String formattedMoney() { 
-    return NumberFormat.compactCurrency(decimalDigits: 2, symbol: '').format(Player().money);
+  int storyFloor = 1;
+
+  String formattedMoney() {
+    return NumberFormat.compactCurrency(decimalDigits: 2, symbol: '')
+        .format(Player().money);
   }
-
 }

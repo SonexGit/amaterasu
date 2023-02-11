@@ -6,7 +6,6 @@ import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/home/home_screen.dart';
 import 'package:amaterasu/screens/profile/profile_screen.dart';
 import 'package:amaterasu/screens/quests/quests_screen.dart';
-import 'package:amaterasu/screens/shop/shop_screen.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,16 +19,14 @@ class BottomBar extends StatefulWidget {
   State<BottomBar> createState() => _BottomBarState();
 }
 
-// This value is equal to 2 because its equal to the Home in the menu
-int selectedIndex = 2;
+// This value is equal to 0 because its equal to the Home index in the menu
+int selectedIndex = 0;
 
 class _BottomBarState extends State<BottomBar> {
-
-  static final List<Widget>_widgetOptions = <Widget>[
-    const ShopScreen(),
-    const QuestsScreen(),
+  static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const AdventureScreen(),
+    const QuestsScreen(),
     const ProfileScreen(),
   ];
 
@@ -44,11 +41,7 @@ class _BottomBarState extends State<BottomBar> {
     return Scaffold(
       // ignore: prefer_const_constructors
       appBar: MyAppBar(),
-      body: SafeArea(
-        child: Container(
-          child: _widgetOptions[selectedIndex]
-        )
-      ),
+      body: SafeArea(child: Container(child: _widgetOptions[selectedIndex])),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 26,
         backgroundColor: Colors.white,
@@ -61,10 +54,11 @@ class _BottomBarState extends State<BottomBar> {
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.store), label: "Boutique"),
-          BottomNavigationBarItem(icon: Icon(Icons.assignment), label: "Quêtes"),
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Accueil"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled), label: "Accueil"),
           BottomNavigationBarItem(icon: Icon(Icons.park), label: "Aventure"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.assignment), label: "Quêtes"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
         ],
       ),
@@ -77,7 +71,7 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   State<MyAppBar> createState() => _MyAppBarState();
-  
+
   @override
   final Size preferredSize = const Size.fromHeight(56);
 }
@@ -104,44 +98,41 @@ class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(MainMenu.names[selectedIndex]),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Icon(Icons.toll, size: 18),
-                const SizedBox(width: 8.0),
-                Text(player.formattedMoney(), style: Style.moneyAppBar),
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          PopupMenuButton<int>(
-            icon: const Icon(Icons.menu),
-            itemBuilder: (context) => [
-                const PopupMenuItem(
-                  value: 0,
-                  child: Text("Paramètres")
-                )
-              ],
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(MainMenu.names[selectedIndex]),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Icon(Icons.toll, size: 18),
+              const SizedBox(width: 8.0),
+              Text(player.formattedMoney(), style: Style.moneyAppBar),
+            ],
           ),
         ],
-        systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: false,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: Style.mainGradient,
-              transform: GradientRotation(90),  
-            ),
+      ),
+      actions: [
+        PopupMenuButton<int>(
+          icon: const Icon(Icons.menu),
+          itemBuilder: (context) =>
+              [const PopupMenuItem(value: 0, child: Text("Paramètres"))],
+        ),
+      ],
+      systemOverlayStyle:
+          const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      centerTitle: false,
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: Style.mainGradient,
+            transform: GradientRotation(90),
           ),
         ),
+      ),
     );
   }
 }
