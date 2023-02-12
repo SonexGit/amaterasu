@@ -38,6 +38,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   intl: ^0.18.0
   snapping_sheet: ^3.1.0
+  animated_button: ^0.2.0
+  wave_transition: ^0.0.6
+  page_transition: ^2.0.9
+  animate_gradient: ^0.0.2
+  swipedetector: ^1.2.0
 
 dev_dependencies:
   flutter_test:
