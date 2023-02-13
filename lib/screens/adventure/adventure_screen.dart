@@ -1,8 +1,6 @@
 import 'package:amaterasu/screens/fight/fight_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_button/animated_button.dart';
-import 'package:wave_transition/wave_transition.dart';
-import 'package:animate_gradient/animate_gradient.dart';
 
 class AdventureScreen extends StatefulWidget {
   const AdventureScreen({super.key});
@@ -48,9 +46,14 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             AnimatedButton(
-              child: Text(
+              color: Colors.green,
+              onPressed: () => selectedIndex.value = 1,
+              enabled: true,
+              shadowDegree: ShadowDegree.light,
+              duration: 400,
+              child: const Text(
                 'Aventure',
                 style: TextStyle(
                   fontSize: 22,
@@ -58,15 +61,14 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              color: Colors.green,
-              onPressed: () => selectedIndex.value = 1,
+            ),
+            const SizedBox(height: 20),
+            AnimatedButton(
+              color: Colors.blue,
+              onPressed: () {},
               enabled: true,
               shadowDegree: ShadowDegree.light,
-              duration: 400,
-            ),
-            SizedBox(height: 20),
-            AnimatedButton(
-              child: Text(
+              child: const Text(
                 'Evenement Spécial',
                 style: TextStyle(
                   fontSize: 22,
@@ -74,12 +76,8 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              color: Colors.blue,
-              onPressed: () {},
-              enabled: true,
-              shadowDegree: ShadowDegree.light,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),
