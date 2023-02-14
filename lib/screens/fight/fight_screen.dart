@@ -19,9 +19,9 @@ class _FightScreenState extends State<FightScreen> {
   Enemy enemy = Enemy();
 
   final tapEffectsWidgets = <Widget>[];
-  // int widgetIndex = 0;
+  int widgetIndex = 0;
   // List<Timer>? _timer;
-  // List<double>? _widgetOpacities;
+  final List<double> _widgetVisibility = List.empty(growable: true);
 
   // void _reduceOpacityTapEffect(Timer timer) {
   //   setState(() {
@@ -41,16 +41,19 @@ class _FightScreenState extends State<FightScreen> {
   // }
 
   _onTapDown(TapDownDetails details) {
-    var effect = Positioned(
-        left: details.localPosition.dx,
-        top: details.localPosition.dy,
-        child: const Text("-1"));
-
     setState(() {
-      //   _widgetOpacities![widgetIndex] = 0.0;
-      //   _timer![widgetIndex] = Timer.periodic(
-      //       const Duration(milliseconds: 50), _reduceOpacityTapEffect);
+      _widgetVisibility.add(1.0);
+      var effect = Positioned(
+        left: details.localPosition.dx,
+        top: details.localPosition.dy - 10,
+        child: AnimatedOpacity(
+            opacity: _widgetVisibility[widgetIndex],
+            duration: const Duration(milliseconds: 500),
+            child: const Text("-1")));
       tapEffectsWidgets.add(effect);
+      _widgetVisibility[widgetIndex] = 0.0;
+      _widgetVisibility.removeAt(widgetIndex);
+      widgetIndex++;
     });
   }
 
@@ -79,7 +82,7 @@ class _FightScreenState extends State<FightScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text("Étape ${player.storyFloor}"),
+                                Text("Étape ${player.gameModesFloor[player.gameMode]}"),
                                 Text(enemy.name),
                                 EnemyHealthBar(
                                     value: enemy.health / enemy.maxHealth),
