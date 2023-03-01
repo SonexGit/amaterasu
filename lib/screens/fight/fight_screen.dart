@@ -23,22 +23,12 @@ class _FightScreenState extends State<FightScreen> {
   // List<Timer>? _timer;
   final List<double> _widgetVisibility = List.empty(growable: true);
 
-  // void _reduceOpacityTapEffect(Timer timer) {
-  //   setState(() {
-  //     _widgetOpacities?[widgetIndex] += 0.05;
-  //     if (_widgetOpacities![widgetIndex] >= 1.00) {
-  //       _timer![widgetIndex].cancel();
-  //     }
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   for (var i = widgetIndex; i < 0; i--) {
-  //     _timer![i].cancel();
-  //   }
-  // }
+    enemy.newEnemy(player.gameMode, player.gameModesFloor[player.gameMode]);
+  }
 
   _onTapDown(TapDownDetails details) {
     // setState(() {
@@ -108,10 +98,17 @@ class _FightScreenState extends State<FightScreen> {
                                 const SizedBox(height: 5),
                                 Text("${enemy.health}/${enemy.maxHealth}"),
                                 const SizedBox(height: 10),
-                                const SizedBox(
+                                SizedBox(
                                     width: 200,
                                     height: 200,
-                                    child: ColoredBox(color: Colors.red)),
+                                    child: Image.asset(
+                                        "assets/enemies/images/${enemy.id}.png",
+                                        errorBuilder: (BuildContext context,
+                                            Object exception,
+                                            StackTrace? stackTrace) {
+                                      return const ColoredBox(
+                                          color: Colors.purple);
+                                    })),
                                 const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:

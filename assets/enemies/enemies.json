@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "name": "Zombie",
+        "health": 100,
+        "attack": 50,
+        "moneyValue": 14,
+        "type": 0
+    },
+    {
+        "id": 2,
+        "name": "Skeleton",
+        "health": 80,
+        "attack": 70,
+        "moneyValue": 8,
+        "type": 0
+    },
+    {
+        "id": 3,
+        "name": "Bear",
+        "health": 90,
+        "attack": 60,
+        "moneyValue": 21,
+        "type": 0
+    },
+    {
+        "id": 4,
+        "name": "Orc",
+        "health": 90,
+        "attack": 60,
+        "moneyValue": 50,
+        "type": 1
+    }
+]

@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "",
+        "description": "",
+        "price": 50,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":0
+    },
+    {
+        "id": 2,
+        "name": "",
+        "description": "",
+        "price": 50,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":0
+    },
+    {
+        "id": 3,
+        "name": "",
+        "description": "",
+        "price": 50,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":0
+    },
+    {
+        "id": 4,
+        "name": "",
+        "description": "",
+        "price": 50,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":0
+    },
+    {
+        "id": 5,
+        "name": "",
+        "description": "",
+        "price": 50,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":0
+    }
+]

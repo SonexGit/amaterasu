@@ -1,5 +1,8 @@
 library player;
 
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class GameModes {
@@ -8,7 +11,10 @@ class GameModes {
 }
 
 class Player {
-  Player._();
+  Player._() {
+    readShopJson();
+    shopUpgrades = List.filled(shopJsonData.length, 0, growable: true);
+  }
 
   static final Player _instance = Player._();
 
@@ -21,6 +27,9 @@ class Player {
   int tapAttack = 1;
   int passiveAttack = 0;
 
+  List shopJsonData = List.filled(0, null, growable: true);
+  List<int> shopUpgrades = List.filled(0, 0, growable: true);
+
   String gameMode = GameModes.story;
   Map<String, int> gameModesFloor = {"story": 1, "event1": 0};
 
@@ -29,7 +38,16 @@ class Player {
         .format(Player().money);
   }
 
-  // SETTERS
+  // Getters
+
+  Future<void> readShopJson() async {
+    final String response =
+        await rootBundle.loadString('assets/shop/shop.json');
+    final data = await json.decode(response);
+    shopJsonData = data;
+  }
+
+  // Setters
 
   void giveMoney(int amount) {
     money += amount;
