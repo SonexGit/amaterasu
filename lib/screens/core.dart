@@ -79,14 +79,23 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _MyAppBarState extends State<MyAppBar> {
   Timer? _timer;
 
+  int counter = 0;
+
   void _updateMoney(Timer timer) {
-    setState(() => player.money++);
+    counter++;
+    setState(() => player.money);
+
+    // Every second, we get +1 "money"
+    if (counter * 100 >= 1000) {
+      setState(() => player.money++);
+      counter = 0;
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(milliseconds: 1000), _updateMoney);
+    _timer = Timer.periodic(const Duration(milliseconds: 100), _updateMoney);
   }
 
   @override

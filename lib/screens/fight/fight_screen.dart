@@ -41,20 +41,20 @@ class _FightScreenState extends State<FightScreen> {
   // }
 
   _onTapDown(TapDownDetails details) {
-    setState(() {
-      _widgetVisibility.add(1.0);
-      var effect = Positioned(
-        left: details.localPosition.dx,
-        top: details.localPosition.dy - 10,
-        child: AnimatedOpacity(
-            opacity: _widgetVisibility[widgetIndex],
-            duration: const Duration(milliseconds: 500),
-            child: const Text("-1")));
-      tapEffectsWidgets.add(effect);
-      _widgetVisibility[widgetIndex] = 0.0;
-      _widgetVisibility.removeAt(widgetIndex);
-      widgetIndex++;
-    });
+    // setState(() {
+    //   _widgetVisibility.add(1.0);
+    //   var effect = Positioned(
+    //     left: details.localPosition.dx,
+    //     top: details.localPosition.dy - 10,
+    //     child: AnimatedOpacity(
+    //         opacity: _widgetVisibility[widgetIndex],
+    //         duration: const Duration(milliseconds: 500),
+    //         child: const Text("-1")));
+    //   tapEffectsWidgets.add(effect);
+    //   _widgetVisibility[widgetIndex] = 0.0;
+    //   _widgetVisibility.removeAt(widgetIndex);
+    //   widgetIndex++;
+    // });
   }
 
   @override
@@ -75,6 +75,22 @@ class _FightScreenState extends State<FightScreen> {
                 },
                 child: Stack(
                     children: <Widget>[
+                          ColoredBox(
+                            color: Colors.white,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                        "Étape ${player.gameModesFloor[player.gameMode]}",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17))
+                                  ]),
+                            ),
+                          ),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 50.0),
@@ -82,11 +98,21 @@ class _FightScreenState extends State<FightScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text("Étape ${player.gameModesFloor[player.gameMode]}"),
-                                Text(enemy.name),
+                                Text(enemy.name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15)),
+                                const SizedBox(height: 5),
                                 EnemyHealthBar(
                                     value: enemy.health / enemy.maxHealth),
-                                const Text("ImageMéchant"),
+                                const SizedBox(height: 5),
+                                Text("${enemy.health}/${enemy.maxHealth}"),
+                                const SizedBox(height: 10),
+                                const SizedBox(
+                                    width: 200,
+                                    height: 200,
+                                    child: ColoredBox(color: Colors.red)),
+                                const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
