@@ -2,32 +2,32 @@
     {
         "id": 1,
         "name": "Zombie",
-        "health": 100,
-        "attack": 50,
+        "health": 15,
+        "attack": 1,
         "moneyValue": 14,
         "type": 0
     },
     {
         "id": 2,
         "name": "Skeleton",
-        "health": 80,
-        "attack": 70,
+        "health": 12,
+        "attack": 2,
         "moneyValue": 8,
         "type": 0
     },
     {
         "id": 3,
         "name": "Bear",
-        "health": 90,
-        "attack": 60,
+        "health": 20,
+        "attack": 3,
         "moneyValue": 21,
         "type": 0
     },
     {
         "id": 4,
         "name": "Orc",
-        "health": 90,
-        "attack": 60,
+        "health": 30,
+        "attack": 5,
         "moneyValue": 50,
         "type": 1
     }

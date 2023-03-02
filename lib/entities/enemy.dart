@@ -1,7 +1,6 @@
 library enemy;
 
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:amaterasu/entities/player.dart';
@@ -40,12 +39,10 @@ class Enemy {
 
   // Getters
 
-  Future<void> readJson() {
-    final String response =
-        await rootBundle.loadString('assets/enemies/enemies.json');
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/enemies/enemies.json');
     final data = await json.decode(response);
     jsonData = data;
-    print("Fini de lire le JSON");
   }
 
   int getHealth() {
@@ -77,7 +74,6 @@ class Enemy {
   }
 
   void newEnemy(gameMode, floor) {
-    print("JSONDATA : $jsonData");
     var rand = Random().nextInt(jsonData.length);
     name = jsonData[rand]["name"];
     health = jsonData[rand]["health"];

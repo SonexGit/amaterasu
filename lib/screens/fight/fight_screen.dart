@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
-import 'package:amaterasu/screens/shop/shop_screen.dart';
+import 'package:amaterasu/screens/upgrades/upgrades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
@@ -53,8 +53,8 @@ class _FightScreenState extends State<FightScreen> {
         backgroundColor: Style.whiteColor,
         body: SnappingSheet(
             grabbingHeight: 50,
-            grabbing: const ShopGrab(),
-            sheetBelow: SnappingSheetContent(child: const ShopScreen()),
+            grabbing: const UpgradesGrab(),
+            sheetBelow: SnappingSheetContent(child: const UpgradesScreen()),
             child: GestureDetector(
                 onTapDown: (TapDownDetails details) => _onTapDown(details),
                 behavior: HitTestBehavior.opaque,

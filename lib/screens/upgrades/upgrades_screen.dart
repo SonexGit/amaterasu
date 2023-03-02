@@ -1,14 +1,14 @@
 import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 
-class ShopScreen extends StatefulWidget {
-  const ShopScreen({super.key});
+class UpgradesScreen extends StatefulWidget {
+  const UpgradesScreen({super.key});
 
   @override
-  State<ShopScreen> createState() => _ShopScreenState();
+  State<UpgradesScreen> createState() => _UpgradesScreenState();
 }
 
-class _ShopScreenState extends State<ShopScreen> {
+class _UpgradesScreenState extends State<UpgradesScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -145,8 +145,8 @@ class _ShopScreenState extends State<ShopScreen> {
   }
 }
 
-class ShopGrab extends StatelessWidget {
-  const ShopGrab({super.key});
+class UpgradesGrab extends StatelessWidget {
+  const UpgradesGrab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +177,7 @@ class ShopGrab extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(5)))))
               ]),
               const SizedBox(height: 5.0),
-              const Text("Boutique"),
+              const Text("Améliorations"),
             ])));
   }
 }

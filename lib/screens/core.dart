@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:amaterasu/data/main_menu.dart';
+import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/home/home_screen.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 Player player = Player();
+Enemy enemy = Enemy();
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -34,6 +36,15 @@ class _BottomBarState extends State<BottomBar> {
     setState(() {
       selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Initialize player and enemy
+    player;
+    enemy;
   }
 
   @override
@@ -127,6 +138,7 @@ class _MyAppBarState extends State<MyAppBar> {
           icon: const Icon(Icons.menu),
           itemBuilder: (context) =>
               [const PopupMenuItem(value: 0, child: Text("Paramètres"))],
+          tooltip: "Menu",
         ),
       ],
       systemOverlayStyle:

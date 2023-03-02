@@ -41,8 +41,7 @@ class Player {
   // Getters
 
   Future<void> readShopJson() async {
-    final String response =
-        await rootBundle.loadString('assets/shop/shop.json');
+    final String response = await rootBundle.loadString('assets/shop/shop.json');
     final data = await json.decode(response);
     shopJsonData = data;
   }
