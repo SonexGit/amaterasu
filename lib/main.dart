@@ -1,4 +1,5 @@
 import 'package:amaterasu/screens/core.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,8 +16,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Amaterasu',
       theme: ThemeData.light(),
-      // home: const MyHomePage(title: 'Home'),
-      home: const BottomBar(),
+      home: AnimatedSplashScreen(
+        splash: Image.asset("assets/screen/Bienvenue.png"),
+        splashIconSize: 500,
+        duration: 5000,
+        nextScreen: const BottomBar(),
+        splashTransition: SplashTransition.scaleTransition,
+      ),
     );
   }
 }

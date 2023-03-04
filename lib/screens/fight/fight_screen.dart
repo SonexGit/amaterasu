@@ -27,6 +27,7 @@ class _FightScreenState extends State<FightScreen> {
   void initState() {
     super.initState();
 
+    player.floor = 1;
     enemy.newEnemy(player.gameMode, player.gameModesFloor[player.gameMode]);
   }
 

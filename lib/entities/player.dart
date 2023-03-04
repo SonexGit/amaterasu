@@ -32,6 +32,7 @@ class Player {
 
   String gameMode = GameModes.story;
   Map<String, int> gameModesFloor = {"story": 1, "event1": 0};
+  int floor = 0;
 
   String formattedMoney() {
     return NumberFormat.compactCurrency(decimalDigits: 2, symbol: '')
@@ -41,7 +42,8 @@ class Player {
   // Getters
 
   Future<void> readShopJson() async {
-    final String response = await rootBundle.loadString('assets/shop/shop.json');
+    final String response =
+        await rootBundle.loadString('assets/upgrades/upgrades.json');
     final data = await json.decode(response);
     shopJsonData = data;
   }
@@ -50,5 +52,16 @@ class Player {
 
   void giveMoney(int amount) {
     money += amount;
+  }
+
+  void nextFloor() {
+    if (floor < 10) {
+      floor++;
+      print("Etape : $floor");
+    } else {
+      floor = 1;
+      gameModesFloor.update(gameMode, (value) => value += 1);
+      print("Etage : ${gameModesFloor[gameMode]}");
+    }
   }
 }

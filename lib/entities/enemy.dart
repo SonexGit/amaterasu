@@ -40,7 +40,8 @@ class Enemy {
   // Getters
 
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/enemies/enemies.json');
+    final String response =
+        await rootBundle.loadString('assets/enemies/enemies.json');
     final data = await json.decode(response);
     jsonData = data;
   }
@@ -70,6 +71,7 @@ class Enemy {
     state = LifeState.dead;
     player.giveMoney(moneyValue);
     // give items?
+    player.nextFloor();
     newEnemy(player.gameMode, player.gameModesFloor[player.gameMode]);
   }
 
