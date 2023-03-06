@@ -7,6 +7,8 @@ import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/home/home_screen.dart';
 import 'package:amaterasu/screens/profile/profile_screen.dart';
 import 'package:amaterasu/screens/quests/quests_screen.dart';
+import 'package:amaterasu/screens/settings/settings_screen.dart';
+import 'package:amaterasu/screens/shop/shop_screen.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,8 +30,10 @@ class _BottomBarState extends State<BottomBar> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const AdventureScreen(),
+    const ShopScreen(),
     const QuestsScreen(),
     const ProfileScreen(),
+    const SettingsScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -68,6 +72,8 @@ class _BottomBarState extends State<BottomBar> {
           BottomNavigationBarItem(
               icon: Icon(Icons.home_filled), label: "Accueil"),
           BottomNavigationBarItem(icon: Icon(Icons.park), label: "Aventure"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.storefront), label: "Boutique"),
           BottomNavigationBarItem(
               icon: Icon(Icons.assignment), label: "Quêtes"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),

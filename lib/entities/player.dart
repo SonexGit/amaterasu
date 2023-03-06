@@ -30,6 +30,17 @@ class Player {
   List shopJsonData = List.filled(0, null, growable: true);
   List<int> shopUpgrades = List.filled(0, 0, growable: true);
 
+  Map<String, double> stats = {
+    "Dégats par clic": 1.0,
+    "Dégats par secondes": 0.0,
+    "Monstres battus": 0.0,
+    "Clic": 0.0,
+    "Or gagné": 0.0,
+    "OR dépensé": 0.0,
+    "Temps passé": 0.0,
+    "dégats infligés": 0.0
+  };
+
   String gameMode = GameModes.story;
   Map<String, int> gameModesFloor = {"story": 1, "event1": 0};
   int floor = 0;
