@@ -5,15 +5,20 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-class GameModes {
-  static String get story => "story";
-  static String get event1 => "event1";
-}
-
 class Player {
   Player._() {
     readShopJson();
     shopUpgrades = List.filled(shopJsonData.length, 0, growable: true);
+    stats = {
+      "Dégats par clic": 1.0,
+      "Dégats par secondes": 0.0,
+      "Monstres battus": kill,
+      "Clic": 0.0,
+      "Or gagné": 0.0,
+      "OR dépensé": 0.0,
+      "Temps passé": 0.0,
+      "dégats infligés": 0.0
+    };
   }
 
   static final Player _instance = Player._();
@@ -23,23 +28,15 @@ class Player {
   }
 
   String name = "Allan";
-  int money = 0;
+  double money = 50;
   int tapAttack = 1;
   int passiveAttack = 0;
+  double kill = 0.0;
 
   List shopJsonData = List.filled(0, null, growable: true);
   List<int> shopUpgrades = List.filled(0, 0, growable: true);
 
-  Map<String, double> stats = {
-    "Dégats par clic": 1.0,
-    "Dégats par secondes": 0.0,
-    "Monstres battus": 0.0,
-    "Clic": 0.0,
-    "Or gagné": 0.0,
-    "OR dépensé": 0.0,
-    "Temps passé": 0.0,
-    "dégats infligés": 0.0
-  };
+  late Map<String, double> stats;
 
   String gameMode = GameModes.story;
   Map<String, int> gameModesFloor = {"story": 1, "event1": 0};
@@ -75,4 +72,9 @@ class Player {
       print("Etage : ${gameModesFloor[gameMode]}");
     }
   }
+}
+
+class GameModes {
+  static String get story => "story";
+  static String get event1 => "event1";
 }

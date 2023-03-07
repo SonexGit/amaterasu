@@ -1,8 +1,8 @@
 [
     {
-        "id": 1,
-        "name": "",
-        "description": "",
+        "id": 150,
+        "name": "a",
+        "description": "bonjour",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,
@@ -10,17 +10,17 @@
     },
     {
         "id": 2,
-        "name": "",
-        "description": "",
+        "name": "z",
+        "description": "salut",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,
-        "requiredLevel":0
+        "requiredLevel":8
     },
     {
         "id": 3,
-        "name": "",
-        "description": "",
+        "name": "e",
+        "description": "ca va",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,
@@ -28,8 +28,8 @@
     },
     {
         "id": 4,
-        "name": "",
-        "description": "",
+        "name": "r",
+        "description": "et toi",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,
@@ -37,8 +37,8 @@
     },
     {
         "id": 5,
-        "name": "",
-        "description": "",
+        "name": "t",
+        "description": "test",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,

@@ -1,6 +1,7 @@
 import 'package:amaterasu/screens/fight/fight_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_button/animated_button.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AdventureScreen extends StatefulWidget {
   const AdventureScreen({super.key});
@@ -53,12 +54,16 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
               enabled: true,
               shadowDegree: ShadowDegree.light,
               duration: 400,
-              child: const Text(
-                'Aventure',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
+              child: Shimmer.fromColors(
+                baseColor: Colors.white,
+                highlightColor: Colors.grey,
+                child: const Text(
+                  'Aventure',
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
@@ -68,12 +73,16 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
               onPressed: () {},
               enabled: true,
               shadowDegree: ShadowDegree.light,
-              child: const Text(
-                'Evenement Spécial',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
+              child: Shimmer.fromColors(
+                baseColor: Colors.white,
+                highlightColor: Colors.blue,
+                child: const Text(
+                  'Evenement Spécial',
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
