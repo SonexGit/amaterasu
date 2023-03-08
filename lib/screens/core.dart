@@ -7,7 +7,6 @@ import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/home/home_screen.dart';
 import 'package:amaterasu/screens/profile/profile_screen.dart';
 import 'package:amaterasu/screens/quests/quests_screen.dart';
-import 'package:amaterasu/screens/settings/settings_screen.dart';
 import 'package:amaterasu/screens/shop/shop_screen.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
@@ -16,35 +15,39 @@ import 'package:flutter/services.dart';
 Player player = Player();
 Enemy enemy = Enemy();
 
-class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+class Core extends StatefulWidget {
+  const Core({super.key});
 
   @override
-  State<BottomBar> createState() => _BottomBarState();
+  State<Core> createState() => _CoreState();
 }
 
 // This value is equal to 0 because its equal to the Home index in the menu
 int selectedIndex = 0;
 
-class _BottomBarState extends State<BottomBar> {
+class _CoreState extends State<Core> {
+  late PageController _pageController;
+
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const AdventureScreen(),
     const ShopScreen(),
     const QuestsScreen(),
     const ProfileScreen(),
-    const SettingsScreen()
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
+      _pageController.animateToPage(index,
+          duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
     });
   }
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController();
 
     // Initialize player and enemy
     player;
@@ -52,11 +55,28 @@ class _BottomBarState extends State<BottomBar> {
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       // ignore: prefer_const_constructors
       appBar: MyAppBar(),
-      body: SafeArea(child: Container(child: _widgetOptions[selectedIndex])),
+      body: SafeArea(
+          child: PageView(
+        controller: _pageController,
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        children: _widgetOptions,
+        onPageChanged: (index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+      )),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 26,
         backgroundColor: Colors.white,

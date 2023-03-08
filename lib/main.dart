@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         splash: Image.asset("assets/screen/Bienvenue.png"),
         splashIconSize: 500,
         duration: 100,
-        nextScreen: const BottomBar(),
+        nextScreen: const Core(),
         splashTransition: SplashTransition.scaleTransition,
       ),
     );
