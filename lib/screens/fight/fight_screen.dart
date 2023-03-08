@@ -1,10 +1,6 @@
-import 'dart:async';
-
 import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/screens/adventure/adventure_screen.dart';
-import 'package:amaterasu/screens/core.dart';
-import 'package:amaterasu/screens/home/home_screen.dart';
 import 'package:amaterasu/screens/upgrades/upgrades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasu/utils/style.dart';
@@ -58,7 +54,7 @@ class _FightScreenState extends State<FightScreen> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => const AdventureSelectionScreen(),
+          onPressed: () => selectedIndex.value = 0,
         ),
         title: Text(
           "Étape ${player.gameModesFloor[player.gameMode]}",
