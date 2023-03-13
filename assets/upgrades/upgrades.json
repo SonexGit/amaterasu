@@ -1,47 +1,74 @@
 [
     {
-        "id": 150,
-        "name": "a",
-        "description": "bonjour",
+        "id": 1,
+        "name": "Poing de la furie",
+        "description": "Augmente les dégâts de chacun de vos clics",
         "price": 50,
-        "multiplier": 14,
+        "multiplier": 1.5,
         "maxLevel": 0,
-        "requiredLevel":0
+        "requiredLevel":2
     },
     {
         "id": 2,
-        "name": "z",
-        "description": "salut",
+        "name": "Aura meurtrière",
+        "description": "Augmente vos dégâts passifs",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,
-        "requiredLevel":8
+        "requiredLevel": 4
     },
     {
         "id": 3,
-        "name": "e",
-        "description": "ca va",
+        "name": "Yeux perçants",
+        "description": "Chance de réaliser un coup critique",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,
-        "requiredLevel":0
+        "requiredLevel": 2
     },
     {
         "id": 4,
-        "name": "r",
-        "description": "et toi",
+        "name": "Chance écrasante",
+        "description": "Multiplicateur de chance critique",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,
-        "requiredLevel":0
+        "requiredLevel": 7
     },
     {
         "id": 5,
-        "name": "t",
-        "description": "test",
+        "name": "Carapace blindée",
+        "description": "Augmente vos points de vie",
         "price": 50,
         "multiplier": 14,
         "maxLevel": 0,
-        "requiredLevel":0
+        "requiredLevel":2
+    },
+    {
+        "id": 6,
+        "name": "Bouclier impénétrable",
+        "description": "Réduit les dégâts que vous subissez",
+        "price": 50,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":5
+    },
+    {
+        "id": 7,
+        "name": "Cœur de pierre",
+        "description": "Régénérez-vous passivement",
+        "price": 50,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":4
+    },
+    {
+        "id": 8,
+        "name": "Sangsue sanguinaire",
+        "description": "Régénérez-vous à chaque attaque réalisée",
+        "price": 50,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":4
     }
 ]

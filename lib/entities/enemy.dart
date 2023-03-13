@@ -35,6 +35,7 @@ class Enemy {
   int health = 1;
   int maxHealth = 1;
   int moneyValue = 0;
+  int expValue = 0;
   int id = 1;
 
   // Getters
@@ -56,10 +57,10 @@ class Enemy {
 
   // Setters
 
-  void loseHealth(int damage) {
+  void loseHealth(double damage) {
     if (state != LifeState.dead) {
       if (health - damage > 0) {
-        health -= damage;
+        health -= damage as int;
       } else {
         health = 0;
         death();
@@ -70,6 +71,7 @@ class Enemy {
   void death() {
     state = LifeState.dead;
     player.giveMoney(moneyValue);
+    player.giveExp(expValue);
     // give items?
     player.nextFloor();
     newEnemy(player.gameMode, player.gameModesFloor[player.gameMode]);

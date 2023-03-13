@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class Player {
+  // Singleton
+
   Player._() {
     readShopJson();
     shopUpgrades = List.filled(shopJsonData.length, 0, growable: true);
@@ -15,9 +17,9 @@ class Player {
       "Monstres battus": kill,
       "Clic": 0.0,
       "Or gagné": 0.0,
-      "OR dépensé": 0.0,
+      "Or dépensé": 0.0,
       "Temps passé": 0.0,
-      "dégats infligés": 0.0
+      "Dégats infligés": 0.0
     };
   }
 
@@ -27,11 +29,41 @@ class Player {
     return _instance;
   }
 
+  // Identité
+
   String name = "Allan";
-  double money = 50;
-  int tapAttack = 1;
-  int passiveAttack = 0;
+
+  int level = 1;
+  int experience = 0;
+
+  // Caractéristiques
+
+  double health = 100.0;
+  double armor = 0.00;
+
+  double tapRegen = 0.0;
+  double passiveRegen = 0.0;
+
+  double tapAttack = 1.0;
+  double passiveAttack = 0.0;
+
+  double criticalChance = 0.00;
+  double criticalMultiplier = 1.50;
+
+  // Statistiques
+
   double kill = 0.0;
+
+  // Propriétés
+
+  double money = 0;
+
+  Map<String, int> equipments = {
+    "head": -1,
+    "torso": -1,
+    "weapon": -1,
+    "legs": -1
+  };
 
   List shopJsonData = List.filled(0, null, growable: true);
   List<int> shopUpgrades = List.filled(0, 0, growable: true);
@@ -42,12 +74,12 @@ class Player {
   Map<String, int> gameModesFloor = {"story": 1, "event1": 0};
   int floor = 0;
 
+  // Getters
+
   String formattedMoney() {
     return NumberFormat.compactCurrency(decimalDigits: 2, symbol: '')
         .format(Player().money);
   }
-
-  // Getters
 
   Future<void> readShopJson() async {
     final String response =
@@ -62,14 +94,81 @@ class Player {
     money += amount;
   }
 
+  void giveExp(int amount) {
+    experience += amount;
+  }
+
   void nextFloor() {
     if (floor < 10) {
       floor++;
-      print("Etape : $floor");
     } else {
       floor = 1;
       gameModesFloor.update(gameMode, (value) => value += 1);
-      print("Etage : ${gameModesFloor[gameMode]}");
+    }
+  }
+
+  void upgradeStat(String stat, int amount) {
+    switch (stat) {
+      case "dpc":
+        {
+          tapAttack = tapAttack + tapAttack * 0.1;
+          break;
+        }
+      case "dps":
+        {
+          if (passiveAttack == 0) {
+            passiveAttack = 1.0;
+          } else {
+            passiveAttack = passiveAttack + passiveAttack * 0.1;
+          }
+          break;
+        }
+      case "critChance":
+        {
+          if (criticalChance == 0) {
+            criticalChance = 0.05;
+          } else {
+            criticalChance = criticalChance + criticalChance;
+          }
+          break;
+        }
+      case "critMultiplier":
+        {
+          criticalMultiplier = criticalMultiplier + 0.25;
+          break;
+        }
+      case "health":
+        {
+          health = (health + health * 0.5).round() as double;
+          break;
+        }
+      case "armor":
+        {
+          if (armor == 0) {
+            armor = 0.02;
+          } else {
+            armor = armor + armor * 0.5;
+          }
+          break;
+        }
+      case "passiveRegen":
+        {
+          if (passiveRegen == 0) {
+            passiveRegen = 0.05;
+          } else {
+            passiveRegen = passiveRegen + 0.01;
+          }
+          break;
+        }
+      case "tapRegen":
+        {
+          if (tapRegen == 0) {
+            tapRegen = 0.001;
+          } else {
+            tapRegen = tapRegen + 0.001;
+          }
+          break;
+        }
     }
   }
 }

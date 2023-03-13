@@ -137,7 +137,6 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                   Text(entry.values.elementAt(2),
                                       textAlign: TextAlign.left)
                                 ]),
-                                // ignore: prefer_const_literals_to_create_immutables
                                 Row(children: [
                                   const Divider(height: 20, color: Colors.red),
                                 ]),
