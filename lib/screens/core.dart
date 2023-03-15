@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:amaterasu/data/main_menu.dart';
 import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/entities/equipment.dart';
 import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/home/home_screen.dart';
 import 'package:amaterasu/screens/profile/profile_screen.dart';
@@ -49,9 +50,10 @@ class _CoreState extends State<Core> {
     super.initState();
     _pageController = PageController();
 
-    // Initialize player and enemy
+    // Initialize the important entities
     player;
     enemy;
+    Equipment.readEquipmentJson();
   }
 
   @override

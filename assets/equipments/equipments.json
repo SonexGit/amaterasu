@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Casque improvisé",
+    "desc": "desc ci",
+    "price": 100,
+    "rarity": 0,
+    "requiredFloor": 0,
+    "type": 0
+  },
+  {
+    "id": 2,
+    "name": "Plaques de bois",
+    "desc": "desc pdb",
+    "price": 300,
+    "rarity": 0,
+    "requiredFloor": 0,
+    "type": 1
+  },
+  {
+    "id": 3,
+    "name": "Jambières improvisée",
+    "desc": "desc ji",
+    "price": 200,
+    "rarity": 0,
+    "requiredFloor": 0,
+    "type": 2
+  },
+  {
+    "id": 4,
+    "name": "Épée en bois",
+    "desc": "desc eeb",
+    "price": 400,
+    "rarity": 0,
+    "requiredFloor": 0,
+    "type": 3
+  }
+]

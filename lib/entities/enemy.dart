@@ -60,7 +60,7 @@ class Enemy {
   void loseHealth(double damage) {
     if (state != LifeState.dead) {
       if (health - damage > 0) {
-        health -= damage as int;
+        health -= damage.round();
       } else {
         health = 0;
         death();
