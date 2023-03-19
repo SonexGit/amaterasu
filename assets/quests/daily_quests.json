@@ -1,0 +1,18 @@
+[
+    {
+      "title": "Faire 10 clics",
+      "goal": 10,
+      "reward": 100
+    },
+    {
+      "title": "Regarder une vidéo publicitaire",
+      "goal": 1,
+      "reward": 50
+    },
+    {
+      "title": "Inviter 5 amis",
+      "goal": 5,
+      "reward": 200
+    }
+  ]
+  

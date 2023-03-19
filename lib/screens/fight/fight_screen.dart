@@ -16,7 +16,7 @@ class FightScreen extends StatefulWidget {
 class _FightScreenState extends State<FightScreen> {
   Player player = Player();
   Enemy enemy = Enemy();
-
+  int nb_clic = 0;
   final tapEffectsWidgets = <Widget>[];
   int widgetIndex = 0;
   // List<Timer>? _timer;
@@ -70,11 +70,14 @@ class _FightScreenState extends State<FightScreen> {
           behavior: HitTestBehavior.opaque,
           onTap: () {
             setState(() {
+              nb_clic += 1;
+              print("clic : $nb_clic");
+              if (enemy.health <= 1) {
+                player.kill += 1.0;
+                print("kill: player.kill");
+              }
               enemy.loseHealth(player.tapAttack);
             });
-            if (enemy.health == 0) {
-              player.kill = player.kill + 1.00;
-            }
           },
           child: Stack(
             children: <Widget>[

@@ -82,6 +82,8 @@ flutter:
     - assets/screen/
     - assets/upgrades/upgrades.json
     - assets/equipments/equipments.json
+    - assets/quests/monthly_quests.json
+    - assets/quests/daily_quests.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

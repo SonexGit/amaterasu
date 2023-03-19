@@ -33,7 +33,7 @@ class _CoreState extends State<Core> {
     const HomeScreen(),
     const AdventureScreen(),
     const ShopScreen(),
-    const QuestsScreen(),
+    QuestsPage(),
     const ProfileScreen(),
   ];
 

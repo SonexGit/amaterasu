@@ -33,11 +33,16 @@ class Style {
     Color.fromARGB(255, 56, 239, 125),
   ];
 
-  static TextStyle textStyle = TextStyle(fontSize: 14, color: textColor, fontWeight: FontWeight.w400);
-  static TextStyle headlineStyleHome = TextStyle(fontSize: 28, color: textColor, fontWeight: FontWeight.w800);
-  static TextStyle sublineStyleHome = TextStyle(fontSize: 16, color: Colors.grey.shade600, fontWeight: FontWeight.w500);
+  static TextStyle textStyle =
+      TextStyle(fontSize: 14, color: textColor, fontWeight: FontWeight.w400);
+  static TextStyle headlineStyleHome =
+      TextStyle(fontSize: 28, color: textColor, fontWeight: FontWeight.w800);
+  static TextStyle sublineStyleHome = TextStyle(
+      fontSize: 16, color: Colors.grey.shade600, fontWeight: FontWeight.w500);
 
-  static TextStyle headlineStyleHomeCard = TextStyle(fontSize: 20, color: whiteColor, fontWeight: FontWeight.w700);
+  static TextStyle headlineStyleHomeCard =
+      TextStyle(fontSize: 20, color: whiteColor, fontWeight: FontWeight.w700);
 
-  static TextStyle moneyAppBar = const TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500);
+  static TextStyle moneyAppBar = const TextStyle(
+      fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500);
 }
