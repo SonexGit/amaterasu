@@ -12,9 +12,9 @@ class Player {
     readShopJson();
     shopUpgrades = List.filled(shopJsonData.length, 0, growable: true);
     stats = {
-      "Dégats par clic": 1.0,
+      "Dégats par clic": 0.0,
       "Dégats par secondes": 0.0,
-      "Monstres battus": kill,
+      "Monstres battus": 0.0,
       "Clic": 0.0,
       "Or gagné": 0.0,
       "Or dépensé": 0.0,

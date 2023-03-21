@@ -28,9 +28,6 @@ class _QuestsPageState extends State<QuestsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quêtes'),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

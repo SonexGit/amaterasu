@@ -70,12 +70,12 @@ class _FightScreenState extends State<FightScreen> {
           behavior: HitTestBehavior.opaque,
           onTap: () {
             setState(() {
-              nb_clic += 1;
-              print("clic : $nb_clic");
+              player.stats["Clic"] = (player.stats["Clic"]! + 1.0);
               if (enemy.health <= 1) {
-                player.kill += 1.0;
-                print("kill: player.kill");
+                player.stats["Monstres battus"] =
+                    (player.stats["Monstres battus"]! + 1.0);
               }
+
               enemy.loseHealth(player.tapAttack);
             });
           },
