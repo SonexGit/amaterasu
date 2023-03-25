@@ -25,7 +25,6 @@ class _FightScreenState extends State<FightScreen> {
   @override
   void initState() {
     super.initState();
-
     player.floor = 1;
     enemy.newEnemy(player.gameMode, player.gameModesFloor[player.gameMode]);
   }
@@ -75,7 +74,8 @@ class _FightScreenState extends State<FightScreen> {
                 player.stats["Monstres battus"] =
                     (player.stats["Monstres battus"]! + 1.0);
               }
-
+              player.stats["Dégats infligés"] =
+                  player.stats["Clic"]! * player.tapAttack;
               enemy.loseHealth(player.tapAttack);
             });
           },

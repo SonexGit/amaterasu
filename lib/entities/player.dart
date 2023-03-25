@@ -39,6 +39,8 @@ class Player {
 
   // Caractéristiques
 
+  double totalAttack = 0.0;
+
   double health = 100.0;
   double armor = 0.00;
 
@@ -57,7 +59,7 @@ class Player {
 
   // Propriétés
 
-  double money = 0;
+  double money = 0.0;
 
   List<Equipment> inventory = [];
 

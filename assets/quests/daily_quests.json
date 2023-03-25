@@ -1,18 +1,21 @@
 [
     {
-      "title": "Faire 10 clics",
-      "goal": 10,
-      "reward": 100
+      "title": "Faire 100 clics",
+      "goal": 100,
+      "reward": 100,
+      "progress": 0
     },
     {
-      "title": "Regarder une vidéo publicitaire",
-      "goal": 1,
-      "reward": 50
+      "title": "Dégats par clic",
+      "goal": 20,
+      "reward": 50,
+      "progress": 0
     },
     {
-      "title": "Inviter 5 amis",
+      "title": "Tuer 5 monstres",
       "goal": 5,
-      "reward": 200
+      "reward": 200,
+      "progress": 0
     }
   ]
   

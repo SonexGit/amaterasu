@@ -1,17 +1,20 @@
 [
   {
-    "title": "Faire 100 clics",
-    "goal": 100,
-    "reward": 500
+    "title": "Faire 10000 clics",
+    "goal": 10000,
+    "reward": 5000,
+    "progress": 0
   },
   {
-    "title": "Partager l'application sur les réseaux sociaux",
-    "goal": 1,
-    "reward": 100
+    "title": "Dégâts par clic",
+    "goal": 400,
+    "reward": 10000,
+    "progress": 0
   },
   {
-    "title": "Gagner 500 points en une journée",
-    "goal": 500,
-    "reward": 1000
+    "title": "Gagner 100 000 gold",
+    "goal": 100000,
+    "reward": 10000,
+    "progress": 0
   }
 ]
