@@ -1,3 +1,5 @@
+import 'package:amaterasu/entities/equipment.dart';
+import 'package:amaterasu/widgets/equipment/equipment_card.dart';
 import 'package:flutter/material.dart';
 
 class ShopScreen extends StatefulWidget {
@@ -10,8 +12,13 @@ class ShopScreen extends StatefulWidget {
 class _ShopScreenState extends State<ShopScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Boutique"),
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 6.0, // l'espace horizontal entre chaque élément
+      runSpacing: 8.0, // l'espace vertical entre chaque ligne
+      children: Equipment.shopEquipments
+          .map((item) => EquipmentCard(id: item.id, name: item.name, price: item.price))
+          .toList(),
     );
   }
 }

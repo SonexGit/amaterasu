@@ -2,6 +2,7 @@ library player;
 
 import 'dart:convert';
 
+import 'package:amaterasu/entities/equipment.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
@@ -58,11 +59,13 @@ class Player {
 
   double money = 0;
 
-  Map<String, int> equipments = {
-    "head": -1,
-    "torso": -1,
-    "weapon": -1,
-    "legs": -1
+  List<Equipment> inventory = [];
+
+  Map<String, Equipment?> equipments = {
+    "head": null,
+    "torso": null,
+    "weapon": null,
+    "legs": null
   };
 
   List shopJsonData = List.filled(0, null, growable: true);
@@ -94,8 +97,21 @@ class Player {
     money += amount;
   }
 
+  void spendMoney(int amount) {
+    money -= amount;
+  }
+
   void giveExp(int amount) {
     experience += amount;
+  }
+
+  void giveEquipmentById(int id) {
+    inventory.add(Equipment.getEquipmentById(id));
+    print(inventory);
+  }
+
+  void giveEquipment(Equipment equip) {
+    inventory.add(equip);
   }
 
   void nextFloor() {

@@ -53,7 +53,7 @@ class _CoreState extends State<Core> {
     // Initialize the important entities
     player;
     enemy;
-    Equipment.readEquipmentJson();
+    Equipment.setupEquipments();
   }
 
   @override

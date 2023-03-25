@@ -1,8 +1,8 @@
+import 'package:amaterasu/entities/equipment.dart';
+import 'package:amaterasu/entities/player.dart';
 import 'package:flutter/material.dart';
-import 'package:multiavatar/multiavatar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../entities/enemy.dart';
+
+Player player = Player();
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -11,162 +11,129 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  String _selectedAvatar = "Bienvenue";
-  bool _showBienvenue = true;
-  bool _showFemme = true;
-  bool _showHomme = true;
+class _ProfileScreenState extends State<ProfileScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _loadSelectedAvatar();
+    _tabController = TabController(length: 2, vsync: this);
   }
 
-  void _loadSelectedAvatar() async {
-    var prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _selectedAvatar = prefs.getString('selectedAvatar') ?? 'Bienvenue';
-      _showBienvenue = _selectedAvatar == 'Bienvenue';
-      _showFemme = _selectedAvatar == 'Femme';
-      _showHomme = _selectedAvatar == 'Homme';
-    });
-  }
-
-  void _saveSelectedAvatar(String value) async {
-    var prefs = await SharedPreferences.getInstance();
-    print("test: $_selectedAvatar");
-    await prefs.setString('selectedAvatar', value);
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-      color: Colors.grey.shade300,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            player.name,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Column(
-            children: [
-              const SizedBox(height: 16),
-              Column(
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedAvatar = "Bienvenue";
-                              _showBienvenue = true;
-                              _showFemme = false;
-                              _showHomme = false;
-                            });
-                            _saveSelectedAvatar(_selectedAvatar);
-                          },
-                          child: CircleAvatar(
-                            backgroundColor: _showBienvenue
-                                ? Colors.white
-                                : Colors.transparent,
-                            radius: 30,
-                            backgroundImage:
-                                const AssetImage("assets/screen/enfants.png"),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedAvatar = "Femme";
-                              _showBienvenue = false;
-                              _showFemme = true;
-                              _showHomme = false;
-                            });
-                            _saveSelectedAvatar(_selectedAvatar);
-                          },
-                          child: CircleAvatar(
-                            backgroundColor:
-                                _showFemme ? Colors.white : Colors.transparent,
-                            radius: 30,
-                            backgroundImage:
-                                const AssetImage("assets/screen/Femme.png"),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedAvatar = "Homme";
-                              _showBienvenue = false;
-                              _showFemme = false;
-                              _showHomme = true;
-                            });
-                            _saveSelectedAvatar(_selectedAvatar);
-                          },
-                          child: CircleAvatar(
-                            backgroundColor:
-                                _showHomme ? Colors.white : Colors.transparent,
-                            radius: 30,
-                            backgroundImage:
-                                AssetImage("assets/screen/Homme.png"),
-                          ),
-                        ),
-                      ]),
+    return DefaultTabController(
+      length: 2, // Nombre d'onglets
+      child: Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              color: Colors.blue, // Couleur de fond de la tab bar
+              child: TabBar(
+                controller: _tabController,
+                indicatorColor:
+                    Colors.white, // Couleur de la barre de sélection
+                labelColor:
+                    Colors.white, // Couleur de texte de l'onglet sélectionné
+                unselectedLabelColor:
+                    Colors.white60, // Couleur de texte des autres onglets
+                tabs: const [
+                  Tab(text: 'Profil'),
+                  Tab(text: 'Inventaire'),
                 ],
               ),
-              const SizedBox(height: 20),
-              Text("Avatar sélectionné : $_selectedAvatar"),
-            ],
-          ),
-          const SizedBox(height: 30),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Center(
-                child: Text(
-                  'STATISTIQUES',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 40),
-              ...player.stats.entries.map(
-                (entry) => Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 24.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          entry.key,
+                          player.name,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(
-                          entry.value.toStringAsFixed(2),
-                          style: const TextStyle(fontSize: 16),
+                        const SizedBox(height: 15),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Statistiques',
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 40),
+                            ...player.stats.entries.map(
+                              (entry) => Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        entry.key,
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        entry.value.toStringAsFixed(2),
+                                        style: const TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                      height:
+                                          10), // espace vertical entre chaque ligne
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    const SizedBox(
-                        height: 10), // espace vertical entre chaque ligne
-                  ],
-                ),
+                  ),
+                  Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16.0, horizontal: 24.0),
+                      child: GridView.count(
+                        crossAxisCount: 5,
+                        children: player.inventory
+                            .map((Equipment equipment) => GridTile(
+                                  child: Container(
+                                    margin: const EdgeInsets.all(4.0),
+                                    color: Colors.grey[300],
+                                    child: Center(
+                                        child: Image.asset(
+                                            "assets/equipments/images/${equipment.id}.png")),
+                                  ),
+                                ))
+                            .toList(),
+                      ))
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

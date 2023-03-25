@@ -15,6 +15,8 @@ class Equipment {
   int requiredFloor = 0;
   EquipType? type;
 
+  static List<Equipment> shopEquipments = [];
+
   Equipment(
       {required this.id,
       required this.name,
@@ -51,10 +53,26 @@ class Equipment {
     return equipmentList.firstWhere((equip) => equip.id == id);
   }
 
+  static Future<void> setupEquipments() async {
+    await readEquipmentJson();
+    print(equipmentList);
+    generateShopEquipment();
+  }
+
   static Future<void> readEquipmentJson() async {
     final String response =
         await rootBundle.loadString('assets/equipments/equipments.json');
     final List data = await json.decode(response);
+    print(data);
     equipmentList = data.map((json) => Equipment.fromJson(json)).toList();
+    print("cc $equipmentList");
+  }
+
+  static generateShopEquipment() {
+    shopEquipments = [
+      getEquipmentById(1),
+      getEquipmentById(2),
+      getEquipmentById(3)
+    ];
   }
 }
