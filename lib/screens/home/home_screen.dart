@@ -13,55 +13,234 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
 ];
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool showTutorial = true; // affiche la pop-up au début
+  final List<Map<String, String>> tutorialPages = [
+    {
+      'title': 'Bienvenue dans Amaterasu_Clicker !',
+      'content':
+          'Clicker est un jeu simple mais addictif conçu par Allan VANNIER et Lucas RENARD. Profitez de ce jeu amusant et chronophage',
+    },
+    {
+      'title': 'Comment gagner',
+      'content':
+          'Une fois que vous avez commencé, vous verrez un monstre avec un certains nombre de point de vie.\nLe but du jeu est de cliquer sur l\'écran le plus de fois possible pour tuer un maximum de monstre. Vous pouvez améliorer vos capacités d\'attaques',
+    },
+    {
+      'title': 'Amusez-vous bien !',
+      'content':
+          'Ce jeu est fait pour faire passer le temps et de vous amuser un maximum',
+    }
+  ];
+  int currentPage = 0;
+  @override
+  void initState() {
+    super.initState();
+    // affiche la pop-up au début
+    Future.delayed(Duration.zero, () {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(tutorialPages[currentPage]['title']!),
+            content: Text(tutorialPages[currentPage]['content']!),
+            actions: [
+              TextButton(
+                child: const Text('Suivant'),
+                onPressed: () {
+                  if (currentPage < tutorialPages.length) {
+                    setState(() {
+                      currentPage++;
+                    });
+                    Navigator.of(context).pop();
+                    Future.delayed(Duration.zero, () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(tutorialPages[currentPage]['title']!),
+                            content:
+                                Text(tutorialPages[currentPage]['content']!),
+                            actions: [
+                              TextButton(
+                                child: const Text('Suivant'),
+                                onPressed: () {
+                                  if (currentPage < tutorialPages.length - 1) {
+                                    setState(() {
+                                      currentPage++;
+                                    });
+                                    Navigator.of(context).pop();
+                                    Future.delayed(Duration.zero, () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                tutorialPages[currentPage]
+                                                    ['title']!),
+                                            content: Text(
+                                                tutorialPages[currentPage]
+                                                    ['content']!),
+                                            actions: [
+                                              TextButton(
+                                                child: const Text('Suivant'),
+                                                onPressed: () {
+                                                  if (currentPage <
+                                                      tutorialPages.length -
+                                                          1) {
+                                                    setState(() {
+                                                      currentPage++;
+                                                    });
+                                                  } else {
+                                                    setState(() {
+                                                      showTutorial = true;
+                                                    });
+                                                  }
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    });
+                                  } else {
+                                    setState(() {
+                                      showTutorial = true;
+                                    });
+                                    Navigator.of(context).pop();
+                                    Future.delayed(Duration.zero, () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                tutorialPages[currentPage]
+                                                    ['title']!),
+                                            content: Text(
+                                                tutorialPages[currentPage]
+                                                    ['content']!),
+                                            actions: [
+                                              TextButton(
+                                                child: const Text('Suivant'),
+                                                onPressed: () {
+                                                  if (currentPage <
+                                                      tutorialPages.length -
+                                                          1) {
+                                                    setState(() {
+                                                      currentPage++;
+                                                    });
+                                                  } else {
+                                                    setState(() {
+                                                      showTutorial = true;
+                                                    });
+                                                  }
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    });
+                                  }
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    });
+                  } else {
+                    setState(() {
+                      showTutorial = false;
+                    });
+                  }
+                },
+              ),
+            ],
+          );
+        },
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Style.whiteColor,
-        body: ListView(
-          children: [
-            Column(
-              children: [
-                Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 30, horizontal: 20),
-                    child: Column(
+      backgroundColor: Colors.white,
+      body: ListView(
+        children: [
+          Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  vertical: 30,
+                  horizontal: 20,
+                ),
+                child: Column(
+                  children: [
+                    Row(
                       children: [
-                        Row(
-                          children: [
-                            Text("Bonjour ${player.name}",
-                                style: Style.headlineStyleHome),
-                          ],
+                        Text(
+                          "Bonjour ${player.name}",
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
-                        const SizedBox(height: 5),
-                        Row(
-                          children: [
-                            Flexible(
-                              child: Text(
-                                  "Pendant que vous n'étiez pas la, vous avez gagné un total de 2416 pièces d'or",
-                                  style: Style.sublineStyleHome),
-                            )
-                          ],
-                        ),
-                        CarouselSlider(
-                          options: CarouselOptions(height: 400.0),
-                          items: imgList
-                              .map((item) => Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0),
-                                    child: Center(
-                                        child: Image.network(item,
-                                            fit: BoxFit.cover, width: 1000)),
-                                  ))
-                              .toList(),
-                        )
                       ],
-                    )),
-              ],
-            )
-          ],
-        ));
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            "Pendant que vous n'étiez pas là, vous avez gagné un total de 2416 pièces d'or",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        height: 400.0,
+                      ),
+                      items: imgList
+                          .map(
+                            (item) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0,
+                              ),
+                              child: Center(
+                                child: Image.network(
+                                  item,
+                                  fit: BoxFit.cover,
+                                  width: 1000,
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
