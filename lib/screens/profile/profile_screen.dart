@@ -30,6 +30,10 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      player.stats["Dégats par clic"] = player.tapAttack;
+      player.stats["Dégats par secondes"] = player.passiveAttack;
+    });
     return DefaultTabController(
       length: 2, // Nombre d'onglets
       child: Scaffold(
@@ -114,8 +118,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                     ),
                   ),
                   Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16.0, horizontal: 24.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 24.0),
                       child: GridView.count(
                         crossAxisCount: 5,
                         children: player.inventory

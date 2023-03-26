@@ -131,8 +131,12 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                             children: [
                               Column(children: [
                                 Row(children: [
-                                  Text(entry.values.elementAt(1),
-                                      textAlign: TextAlign.left)
+                                  Text(
+                                    entry.values.elementAt(1),
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  )
                                 ]),
                                 Row(children: [
                                   Text(entry.values.elementAt(2),
