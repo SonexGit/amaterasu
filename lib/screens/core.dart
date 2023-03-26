@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:amaterasu/data/main_menu.dart';
 import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/entities/equipment.dart';
@@ -12,6 +11,7 @@ import 'package:amaterasu/screens/shop/shop_screen.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Player player = Player();
 Enemy enemy = Enemy();
@@ -116,6 +116,14 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _MyAppBarState extends State<MyAppBar> {
+  List<String> menuNames = <String>[
+    "Home",
+    "Adventure",
+    "Shop",
+    "Quests",
+    "Profile"
+  ];
+
   Timer? _timer;
 
   int counter = 0;
@@ -135,6 +143,9 @@ class _MyAppBarState extends State<MyAppBar> {
   void initState() {
     super.initState();
     _timer = Timer.periodic(const Duration(milliseconds: 100), _updateMoney);
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   menuNames = AppLocalizations.of(context)!.menuNames.split(':');
+    // });
   }
 
   @override
@@ -149,7 +160,13 @@ class _MyAppBarState extends State<MyAppBar> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(MainMenu.names[selectedIndex]),
+          Text([
+            AppLocalizations.of(context)!.home,
+            AppLocalizations.of(context)!.adventure,
+            AppLocalizations.of(context)!.shop,
+            AppLocalizations.of(context)!.quests,
+            AppLocalizations.of(context)!.profile
+          ][selectedIndex]),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -164,9 +181,11 @@ class _MyAppBarState extends State<MyAppBar> {
       actions: [
         PopupMenuButton<int>(
           icon: const Icon(Icons.menu),
-          itemBuilder: (context) =>
-              [const PopupMenuItem(value: 0, child: Text("Paramètres"))],
-          tooltip: "Menu",
+          itemBuilder: (context) => [
+            PopupMenuItem(
+                value: 0, child: Text(AppLocalizations.of(context)!.settings))
+          ],
+          tooltip: AppLocalizations.of(context)!.menu,
         ),
       ],
       systemOverlayStyle:

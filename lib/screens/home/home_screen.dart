@@ -2,6 +2,7 @@ import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Player player = Player();
 final List<String> imgList = [
@@ -190,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       children: [
                         Text(
-                          "Bonjour ${player.name}",
+                          "${AppLocalizations.of(context)!.hello} ${player.name}",
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -204,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Flexible(
                           child: Text(
-                            "Pendant que vous n'étiez pas là, vous avez gagné un total de 2416 pièces d'or",
+                            "${AppLocalizations.of(context)!.afkIncome} 2416 ${AppLocalizations.of(context)!.goldsLower}",
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.grey[600],

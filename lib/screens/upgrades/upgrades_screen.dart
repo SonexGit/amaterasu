@@ -6,6 +6,7 @@ import 'package:amaterasu/entities/enemy.dart';
 import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UpgradesScreen extends StatefulWidget {
   const UpgradesScreen({super.key});
@@ -168,9 +169,9 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                                 children: [
                                                   Row(
                                                     children: [
-                                                      const Text(
-                                                        'Acheter',
-                                                        style: TextStyle(
+                                                      Text(
+                                                        AppLocalizations.of(context)!.buy,
+                                                        style: const TextStyle(
                                                           fontSize: 14,
                                                           color: Colors.white,
                                                           fontWeight:
@@ -240,7 +241,7 @@ class UpgradesGrab extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(5)))))
               ]),
               const SizedBox(height: 5.0),
-              const Text("Améliorations"),
+              Text(AppLocalizations.of(context)!.upgrades),
             ])));
   }
 }

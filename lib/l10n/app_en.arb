@@ -1,1 +1,34 @@
-{}
+{
+    "home": "Home",
+    "adventure": "Adventure",
+    "shop": "Shop",
+    "quests": "Quests",
+    "profile": "Profile",
+
+    "welcome": "Welcome",
+    "hello": "Hello",
+    "afkIncome": "While you were not there, you won a total of",
+    "goldsLower": "gold coins",
+    "golds": "Gold coins",
+    "gold": "Gold coin",
+    
+    "specialEvent": "Special Event",
+
+    "step": "Step",
+
+    "upgrades": "Upgrades",
+    "buy": "Buy",
+
+    "dailyQuests": "Daily quests",
+    "monthlyQuests": "Monthly quests",
+    "reward": "Reward",
+    "claim": "Claim",
+
+    "inventory": "Inventory",
+    "statistics": "Statistics",
+
+    "outOfStock": "Out of stock",
+
+    "menu": "Menu",
+    "settings": "Settings"
+}

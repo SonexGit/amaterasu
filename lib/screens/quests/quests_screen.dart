@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuestsPage extends StatefulWidget {
   @override
@@ -31,11 +32,11 @@ class _QuestsPageState extends State<QuestsPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(16.0),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Quêtes journalières',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              AppLocalizations.of(context)!.dailyQuests,
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -72,7 +73,7 @@ class _QuestsPageState extends State<QuestsPage> {
                           ),
                           ElevatedButton(
                             onPressed: isComplete ? () {} : null,
-                            child: const Text('Récupérer'),
+                            child: Text(AppLocalizations.of(context)!.claim),
                           ),
                         ],
                       ),
@@ -93,11 +94,11 @@ class _QuestsPageState extends State<QuestsPage> {
               },
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Quêtes mensuelles',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              AppLocalizations.of(context)!.monthlyQuests,
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -116,7 +117,7 @@ class _QuestsPageState extends State<QuestsPage> {
                         children: [
                           ListTile(
                             title: Text(quest['title']),
-                            subtitle: Text('Récompense: ${quest['reward']}'),
+                            subtitle: Text('${AppLocalizations.of(context)!.reward}: ${quest['reward']}'),
                             trailing: Text('$questProgress / $questGoal'),
                             leading: CircularProgressIndicator(
                               value: questProgress / questGoal,
@@ -134,7 +135,7 @@ class _QuestsPageState extends State<QuestsPage> {
                           ),
                           ElevatedButton(
                             onPressed: isComplete ? () {} : null,
-                            child: const Text('Récupérer'),
+                            child: Text(AppLocalizations.of(context)!.claim),
                           ),
                         ],
                       ),

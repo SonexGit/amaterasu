@@ -5,6 +5,7 @@ import 'package:amaterasu/screens/upgrades/upgrades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FightScreen extends StatefulWidget {
   const FightScreen({super.key});
@@ -57,7 +58,7 @@ class _FightScreenState extends State<FightScreen> {
           onPressed: () => selectedIndex.value = 0,
         ),
         title: Text(
-          "Étape ${player.gameModesFloor[player.gameMode]}",
+          "${AppLocalizations.of(context)!.step} ${player.gameModesFloor[player.gameMode]}",
           textAlign: TextAlign.center,
         ),
       ),

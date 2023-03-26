@@ -1,5 +1,6 @@
 import 'package:amaterasu/entities/player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Player player = Player();
 
@@ -47,7 +48,7 @@ class _EquipmentCardState extends State<EquipmentCard> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: _isOutOfStock
-                ? [const Text('OUT OF STOCK')]
+                ? [Text((AppLocalizations.of(context)!.outOfStock).toUpperCase())]
                 : [
                     Image.asset(widget.imagePath),
                     Text(widget.name),

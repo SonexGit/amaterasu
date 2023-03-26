@@ -2,6 +2,7 @@ import 'package:amaterasu/screens/fight/fight_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_button/animated_button.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AdventureScreen extends StatefulWidget {
   const AdventureScreen({super.key});
@@ -57,9 +58,9 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
               child: Shimmer.fromColors(
                 baseColor: Colors.white,
                 highlightColor: Colors.grey,
-                child: const Text(
-                  'Aventure',
-                  style: TextStyle(
+                child: Text(
+                  AppLocalizations.of(context)!.adventure,
+                  style: const TextStyle(
                     fontSize: 22,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
@@ -76,9 +77,9 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
               child: Shimmer.fromColors(
                 baseColor: Colors.white,
                 highlightColor: Colors.blue,
-                child: const Text(
-                  'Evenement Spécial',
-                  style: TextStyle(
+                child: Text(
+                  AppLocalizations.of(context)!.specialEvent,
+                  style: const TextStyle(
                     fontSize: 22,
                     color: Colors.white,
                   ),

@@ -1,3 +1,34 @@
 {
-    "welcome": "Bienvenue"
+    "home": "Accueil",
+    "adventure": "Aventure",
+    "shop": "Boutique",
+    "quests": "Quêtes",
+    "profile": "Profil",
+
+    "welcome": "Bienvenue",
+    "hello": "Bonjour",
+    "afkIncome": "Pendant que vous n'étiez pas là, vous avez gagné un total de",
+    "goldsLower": "pièces d'or",
+    "golds": "Pièces d'or",
+    "gold": "Pièce d'or",
+
+    "specialEvent": "Événément spécial",
+
+    "step": "Étape",
+
+    "upgrades": "Améliorations",
+    "buy": "Acheter",
+
+    "dailyQuests": "Quêtes journalières",
+    "monthlyQuests": "Quêtes mensuelles",
+    "reward": "Récompense",
+    "claim": "Récupérer",
+
+    "inventory": "Inventaire",
+    "statistics": "Statistiques",
+
+    "outOfStock": "Rupture de stock",
+
+    "menu": "Menu",
+    "settings": "Paramètres"
 }

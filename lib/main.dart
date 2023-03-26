@@ -2,6 +2,7 @@ import 'package:amaterasu/screens/core.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Amaterasu',
       localizationsDelegates: const [
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('en'),
       ],
+      locale: const Locale('fr'),
       theme: ThemeData.light(),
       home: AnimatedSplashScreen(
         splash: Image.asset("assets/screen/Bienvenue.png"),
