@@ -55,14 +55,14 @@ class _QuestsPageState extends State<QuestsPage> {
                 if (snapshot.hasData) {
                   final dailyQuests = snapshot.data!;
                   List<Widget> questWidgets = [];
-                  int questGoal0 = dailyQuests[0]['goal'] as int;
-                  int questProgress0 = player.stats["Clic"] as int;
+                  int questGoal0 = dailyQuests[0]['goal']!.toInt();
+                  int questProgress0 = player.stats["Clic"]!.toInt();
 
-                  int questGoal1 = dailyQuests[1]['goal'] as int;
-                  int questProgress1 = player.tapAttack as int;
+                  int questGoal1 = dailyQuests[1]['goal']!.toInt();
+                  int questProgress1 = player.tapAttack.toInt();
 
-                  int questGoal2 = dailyQuests[2]['goal'] as int;
-                  int questProgress2 = player.stats["Monstres battus"] as int;
+                  int questGoal2 = dailyQuests[2]['goal']!.toInt();
+                  int questProgress2 = player.stats["Monstres battus"]!.toInt();
 
                   bool isComplete0 = questProgress0 >= questGoal0;
                   bool isComplete1 = questProgress1 >= questGoal1;
@@ -205,14 +205,14 @@ class _QuestsPageState extends State<QuestsPage> {
                 if (snapshot.hasData) {
                   final monthlyQuests = snapshot.data!;
                   List<Widget> questWidgets = [];
-                  int questMGoal0 = monthlyQuests[0]['goal'] as int;
-                  int questMProgress0 = player.stats["Clic"] as int;
+                  int questMGoal0 = monthlyQuests[0]['goal']!.toInt();
+                  int questMProgress0 = player.stats["Clic"]!.toInt();
 
-                  int questMGoal1 = monthlyQuests[1]['goal'] as int;
-                  int questMProgress1 = player.tapAttack as int;
+                  int questMGoal1 = monthlyQuests[1]['goal']!.toInt();
+                  int questMProgress1 = player.tapAttack.toInt();
 
-                  int questMGoal2 = monthlyQuests[2]['goal'] as int;
-                  int questMProgress2 = player.money as int;
+                  int questMGoal2 = monthlyQuests[2]['goal']!.toInt();
+                  int questMProgress2 = player.money.toInt();
 
                   bool isCompleteM0 = questMProgress0 >= questMGoal0;
                   bool isCompleteM1 = questMProgress1 >= questMGoal1;
