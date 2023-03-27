@@ -74,11 +74,21 @@ class Enemy {
     player.giveExp(expValue);
     // give items?
     player.nextFloor();
-    newEnemy(player.gameMode, player.gameModesFloor[player.gameMode]);
+    newEnemy(
+        player.gameMode, player.gameModesFloor[player.gameMode], player.floor);
   }
 
-  void newEnemy(gameMode, floor) {
-    var rand = Random().nextInt(jsonData.length);
+  void newEnemy(gameMode, gameModeFloor, step) {
+    var rand;
+    if (step != 10) {
+      do {
+        rand = Random().nextInt(jsonData.length);
+      } while (jsonData[rand]["type"] == EnemyType.boss.index);
+    } else {
+      do {
+        rand = Random().nextInt(jsonData.length);
+      } while (jsonData[rand]["type"] != EnemyType.boss.index);
+    }
     name = jsonData[rand]["name"];
     health = jsonData[rand]["health"];
     maxHealth = jsonData[rand]["health"];

@@ -6,7 +6,15 @@
     "price": 100,
     "rarity": 0,
     "requiredFloor": 0,
-    "type": 0
+    "type": 0,
+    "healthBonus": 10,
+    "armorBonus": 5,
+    "tapAttackBonus": 0,
+    "passiveAttackBonus": 0,
+    "tapRegenBonus": 0,
+    "passiveRegenBonus": 0,
+    "criticalChanceBonus": 0,
+    "criticalMultiplierBonus": 0
   },
   {
     "id": 2,
@@ -15,7 +23,15 @@
     "price": 300,
     "rarity": 0,
     "requiredFloor": 0,
-    "type": 1
+    "type": 1,
+    "healthBonus": 20,
+    "armorBonus": 10,
+    "tapAttackBonus": 0,
+    "passiveAttackBonus": 0,
+    "tapRegenBonus": 0,
+    "passiveRegenBonus": 0,
+    "criticalChanceBonus": 0,
+    "criticalMultiplierBonus": 0
   },
   {
     "id": 3,
@@ -24,7 +40,15 @@
     "price": 200,
     "rarity": 0,
     "requiredFloor": 0,
-    "type": 2
+    "type": 2,
+    "healthBonus": 15,
+    "armorBonus": 7,
+    "tapAttackBonus": 0,
+    "passiveAttackBonus": 0,
+    "tapRegenBonus": 0,
+    "passiveRegenBonus": 0,
+    "criticalChanceBonus": 0,
+    "criticalMultiplierBonus": 0
   },
   {
     "id": 4,
@@ -33,6 +57,14 @@
     "price": 400,
     "rarity": 0,
     "requiredFloor": 0,
-    "type": 3
+    "type": 3,
+    "healthBonus": 0,
+    "armorBonus": 0,
+    "tapAttackBonus": 10,
+    "passiveAttackBonus": 0,
+    "tapRegenBonus": 0,
+    "passiveRegenBonus": 0,
+    "criticalChanceBonus": 0,
+    "criticalMultiplierBonus": 0
   }
 ]

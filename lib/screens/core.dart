@@ -7,6 +7,7 @@ import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/home/home_screen.dart';
 import 'package:amaterasu/screens/profile/profile_screen.dart';
 import 'package:amaterasu/screens/quests/quests_screen.dart';
+import 'package:amaterasu/screens/settings/settings_screen.dart';
 import 'package:amaterasu/screens/shop/shop_screen.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
@@ -183,7 +184,17 @@ class _MyAppBarState extends State<MyAppBar> {
           icon: const Icon(Icons.menu),
           itemBuilder: (context) => [
             PopupMenuItem(
-                value: 0, child: Text(AppLocalizations.of(context)!.settings))
+                onTap: () {
+                  Future.delayed(
+                    const Duration(seconds: 0),
+                    () => showDialog(
+                      context: context,
+                      builder: (context) => const SettingsScreen(),
+                    ),
+                  );
+                },
+                value: 0,
+                child: Text(AppLocalizations.of(context)!.settings))
           ],
           tooltip: AppLocalizations.of(context)!.menu,
         ),

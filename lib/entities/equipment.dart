@@ -1,30 +1,50 @@
 import 'dart:convert';
 
+import 'package:amaterasu/entities/player.dart';
 import 'package:flutter/services.dart';
 
 enum EquipRarity { common, rare, epic, legendary }
 
 enum EquipType { head, body, legs, weapon }
 
+Player player = Player();
+
 class Equipment {
-  int id = 0;
-  String name = "";
-  String desc = "";
-  int price = 0;
-  EquipRarity? rarity = EquipRarity.common;
-  int requiredFloor = 0;
-  EquipType? type;
+  final int id;
+  final String name;
+  final String desc;
+  final int price;
+  final EquipRarity rarity;
+  final int requiredFloor;
+  final EquipType? type;
+  final double? healthBonus;
+  final double? armorBonus;
+  final double? tapAttackBonus;
+  final double? passiveAttackBonus;
+  final double? tapRegenBonus;
+  final double? passiveRegenBonus;
+  final double? criticalChanceBonus;
+  final double? criticalMultiplierBonus;
 
   static List<Equipment> shopEquipments = [];
 
-  Equipment(
-      {required this.id,
-      required this.name,
-      required this.desc,
-      required this.price,
-      required this.rarity,
-      required this.requiredFloor,
-      this.type});
+  Equipment({
+    required this.id,
+    required this.name,
+    required this.desc,
+    required this.price,
+    required this.rarity,
+    required this.requiredFloor,
+    this.type,
+    this.healthBonus,
+    this.armorBonus,
+    this.tapAttackBonus,
+    this.passiveAttackBonus,
+    this.tapRegenBonus,
+    this.passiveRegenBonus,
+    this.criticalChanceBonus,
+    this.criticalMultiplierBonus,
+  });
 
   factory Equipment.fromJson(Map<String, dynamic> json) {
     return Equipment(
@@ -35,6 +55,14 @@ class Equipment {
       rarity: EquipRarity.values[json["rarity"]],
       requiredFloor: json["requiredFloor"],
       type: EquipType.values[json["type"]],
+      healthBonus: json["healthBonus"],
+      armorBonus: json["armorBonus"],
+      tapAttackBonus: json["tapAttackBonus"],
+      passiveAttackBonus: json["passiveAttackBonus"],
+      tapRegenBonus: json["tapRegenBonus"],
+      passiveRegenBonus: json["passiveRegenBonus"],
+      criticalChanceBonus: json["criticalChanceBonus"],
+      criticalMultiplierBonus: json["criticalMultiplierBonus"],
     );
   }
 
@@ -55,7 +83,6 @@ class Equipment {
 
   static Future<void> setupEquipments() async {
     await readEquipmentJson();
-    print(equipmentList);
     generateShopEquipment();
   }
 
@@ -63,9 +90,7 @@ class Equipment {
     final String response =
         await rootBundle.loadString('assets/equipments/equipments.json');
     final List data = await json.decode(response);
-    print(data);
     equipmentList = data.map((json) => Equipment.fromJson(json)).toList();
-    print("cc $equipmentList");
   }
 
   static generateShopEquipment() {

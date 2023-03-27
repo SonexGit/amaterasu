@@ -14,10 +14,14 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     return Wrap(
       alignment: WrapAlignment.center,
-      spacing: 6.0, // l'espace horizontal entre chaque élément
-      runSpacing: 8.0, // l'espace vertical entre chaque ligne
+      spacing: 6.0,
+      runSpacing: 8.0,
       children: Equipment.shopEquipments
-          .map((item) => EquipmentCard(id: item.id, name: item.name, price: item.price))
+          .map((item) => EquipmentCard(
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              rarity: item.rarity!))
           .toList(),
     );
   }

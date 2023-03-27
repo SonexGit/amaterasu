@@ -3,13 +3,36 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:amaterasu/entities/player.dart';
+
+Player player = Player();
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    if (state != null) {
+      state.setLocale(newLocale);
+    }
+  }
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late Locale _locale = Locale(player.locale);
+
+  void setLocale(Locale newLocale) {
+    setState(() {
+      _locale = newLocale;
+    });
+  }
 
   // This widget is the root of your application.
   @override
@@ -27,7 +50,7 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('en'),
       ],
-      locale: const Locale('fr'),
+      locale: _locale,
       theme: ThemeData.light(),
       home: AnimatedSplashScreen(
         splash: Image.asset("assets/screen/Bienvenue.png"),

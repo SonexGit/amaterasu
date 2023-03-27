@@ -27,23 +27,47 @@ class _FightScreenState extends State<FightScreen> {
   void initState() {
     super.initState();
     player.floor = 1;
-    enemy.newEnemy(player.gameMode, player.gameModesFloor[player.gameMode]);
+    enemy.newEnemy(player.gameMode, player.gameModesFloor[player.gameMode], 1);
   }
 
+  final GlobalKey _stackKey = GlobalKey();
+
   _onTapDown(TapDownDetails details) {
+    final RenderBox box =
+        _stackKey.currentContext!.findRenderObject() as RenderBox;
+    final Offset localOffset = box.globalToLocal(details.globalPosition);
+
     // setState(() {
-    //   _widgetVisibility.add(1.0);
-    //   var effect = Positioned(
-    //     left: details.localPosition.dx,
-    //     top: details.localPosition.dy - 10,
-    //     child: AnimatedOpacity(
-    //         opacity: _widgetVisibility[widgetIndex],
-    //         duration: const Duration(milliseconds: 500),
-    //         child: const Text("-1")));
-    //   tapEffectsWidgets.add(effect);
-    //   _widgetVisibility[widgetIndex] = 0.0;
-    //   _widgetVisibility.removeAt(widgetIndex);
-    //   widgetIndex++;
+    //   tapEffectsWidgets.add(
+    //     Positioned(
+    //       left: localOffset.dx,
+    //       top: localOffset.dy,
+    //       child: GestureDetector(
+    //         onTap: () {
+    //           setState(() {
+    //             tapEffectsWidgets.removeLast();
+    //           });
+    //         },
+    //         child: AnimatedOpacity(
+    //           duration: Duration(milliseconds: 500),
+    //           opacity: 1.0,
+    //           onEnd: () {
+    //             setState(() {
+    //               tapEffectsWidgets.removeLast();
+    //             });
+    //           },
+    //           child: Text(
+    //             "-1",
+    //             style: TextStyle(
+    //               color: Colors.red,
+    //               fontSize: 20,
+    //               fontWeight: FontWeight.bold,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   );
     // });
   }
 
@@ -57,7 +81,7 @@ class _FightScreenState extends State<FightScreen> {
           onPressed: () => selectedIndex.value = 0,
         ),
         title: Text(
-          "${AppLocalizations.of(context)!.step} ${player.gameModesFloor[player.gameMode]}",
+          "${AppLocalizations.of(context)!.floor} ${player.gameModesFloor[player.gameMode]} • ${AppLocalizations.of(context)!.step} ${player.floor}/10",
           textAlign: TextAlign.center,
         ),
       ),
@@ -77,10 +101,11 @@ class _FightScreenState extends State<FightScreen> {
               }
               player.stats["Dégats infligés"] =
                   player.stats["Clic"]! * player.tapAttack;
-              enemy.loseHealth(player.tapAttack);
+              enemy.loseHealth(player.getDamagePerTap());
             });
           },
           child: Stack(
+            key: _stackKey,
             children: <Widget>[
                   // ignore: prefer_const_constructors
                   ColoredBox(

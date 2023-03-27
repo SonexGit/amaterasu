@@ -123,9 +123,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 ),
                               ),
                               const SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                mainAxisSize: MainAxisSize.max,
+                              Wrap(
+                                alignment: WrapAlignment.spaceEvenly,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 16,
+                                runSpacing: 8,
                                 children: player.equipments.keys.map((key) {
                                   return const EquipmentSlot();
                                 }).toList(),

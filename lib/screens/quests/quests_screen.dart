@@ -10,9 +10,9 @@ class QuestsPage extends StatefulWidget {
 }
 
 class _QuestsPageState extends State<QuestsPage> {
-  bool _isButtonEnabled0 = false;
-  bool _isButtonEnabled1 = false;
-  bool _isButtonEnabled2 = false;
+  bool isButtonClicked0 = false;
+  bool isButtonClicked1 = false;
+  bool isButtonClicked2 = false;
   late Future<List<Map<String, dynamic>>> dailyQuestsFuture;
   late Future<List<Map<String, dynamic>>> monthlyQuestsFuture;
 
@@ -126,10 +126,13 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: isComplete1
+                              onPressed: isComplete1 && !isButtonClicked1
                                   ? () {
                                       player
                                           .giveMoney(dailyQuests[1]['reward']);
+                                      setState(() {
+                                        isButtonClicked1 = true;
+                                      });
                                     }
                                   : null,
                               child: Text(AppLocalizations.of(context)!.claim),

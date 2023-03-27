@@ -37,6 +37,8 @@ class Player {
   int level = 1;
   int experience = 0;
 
+  String locale = "fr";
+
   // Caractéristiques
 
   double totalAttack = 0.0;
@@ -52,6 +54,15 @@ class Player {
 
   double criticalChance = 0.00;
   double criticalMultiplier = 1.50;
+
+  double healthBonus = 0.00;
+  double armorBonus = 0.00;
+  double tapRegenBonus = 0.00;
+  double passiveRegenBonus = 0.00;
+  double tapAttackBonus = 0.00;
+  double passiveAttackBonus = 0.00;
+  double criticalChanceBonus = 0.00;
+  double criticalMultiplierBonus = 0.00;
 
   // Statistiques
 
@@ -93,7 +104,54 @@ class Player {
     shopJsonData = data;
   }
 
+  double getEquippedBonus(String bonus) {
+    double totalBonus = 0.0;
+    equipments.forEach((key, value) {
+      if (value != null) {
+        switch (bonus) {
+          case "tapAttackBonus":
+            totalBonus += value.tapAttackBonus!;
+            break;
+          case "passiveAttackBonus":
+            totalBonus += value.passiveAttackBonus!;
+            break;
+          case "tapRegenBonus":
+            totalBonus += value.tapRegenBonus!;
+            break;
+          case "passiveRegenBonus":
+            totalBonus += value.passiveRegenBonus!;
+            break;
+          case "healthBonus":
+            totalBonus += value.healthBonus!;
+            break;
+          case "armorBonus":
+            totalBonus += value.armorBonus!;
+            break;
+          case "criticalChanceBonus":
+            totalBonus += value.criticalChanceBonus!;
+            break;
+          case "criticalMultiplierBonus":
+            totalBonus += value.criticalMultiplierBonus!;
+            break;
+          default:
+            // Bonus inconnu
+            break;
+        }
+      }
+    });
+    return totalBonus;
+  }
+
+  double getDamagePerTap() {
+    var damage = tapAttack + getEquippedBonus("tapAttackBonus");
+    return damage;
+  }
+
   // Setters
+
+  void setLocale(String loc) {
+    locale = loc;
+  }
 
   void giveMoney(int amount) {
     money += amount;
@@ -109,7 +167,6 @@ class Player {
 
   void giveEquipmentById(int id) {
     inventory.add(Equipment.getEquipmentById(id));
-    print(inventory);
   }
 
   void giveEquipment(Equipment equip) {
