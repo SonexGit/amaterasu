@@ -21,7 +21,7 @@ class _ShopScreenState extends State<ShopScreen> {
               id: item.id,
               name: item.name,
               price: item.price,
-              rarity: item.rarity!))
+              rarity: item.rarity))
           .toList(),
     );
   }
