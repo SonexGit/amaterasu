@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/screens/adventure/adventure_screen.dart';
@@ -14,14 +16,15 @@ class FightScreen extends StatefulWidget {
   State<FightScreen> createState() => _FightScreenState();
 }
 
-class _FightScreenState extends State<FightScreen> {
+class _FightScreenState extends State<FightScreen>
+    with TickerProviderStateMixin {
   Player player = Player();
   Enemy enemy = Enemy();
-  int nb_clic = 0;
+
   final tapEffectsWidgets = <Widget>[];
-  int widgetIndex = 0;
-  // List<Timer>? _timer;
-  final List<double> _widgetVisibility = List.empty(growable: true);
+  final List<double> _widgetOpacity = List.empty(growable: true);
+
+  final Map<int, AnimationController> _animationControllers = {};
 
   @override
   void initState() {
@@ -33,42 +36,66 @@ class _FightScreenState extends State<FightScreen> {
   final GlobalKey _stackKey = GlobalKey();
 
   _onTapDown(TapDownDetails details) {
+    final id = DateTime.now().microsecondsSinceEpoch;
+    _animationControllers[id] = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+      upperBound: 1.0,
+      lowerBound: 0.0
+    );
+
     final RenderBox box =
         _stackKey.currentContext!.findRenderObject() as RenderBox;
-    final Offset localOffset = box.globalToLocal(details.globalPosition);
+    final Offset offset = box.globalToLocal(details.globalPosition);
 
-    // setState(() {
-    //   tapEffectsWidgets.add(
-    //     Positioned(
-    //       left: localOffset.dx,
-    //       top: localOffset.dy,
-    //       child: GestureDetector(
-    //         onTap: () {
-    //           setState(() {
-    //             tapEffectsWidgets.removeLast();
-    //           });
-    //         },
-    //         child: AnimatedOpacity(
-    //           duration: Duration(milliseconds: 500),
-    //           opacity: 1.0,
-    //           onEnd: () {
-    //             setState(() {
-    //               tapEffectsWidgets.removeLast();
-    //             });
-    //           },
-    //           child: Text(
-    //             "-1",
-    //             style: TextStyle(
-    //               color: Colors.red,
-    //               fontSize: 20,
-    //               fontWeight: FontWeight.bold,
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     ),
-    //   );
-    // });
+    final widget = Positioned(
+      top: offset.dy - 50,
+      left: offset.dx,
+      child: AnimatedBuilder(
+        animation: _animationControllers[id]!,
+        builder: (context, child) {
+          final animation = CurvedAnimation(
+            parent: _animationControllers[id]!,
+            curve: Curves.easeOut.flipped,
+          );
+          return Opacity(
+            opacity: 1 - animation.value,
+            child: child,
+          );
+        },
+        child: Text(
+          "-${player.getDamagePerTap().round()}",
+          style: const TextStyle(
+            color: Colors.red,
+            fontSize: 26.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+
+    setState(() {
+      player.stats["Clic"] = (player.stats["Clic"]! + 1.0);
+      if (enemy.health <= 1) {
+        player.stats["Monstres battus"] =
+            (player.stats["Monstres battus"]! + 1.0);
+      }
+      player.stats["Dégats infligés"] =
+          player.stats["Clic"]! * player.tapAttack;
+      enemy.loseHealth(player.getDamagePerTap());
+
+      tapEffectsWidgets.add(widget);
+      _widgetOpacity.add(1.0);
+    });
+
+    _animationControllers[id]!.forward();
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        tapEffectsWidgets.remove(widget);
+        _widgetOpacity.removeAt(0);
+      });
+    });
   }
 
   @override
@@ -92,18 +119,6 @@ class _FightScreenState extends State<FightScreen> {
         child: GestureDetector(
           onTapDown: (TapDownDetails details) => _onTapDown(details),
           behavior: HitTestBehavior.opaque,
-          onTap: () {
-            setState(() {
-              player.stats["Clic"] = (player.stats["Clic"]! + 1.0);
-              if (enemy.health <= 1) {
-                player.stats["Monstres battus"] =
-                    (player.stats["Monstres battus"]! + 1.0);
-              }
-              player.stats["Dégats infligés"] =
-                  player.stats["Clic"]! * player.tapAttack;
-              enemy.loseHealth(player.getDamagePerTap());
-            });
-          },
           child: Stack(
             key: _stackKey,
             children: <Widget>[
