@@ -49,7 +49,7 @@ class Player {
   double tapRegen = 0.0;
   double passiveRegen = 0.0;
 
-  double tapAttack = 1.0;
+  double tapAttack = 10.0;
   double passiveAttack = 0.0;
 
   double criticalChance = 0.00;
@@ -64,7 +64,15 @@ class Player {
   double criticalChanceBonus = 0.00;
   double criticalMultiplierBonus = 0.00;
 
-  // Statistiques
+  List<bool> dailyQuestsStatus = List.generate(3, (_) => false);
+  List<bool> monthlyQuestsStatus = List.generate(3, (_) => false);
+
+  bool isButtonClicked0 = false;
+  bool isButtonClicked1 = false;
+  bool isButtonClicked2 = false;
+  bool isButtonClickedM0 = false;
+  bool isButtonClickedM1 = false;
+  bool isButtonClickedM2 = false;
 
   double kill = 0.0;
 

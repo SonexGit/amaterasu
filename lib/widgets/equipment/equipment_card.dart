@@ -66,7 +66,7 @@ class _EquipmentCardState extends State<EquipmentCard> {
                 : [
                     Image.asset(widget.imagePath),
                     Text(widget.name,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     Text(
                         '${widget.price} ${AppLocalizations.of(context)!.goldsLower}'),
                   ],

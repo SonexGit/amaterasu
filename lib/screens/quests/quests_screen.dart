@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class QuestsPage extends StatefulWidget {
   @override
@@ -10,12 +12,10 @@ class QuestsPage extends StatefulWidget {
 }
 
 class _QuestsPageState extends State<QuestsPage> {
-  bool isButtonClicked0 = false;
-  bool isButtonClicked1 = false;
-  bool isButtonClicked2 = false;
   late Future<List<Map<String, dynamic>>> dailyQuestsFuture;
   late Future<List<Map<String, dynamic>>> monthlyQuestsFuture;
 
+  Player player = Player();
   @override
   void initState() {
     super.initState();
@@ -93,11 +93,17 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: isComplete0
+                              onPressed: (isComplete0 == true) &&
+                                      (player.isButtonClicked0 == false) &&
+                                      (player.dailyQuestsStatus[0] == false)
                                   ? () {
-                                      player
-                                          .giveMoney(dailyQuests[0]['reward']);
-                                      isComplete0 = false;
+                                      setState(() {
+                                        player.giveMoney(
+                                            dailyQuests[0]['reward']);
+                                        isComplete0 = false;
+                                        player.isButtonClicked0 = true;
+                                        player.dailyQuestsStatus[0] = true;
+                                      });
                                     }
                                   : null,
                               child: Text(AppLocalizations.of(context)!.claim),
@@ -126,12 +132,16 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: isComplete1 && !isButtonClicked1
+                              onPressed: (isComplete1 == true) &&
+                                      (player.isButtonClicked1 == false) &&
+                                      (player.dailyQuestsStatus[1] == false)
                                   ? () {
-                                      player
-                                          .giveMoney(dailyQuests[1]['reward']);
                                       setState(() {
-                                        isButtonClicked1 = true;
+                                        player.giveMoney(
+                                            dailyQuests[1]['reward']);
+                                        isComplete1 = false;
+                                        player.isButtonClicked1 = true;
+                                        player.dailyQuestsStatus[1] = true;
                                       });
                                     }
                                   : null,
@@ -145,7 +155,7 @@ class _QuestsPageState extends State<QuestsPage> {
                               title: Text(dailyQuests[2]['title']),
                               subtitle: Text(
                                   'Récompense: ${dailyQuests[2]['reward']}'),
-                              trailing: Text('$questProgress2 / $questGoal2'),
+                              trailing: Text('$questProgress2/ $questGoal2'),
                               leading: CircularProgressIndicator(
                                 value: questProgress2 / questGoal2,
                               ),
@@ -161,21 +171,26 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: isComplete2
+                              onPressed: (isComplete2 == true) &&
+                                      (player.isButtonClicked2 == false) &&
+                                      (player.dailyQuestsStatus[2] == false)
                                   ? () {
-                                      player
-                                          .giveMoney(dailyQuests[2]['reward']);
-                                      isComplete2 = false;
+                                      setState(() {
+                                        player.giveMoney(
+                                            dailyQuests[2]['reward']);
+                                        isComplete2 = false;
+                                        player.isButtonClicked2 = true;
+                                        player.dailyQuestsStatus[2] = true;
+                                      });
                                     }
                                   : null,
                               child: Text(AppLocalizations.of(context)!.claim),
                             ),
                           ],
-                        ),
+                        )
                       ],
                     ),
                   );
-
                   return Column(
                     children: [
                       const SizedBox(height: 13),
@@ -246,11 +261,17 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: isCompleteM0
+                              onPressed: (isCompleteM0 == true) &&
+                                      (player.isButtonClickedM0 == false) &&
+                                      (player.monthlyQuestsStatus[0] == false)
                                   ? () {
-                                      player.giveMoney(
-                                          monthlyQuests[0]['reward']);
-                                      isCompleteM0 = false;
+                                      setState(() {
+                                        player.giveMoney(
+                                            monthlyQuests[0]['reward']);
+                                        isCompleteM0 = false;
+                                        player.isButtonClickedM0 = true;
+                                        player.monthlyQuestsStatus[0] = true;
+                                      });
                                     }
                                   : null,
                               child: Text(AppLocalizations.of(context)!.claim),
@@ -279,10 +300,15 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: isCompleteM1
+                              onPressed: (isCompleteM1 == true) &&
+                                      (player.isButtonClickedM1 == false) &&
+                                      (player.monthlyQuestsStatus[1] == false)
                                   ? () {
                                       player.giveMoney(
                                           monthlyQuests[1]['reward']);
+                                      isCompleteM1 = false;
+                                      player.isButtonClickedM1 = true;
+                                      player.monthlyQuestsStatus[1] = true;
                                     }
                                   : null,
                               child: Text(AppLocalizations.of(context)!.claim),
@@ -311,11 +337,14 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: isCompleteM2
+                              onPressed: (isCompleteM2 == true) &&
+                                      (player.isButtonClickedM2 == false) &&
+                                      (player.monthlyQuestsStatus[2] == false)
                                   ? () {
                                       player.giveMoney(
                                           monthlyQuests[2]['reward']);
                                       isCompleteM2 = false;
+                                      player.monthlyQuestsStatus[2] = true;
                                     }
                                   : null,
                               child: Text(AppLocalizations.of(context)!.claim),
@@ -325,7 +354,6 @@ class _QuestsPageState extends State<QuestsPage> {
                       ],
                     ),
                   );
-
                   return Column(
                     children: [
                       const SizedBox(height: 13),
