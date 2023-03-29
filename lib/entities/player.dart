@@ -84,9 +84,9 @@ class Player {
 
   Map<String, Equipment?> equipments = {
     "head": null,
-    "torso": null,
-    "weapon": null,
-    "legs": null
+    "body": null,
+    "legs": null,
+    "weapon": null
   };
 
   List shopJsonData = List.filled(0, null, growable: true);
@@ -150,9 +150,36 @@ class Player {
     return totalBonus;
   }
 
-  double getDamagePerTap() {
-    var damage = tapAttack + getEquippedBonus("tapAttackBonus");
-    return damage;
+  double getTapAttack() {
+    return tapAttack + getEquippedBonus("tapAttackBonus");
+  }
+
+  double getPassiveAttack() {
+    return passiveAttack + getEquippedBonus("passiveAttackBonus");
+  }
+
+  double getTapRegen() {
+    return tapRegen + getEquippedBonus("tapRegenBonus");
+  }
+
+  double getPassiveRegen() {
+    return passiveRegen + getEquippedBonus("passiveRegenBonus");
+  }
+
+  double getHealth() {
+    return health + getEquippedBonus("healthBonus");
+  }
+
+  double getArmor() {
+    return armor + getEquippedBonus("armorBonus");
+  }
+
+  double getCriticalChance() {
+    return criticalChance + getEquippedBonus("criticalChanceBonus");
+  }
+
+  double getCriticalMultiplier() {
+    return criticalMultiplier + getEquippedBonus("criticalMultiplierBonus");
   }
 
   // Setters
@@ -171,6 +198,10 @@ class Player {
 
   void giveExp(int amount) {
     experience += amount;
+  }
+
+  void equip(Equipment equip) {
+    equipments[equip.typeToString()] = equip; 
   }
 
   void giveEquipmentById(int id) {

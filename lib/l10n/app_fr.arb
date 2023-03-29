@@ -32,6 +32,11 @@
 
     "outOfStock": "Rupture de stock",
 
+    "head": "Tête",
+    "body": "Corps",
+    "legs": "Jambes",
+    "weapon": "Arme",
+
     "menu": "Menu",
     "settings": "Paramètres",
     "language": "Langue",

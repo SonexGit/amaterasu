@@ -128,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                               spacing: 16,
                               runSpacing: 8,
                               children: player.equipments.keys.map((key) {
-                                return const EquipmentSlot();
+                                return EquipmentSlot(type: key);
                               }).toList(),
                             ),
                           ],

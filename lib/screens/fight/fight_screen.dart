@@ -64,7 +64,7 @@ class _FightScreenState extends State<FightScreen>
           );
         },
         child: Text(
-          "-${player.getDamagePerTap().round()}",
+          "-${player.getTapAttack().round()}",
           style: const TextStyle(
             color: Colors.red,
             fontSize: 26.0,
@@ -82,7 +82,7 @@ class _FightScreenState extends State<FightScreen>
       }
       player.stats["Dégats infligés"] =
           player.stats["Clic"]! * player.tapAttack;
-      enemy.loseHealth(player.getDamagePerTap());
+      enemy.loseHealth(player.getTapAttack());
 
       tapEffectsWidgets.add(widget);
       _widgetOpacity.add(1.0);

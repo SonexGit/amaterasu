@@ -32,6 +32,11 @@
 
     "outOfStock": "Out of stock",
 
+    "head": "Head",
+    "body": "Body",
+    "legs": "Legs",
+    "weapon": "Weapon",
+
     "menu": "Menu",
     "settings": "Settings",
     "language": "Language",

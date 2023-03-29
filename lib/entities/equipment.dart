@@ -81,6 +81,14 @@ class Equipment {
     return equipmentList.firstWhere((equip) => equip.id == id);
   }
 
+  String typeToString() {
+    return type.toString().split('.').last;
+  }
+
+  static String typeArgToString(EquipType type) {
+    return type.toString().split('.').last;
+  }
+
   static Future<void> setupEquipments() async {
     await readEquipmentJson();
     generateShopEquipment();
