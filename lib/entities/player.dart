@@ -18,7 +18,6 @@ class Player {
       "Monstres battus": 0.0,
       "Clic": 0.0,
       "Or gagné": 0.0,
-      "Or dépensé": 0.0,
       "Temps passé": 0.0,
       "Dégats infligés": 0.0
     };
@@ -49,8 +48,8 @@ class Player {
   double tapRegen = 0.0;
   double passiveRegen = 0.0;
 
-  double tapAttack = 10.0;
-  double passiveAttack = 0.0;
+  double tapAttack = 30.0;
+  double passiveAttack = 1.0;
 
   double criticalChance = 0.00;
   double criticalMultiplier = 1.50;
@@ -78,7 +77,7 @@ class Player {
 
   // Propriétés
 
-  double money = 0.0;
+  double money = 10000.0;
 
   List<Equipment> inventory = [];
 

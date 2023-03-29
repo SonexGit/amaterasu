@@ -26,7 +26,7 @@ class Equipment {
   final double? criticalChanceBonus;
   final double? criticalMultiplierBonus;
 
-  static List<Equipment> shopEquipments = [];
+  static Map<Equipment, bool> shopEquipments = {};
 
   Equipment({
     required this.id,
@@ -81,6 +81,24 @@ class Equipment {
     return equipmentList.firstWhere((equip) => equip.id == id);
   }
 
+  Map<String, double> getGivenStats() {
+    Map<String, double> map = {};
+    List<MapEntry<String, double>> entries = [
+      MapEntry("healthBonus", healthBonus ?? 0.0),
+      MapEntry("armorBonus", armorBonus ?? 0.0),
+      MapEntry("tapAttackBonus", tapAttackBonus ?? 0.0),
+      MapEntry("passiveAttackBonus", passiveAttackBonus ?? 0.0),
+      MapEntry("tapRegenBonus", tapRegenBonus ?? 0.0),
+      MapEntry("passiveRegenBonus", passiveRegenBonus ?? 0.0),
+      MapEntry("criticalChanceBonus", criticalChanceBonus ?? 0.0),
+      MapEntry("criticalMultiplierBonus", criticalMultiplierBonus ?? 0.0),
+    ];
+    entries.where((entry) => entry.value != 0.0).forEach((entry) {
+      map[entry.key] = entry.value;
+    });
+    return map;
+  }
+
   String typeToString() {
     return type.toString().split('.').last;
   }
@@ -102,10 +120,10 @@ class Equipment {
   }
 
   static generateShopEquipment() {
-    shopEquipments = [
-      getEquipmentById(1),
-      getEquipmentById(2),
-      getEquipmentById(3)
-    ];
+    shopEquipments = {
+      getEquipmentById(1): false,
+      getEquipmentById(2): false,
+      getEquipmentById(3): false,
+    };
   }
 }

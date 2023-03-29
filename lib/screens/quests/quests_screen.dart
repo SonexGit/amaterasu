@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:audiocache/audiocache.dart';
 
 class QuestsPage extends StatefulWidget {
   @override
@@ -98,15 +97,15 @@ class _QuestsPageState extends State<QuestsPage> {
                                       (player.isButtonClicked0 == false) &&
                                       (player.dailyQuestsStatus[0] == false)
                                   ? () {
-                                      setState(() async {
+                                      setState(() {
                                         player.giveMoney(
                                             dailyQuests[0]['reward']);
                                         isComplete0 = false;
                                         player.isButtonClicked0 = true;
                                         player.dailyQuestsStatus[0] = true;
                                         final sound = AudioCache();
-                                        await sound
-                                            .play('asset/sound/piece.mp3');
+                                        //await sound
+                                        //  .play('asset/sound/piece.mp3');
                                       });
                                     }
                                   : null,

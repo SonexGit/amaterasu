@@ -16,8 +16,9 @@ class _ShopScreenState extends State<ShopScreen> {
       alignment: WrapAlignment.center,
       spacing: 6.0,
       runSpacing: 8.0,
-      children: Equipment.shopEquipments
+      children: Equipment.shopEquipments.keys
           .map((item) => EquipmentCard(
+              equipment: item,
               id: item.id,
               name: item.name,
               price: item.price,

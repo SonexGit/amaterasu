@@ -40,11 +40,15 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
     loadData();
   }
 
-  void updatePrices(double multiplier) {
+  void updatePrices(double newMultiplier) {
     setState(() {
       for (var entry in data) {
-        entry['price'] *= pow(2.0, multiplier);
+        final prevPrice = entry['prevPrice'] ?? entry['price'];
+        final diffMultiplier = newMultiplier / multiplier;
+        entry['price'] = prevPrice * pow(1.1, diffMultiplier);
+        entry['prevPrice'] = entry['price'];
       }
+      multiplier = newMultiplier;
     });
   }
 
@@ -187,8 +191,10 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                                   entry.values.elementAt(3);
                                             }
                                             setState(() {
-                                              entry['price'] =
-                                                  entry.values.elementAt(3);
+                                              multiplier = 1.1;
+                                              updatePrices(multiplier);
+                                              //entry['price'] =
+                                              //  entry.values.elementAt(3);
                                             });
                                           }
                                         : null,
@@ -208,7 +214,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                       style: const TextStyle(fontSize: 14.0),
                                     ),
                                     Text(
-                                      '(${entry.values.elementAt(3)})', // Ajout de la valeur ici
+                                      '(${entry.values.elementAt(3)})',
                                       style: const TextStyle(fontSize: 12.0),
                                     ),
                                   ],
