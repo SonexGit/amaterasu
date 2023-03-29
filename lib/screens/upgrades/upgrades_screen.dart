@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, curly_braces_in_flow_control_structures
 
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:amaterasu/entities/player.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
 
   List<Map<String, dynamic>> data = [];
   bool _isLoading = true;
+  double multiplier = 1.0;
 
   Future<void> loadData() async {
     String jsonString =
@@ -38,6 +40,14 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
     loadData();
   }
 
+  void updatePrices(double multiplier) {
+    setState(() {
+      for (var entry in data) {
+        entry['price'] *= pow(2.0, multiplier);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,9 +65,15 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: null,
+                      onPressed: () {
+                        setState(() {
+                          multiplier = 1.0;
+                          updatePrices(multiplier);
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor:
+                            multiplier == 1.0 ? Colors.blue : Colors.grey[300],
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -73,9 +89,15 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          multiplier = 10.0;
+                          updatePrices(multiplier);
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor:
+                            multiplier == 10.0 ? Colors.blue : Colors.grey[300],
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -91,9 +113,16 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          multiplier = 100.0;
+                          updatePrices(multiplier);
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: multiplier == 100.0
+                            ? Colors.blue
+                            : Colors.grey[300],
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -123,6 +152,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                       itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {
                         Map<String, dynamic> entry = data[index];
+                        double price = entry['price'];
                         return Container(
                           padding: const EdgeInsets.symmetric(vertical: 15.0),
                           child: Row(
@@ -148,13 +178,20 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                               ),
                               const SizedBox(width: 10.0),
                               ElevatedButton(
-                                onPressed: () {
-                                  if (player.money >=
-                                      entry.values.elementAt(3)) {
-                                    player.money = player.money -
-                                        entry.values.elementAt(3);
-                                  }
-                                },
+                                onPressed:
+                                    player.money >= entry.values.elementAt(3)
+                                        ? () {
+                                            if (player.money >=
+                                                entry.values.elementAt(3)) {
+                                              player.money = player.money -
+                                                  entry.values.elementAt(3);
+                                            }
+                                            setState(() {
+                                              entry['price'] =
+                                                  entry.values.elementAt(3);
+                                            });
+                                          }
+                                        : null,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blue,
                                   minimumSize: const Size(80, 60),
@@ -163,11 +200,20 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
-                                child: Text(
-                                  AppLocalizations.of(context)!.buy,
-                                  style: const TextStyle(fontSize: 14.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      AppLocalizations.of(context)!.buy,
+                                      style: const TextStyle(fontSize: 14.0),
+                                    ),
+                                    Text(
+                                      '(${entry.values.elementAt(3)})', // Ajout de la valeur ici
+                                      style: const TextStyle(fontSize: 12.0),
+                                    ),
+                                  ],
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         );
