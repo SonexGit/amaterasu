@@ -1,5 +1,6 @@
 import 'package:amaterasu/entities/equipment.dart';
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/widgets/equipment/equipment_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
@@ -131,8 +132,7 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
               onTap: _handleTap,
               child: Card(
                 child: _selectedEquipment != null
-                    ? Image.asset(
-                        "assets/equipments/images/${_selectedEquipment!.id}.png")
+                    ? EquipmentIcon(equipment: _selectedEquipment!)
                     : IconButton(
                         icon: const Icon(Icons.add, size: 40),
                         onPressed: _handleTap,

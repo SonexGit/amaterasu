@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:amaterasu/entities/player.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Player player = Player();
 
@@ -51,7 +52,7 @@ class _MyAppState extends State<MyApp> {
         Locale('en'),
       ],
       locale: _locale,
-      theme: ThemeData.light(),
+      theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
       home: AnimatedSplashScreen(
         splash: Image.asset("assets/screen/Bienvenue.png"),
         splashIconSize: 500,

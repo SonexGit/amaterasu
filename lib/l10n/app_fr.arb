@@ -37,6 +37,15 @@
     "legs": "Jambes",
     "weapon": "Arme",
 
+    "healthBonus": "Santé",
+    "armorBonus": "Armure",
+    "tapAttackBonus": "Attaque active",
+    "passiveAttackBonus": "Attaque passive",
+    "tapRegenBonus": "Régénération active",
+    "passiveRegenBonus": "Régénération passive",
+    "criticalChanceBonus": "Chance critique",
+    "criticalMultiplierBonus": "Multiplicateur de critique",
+
     "menu": "Menu",
     "settings": "Paramètres",
     "language": "Langue",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Style {
   static Color whiteColor = const Color.fromARGB(255, 250, 250, 250);
@@ -33,6 +34,9 @@ class Style {
     Color.fromARGB(255, 56, 239, 125),
   ];
 
+  static TextStyle fontFamily =
+      TextStyle(fontFamily: GoogleFonts.inter().fontFamily);
+
   static TextStyle textStyle =
       TextStyle(fontSize: 14, color: textColor, fontWeight: FontWeight.w400);
   static TextStyle headlineStyleHome =
@@ -45,4 +49,7 @@ class Style {
 
   static TextStyle moneyAppBar = const TextStyle(
       fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500);
+
+  static TextStyle equipmentTextStyle =
+      TextStyle(fontFamily: GoogleFonts.inter().fontFamily, fontSize: 16);
 }

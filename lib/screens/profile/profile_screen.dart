@@ -1,5 +1,6 @@
 import 'package:amaterasu/entities/equipment.dart';
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/widgets/equipment/equipment_icon.dart';
 import 'package:amaterasu/widgets/equipment/equipment_slot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -147,8 +148,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                                     margin: const EdgeInsets.all(4.0),
                                     color: Colors.grey[300],
                                     child: Center(
-                                        child: Image.asset(
-                                            "assets/equipments/images/${equipment.id}.png")),
+                                        child: EquipmentIcon(
+                                            equipment: equipment)),
                                   ),
                                 ))
                             .toList(),

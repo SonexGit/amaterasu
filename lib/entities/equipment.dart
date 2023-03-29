@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:amaterasu/entities/player.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum EquipRarity { common, rare, epic, legendary }
 
@@ -99,6 +101,29 @@ class Equipment {
     return map;
   }
 
+  static List<String> getLocalization(BuildContext context, String variableName) {
+    switch (variableName) {
+      case 'healthBonus':
+        return [AppLocalizations.of(context)!.healthBonus, "+"];
+      case 'armorBonus':
+        return [AppLocalizations.of(context)!.armorBonus, "+"];
+      case 'tapAttackBonus':
+        return [AppLocalizations.of(context)!.tapAttackBonus, "+"];
+      case 'passiveAttackBonus':
+        return [AppLocalizations.of(context)!.passiveAttackBonus, "+"];
+      case 'tapRegenBonus':
+        return [AppLocalizations.of(context)!.tapRegenBonus, "%"];
+      case 'passiveRegenBonus':
+        return [AppLocalizations.of(context)!.passiveRegenBonus, "%"];
+      case 'criticalChanceBonus':
+        return [AppLocalizations.of(context)!.criticalChanceBonus, "%"];
+      case 'criticalMultiplierBonus':
+        return [AppLocalizations.of(context)!.criticalMultiplierBonus, "%"];
+      default:
+        throw ArgumentError("Invalid variable name: $variableName");
+    }
+  }
+
   String typeToString() {
     return type.toString().split('.').last;
   }
@@ -124,6 +149,7 @@ class Equipment {
       getEquipmentById(1): false,
       getEquipmentById(2): false,
       getEquipmentById(3): false,
+      getEquipmentById(4): false,
     };
   }
 }

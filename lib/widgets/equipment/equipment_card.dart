@@ -54,26 +54,40 @@ class _EquipmentCardState extends State<EquipmentCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: _buyEquipment,
-        child: Card(
-          color: rarityColors[widget.rarity.index],
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: (_isOutOfStock ||
-                    Equipment.shopEquipments[widget.equipment] == true)
-                ? [
-                    Text((AppLocalizations.of(context)!.outOfStock)
-                        .toUpperCase())
-                  ]
-                : [
-                    EquipmentIcon(
-                        equipment: widget.equipment,
-                        imagePath: widget.imagePath),
-                    Text(widget.name,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    Text(
-                        '${widget.price} ${AppLocalizations.of(context)!.goldsLower}'),
-                  ],
+        child: SizedBox(
+          width: 150,
+          height: 200,
+          child: Card(
+            color: rarityColors[widget.rarity.index],
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: (_isOutOfStock ||
+                        Equipment.shopEquipments[widget.equipment] == true)
+                    ? [
+                        Text(
+                            (AppLocalizations.of(context)!.outOfStock)
+                                .toUpperCase(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+                      ]
+                    : [
+                        EquipmentIcon(
+                            equipment: widget.equipment, blackBorders: true),
+                        const SizedBox(height: 5),
+                        Text(widget.name,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            softWrap: true,
+                            overflow: TextOverflow.visible,
+                            textAlign: TextAlign.center),
+                        const SizedBox(height: 5),
+                        Text(
+                            '${widget.price} ${AppLocalizations.of(context)!.goldsLower}'),
+                      ],
+              ),
+            ),
           ),
         ));
   }

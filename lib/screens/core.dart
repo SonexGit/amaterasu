@@ -161,13 +161,16 @@ class _MyAppBarState extends State<MyAppBar> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text([
-            AppLocalizations.of(context)!.home,
-            AppLocalizations.of(context)!.adventure,
-            AppLocalizations.of(context)!.shop,
-            AppLocalizations.of(context)!.quests,
-            AppLocalizations.of(context)!.profile
-          ][selectedIndex]),
+          Text(
+              [
+                AppLocalizations.of(context)!.home,
+                AppLocalizations.of(context)!.adventure,
+                AppLocalizations.of(context)!.shop,
+                AppLocalizations.of(context)!.quests,
+                AppLocalizations.of(context)!.profile
+              ][selectedIndex],
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, letterSpacing: 0.5)),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,

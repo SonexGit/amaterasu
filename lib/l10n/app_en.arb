@@ -37,6 +37,15 @@
     "legs": "Legs",
     "weapon": "Weapon",
 
+    "healthBonus": "Health",
+    "armorBonus": "Armor",
+    "tapAttackBonus": "Tap Attack",
+    "passiveAttackBonus": "Passive Attack",
+    "tapRegenBonus": "Tap Regeneration",
+    "passiveRegenBonus": "Passive Regeneration",
+    "criticalChanceBonus": "Critical Chance",
+    "criticalMultiplierBonus": "Critical Multiplier",
+
     "menu": "Menu",
     "settings": "Settings",
     "language": "Language",
