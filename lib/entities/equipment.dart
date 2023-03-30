@@ -101,7 +101,8 @@ class Equipment {
     return map;
   }
 
-  static List<String> getLocalization(BuildContext context, String variableName) {
+  static List<String> getBonusLocalization(
+      BuildContext context, String variableName) {
     switch (variableName) {
       case 'healthBonus':
         return [AppLocalizations.of(context)!.healthBonus, "+"];
@@ -121,6 +122,37 @@ class Equipment {
         return [AppLocalizations.of(context)!.criticalMultiplierBonus, "%"];
       default:
         throw ArgumentError("Invalid variable name: $variableName");
+    }
+  }
+
+  static String getTypeLocalization(BuildContext context, EquipType type) {
+    switch (type) {
+      case EquipType.head:
+        return AppLocalizations.of(context)!.head;
+      case EquipType.body:
+        return AppLocalizations.of(context)!.body;
+      case EquipType.legs:
+        return AppLocalizations.of(context)!.legs;
+      case EquipType.weapon:
+        return AppLocalizations.of(context)!.weapon;
+      default:
+        throw ArgumentError("Invalid EquipType: $type");
+    }
+  }
+
+  static String getRarityLocalization(
+      BuildContext context, EquipRarity rarity) {
+    switch (rarity) {
+      case EquipRarity.common:
+        return AppLocalizations.of(context)!.common;
+      case EquipRarity.rare:
+        return AppLocalizations.of(context)!.rare;
+      case EquipRarity.epic:
+        return AppLocalizations.of(context)!.epic;
+      case EquipRarity.legendary:
+        return AppLocalizations.of(context)!.legendary;
+      default:
+        throw ArgumentError("Invalid EquipRarity: $rarity");
     }
   }
 

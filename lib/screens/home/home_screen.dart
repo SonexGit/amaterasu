@@ -24,63 +24,66 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, String>> tutorialPages = [
     {
-      'title': 'Bienvenue dans Amaterasu_Clicker !',
+      'title': 'Bienvenue dans Amaterasu !',
       'content':
-          'Clicker est un jeu simple mais addictif conçu par Allan VANNIER et Lucas RENARD. Profitez de ce jeu amusant et chronophage',
+          'C\'est un jeu simple mais addictif conçu par Allan VANNIER et Lucas RENARD. Profitez de ce jeu amusant et chronophage',
     },
     {
       'title': 'Comment gagner',
       'content':
-          'Une fois que vous avez commencé, vous verrez un monstre avec un certains nombre de point de vie.\nLe but du jeu est de cliquer sur l\'écran le plus de fois possible pour tuer un maximum de monstre. Vous pouvez améliorer vos capacités d\'attaques',
+          'Une fois que vous avez commencé, vous combattrez un monstre avec un certain nombre de point de vie.\nLe but du jeu est de cliquer sur l\'écran le plus de fois possible pour tuer un maximum de monstre. Vous pouvez améliorer vos capacités d\'attaques',
     },
     {
       'title': 'Amusez-vous bien !',
       'content':
-          'Ce jeu est fait pour faire passer le temps et de vous amuser un maximum',
+          'Ce jeu est fait pour faire passer le temps tout en s\'amusant un maximum',
     }
   ];
 
   int currentPage = 0;
-  bool showTutorial = true;
+  bool showTutorial = !player.haveSeenTutorial;
 
   @override
   void initState() {
     super.initState();
 
     // affiche la pop-up au début
-    Future.delayed(Duration.zero, () {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return StatefulBuilder(
-            builder: (context, setState) {
-              return AlertDialog(
-                title: Text(tutorialPages[currentPage]['title']!),
-                content: Text(tutorialPages[currentPage]['content']!),
-                actions: [
-                  TextButton(
-                    child: const Text('Suivant'),
-                    onPressed: () {
-                      if (currentPage < tutorialPages.length - 1 &&
-                          showTutorial == true) {
-                        setState(() {
-                          currentPage++;
-                        });
-                      } else {
-                        setState(() {
-                          showTutorial = false;
-                        });
-                        Navigator.of(context).pop();
-                      }
-                    },
-                  ),
-                ],
-              );
-            },
-          );
-        },
-      );
-    });
+    if (showTutorial) {
+      player.haveSeenTutorial = true;
+      Future.delayed(Duration.zero, () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return StatefulBuilder(
+              builder: (context, setState) {
+                return AlertDialog(
+                  title: Text(tutorialPages[currentPage]['title']!),
+                  content: Text(tutorialPages[currentPage]['content']!),
+                  actions: [
+                    TextButton(
+                      child: const Text('Suivant'),
+                      onPressed: () {
+                        if (currentPage < tutorialPages.length - 1 &&
+                            showTutorial == true) {
+                          setState(() {
+                            currentPage++;
+                          });
+                        } else {
+                          setState(() {
+                            player.haveSeenTutorial = true;
+                          });
+                          Navigator.of(context).pop();
+                        }
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        );
+      });
+    }
   }
 
   @override

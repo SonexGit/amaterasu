@@ -39,6 +39,8 @@ class Player {
 
   String locale = "fr";
 
+  bool haveSeenTutorial = false;
+
   // Caractéristiques
 
   double totalAttack = 0.0;
@@ -78,7 +80,7 @@ class Player {
 
   // Propriétés
 
-  double money = 400.0;
+  int money = 4000000000;
 
   List<Equipment> inventory = [];
 
@@ -92,7 +94,7 @@ class Player {
   List shopJsonData = List.filled(0, null, growable: true);
   List<int> shopUpgrades = List.filled(0, 0, growable: true);
 
-  List<int> upgradesLevel = List.filled(7, 0, growable: false);
+  List<int> upgradesLevel = List.filled(8, 0, growable: false);
 
   late Map<String, double> stats;
 
@@ -103,7 +105,7 @@ class Player {
   // Getters
 
   String formattedMoney() {
-    return NumberFormat.compactCurrency(decimalDigits: 2, symbol: '')
+    return NumberFormat.compactCurrency(decimalDigits: 0, symbol: '')
         .format(Player().money);
   }
 

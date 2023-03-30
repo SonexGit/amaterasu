@@ -7,6 +7,7 @@ import 'package:amaterasu/entities/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
 class UpgradesScreen extends StatefulWidget {
   const UpgradesScreen({super.key});
@@ -21,7 +22,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
   List<Map<String, dynamic>> data = [];
   bool _isLoading = true;
   double multiplier = 1.0;
-  List<double> basePrice = List.empty(growable: true);
+  List<int> basePrice = List.empty(growable: true);
 
   Future<void> loadData() async {
     String jsonString =
@@ -41,21 +42,14 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
     loadData();
   }
 
-  double _updatePrice(int price, int index) {
-    if (index < 7) {
-      if (player.getUpgradeLevel(index) == 0) {
-        if (multiplier == 1) {
-          return price.toDouble();
-        } else {
-          return price +
-              (pow(basePrice[index], 1.1) *
-                  (player.getUpgradeLevel(index) - 1 + multiplier));
-        }
-      } else {
-        return price +
-            pow(basePrice[index], 1.1) *
-                (player.getUpgradeLevel(index) - 1 + multiplier);
+  double _getPrice(int index) {
+    if (index < 8) {
+      late double finalPrice = 0;
+      for (double i = multiplier; i != 0; i--) {
+        finalPrice += basePrice[index] *
+            pow(1.2, player.getUpgradeLevel(index) + multiplier - i);
       }
+      return finalPrice;
     } else {
       return 0.0;
     }
@@ -86,7 +80,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            multiplier == 1.0 ? Colors.blue : Colors.grey[300],
+                            multiplier == 1.0 ? Colors.grey[300] : Colors.blue,
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -110,7 +104,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            multiplier == 10.0 ? Colors.blue : Colors.grey[300],
+                            multiplier == 10.0 ? Colors.grey[300] : Colors.blue,
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -128,14 +122,38 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
+                          multiplier = 50.0;
+                          //updatePrices(multiplier);
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            multiplier == 50.0 ? Colors.grey[300] : Colors.blue,
+                        minimumSize: const Size(50, 40),
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      child: const Text(
+                        'x50',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
                           multiplier = 100.0;
                           //updatePrices(multiplier);
                         });
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: multiplier == 100.0
-                            ? Colors.blue
-                            : Colors.grey[300],
+                            ? Colors.grey[300]
+                            : Colors.blue,
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -165,7 +183,8 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                       itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {
                         Map<String, dynamic> entry = data[index];
-                        basePrice.add(entry['price']);
+                        basePrice.add(entry['price'].round());
+                        int price = _getPrice(index).round();
                         return Container(
                           padding: const EdgeInsets.symmetric(vertical: 15.0),
                           child: Row(
@@ -181,6 +200,10 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold),
                                     ),
+                                    const SizedBox(height: 2.0),
+                                    Text(
+                                        "Niveau ${player.getUpgradeLevel(index)}",
+                                        style: const TextStyle(fontSize: 12.0)),
                                     const SizedBox(height: 8.0),
                                     Text(
                                       entry['description'],
@@ -191,23 +214,21 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                               ),
                               const SizedBox(width: 10.0),
                               ElevatedButton(
-                                onPressed: player.money >= entry['price']
+                                onPressed: player.money >= price
                                     ? () {
-                                        if (player.money >= entry['price']) {
-                                          player.money =
-                                              player.money - entry['price'];
+                                        if (player.money >= price) {
+                                          setState(() {
+                                            player
+                                                .buy(_getPrice(index).round());
+                                            for (double i = multiplier;
+                                                i != 0;
+                                                i--) {
+                                              player.levelUpUpgrade(index);
+                                            }
+                                            entry['price'] =
+                                                _getPrice(index).round();
+                                          });
                                         }
-                                        setState(() {
-                                          for (double i = multiplier;
-                                              i != 0;
-                                              i--) {
-                                            player.levelUpUpgrade(index);
-                                            player.buy(entry['price']);
-                                            entry['price'] = _updatePrice(
-                                                    entry['price'], index)
-                                                .round();
-                                          }
-                                        });
                                       }
                                     : null,
                                 style: ElevatedButton.styleFrom(
@@ -226,7 +247,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                       style: const TextStyle(fontSize: 14.0),
                                     ),
                                     Text(
-                                      '(${(_updatePrice(entry['price'], index)).round()})',
+                                      '(${(NumberFormat.compactCurrency(decimalDigits: 0, symbol: '').format(_getPrice(index).round()))})',
                                       style: const TextStyle(fontSize: 12.0),
                                     ),
                                   ],

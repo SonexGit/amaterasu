@@ -1,14 +1,16 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:amaterasu/entities/player.dart';
-import 'package:amaterasu/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class QuestsPage extends StatefulWidget {
+  const QuestsPage({super.key});
+
   @override
-  _QuestsPageState createState() => _QuestsPageState();
+  State<QuestsPage> createState() => _QuestsPageState();
 }
 
 class _QuestsPageState extends State<QuestsPage> {
@@ -30,8 +32,7 @@ class _QuestsPageState extends State<QuestsPage> {
       List<Map<String, dynamic>> quests = List<Map<String, dynamic>>.from(data);
       return quests;
     } catch (error) {
-      print('Erreur de chargement de données: $error');
-      return [];
+      throw ErrorDescription('Erreur de chargement de données: $error');
     }
   }
 

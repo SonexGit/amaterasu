@@ -76,10 +76,10 @@ class _EquipmentIconState extends State<EquipmentIcon> {
     )..layout(minWidth: 250);
 
     final statsTexts = widget.equipment.getGivenStats().entries.map((entry) {
-      String textContent = (Equipment.getLocalization(context, entry.key)[1] ==
+      String textContent = (Equipment.getBonusLocalization(context, entry.key)[1] ==
               "+")
-          ? "${Equipment.getLocalization(context, entry.key)[0]}: +${entry.value == (entry.value).toInt() ? (entry.value.toInt()).toString() : (entry.value).toString()}"
-          : "${Equipment.getLocalization(context, entry.key)[0]}: +${entry.value * 100}%";
+          ? "${Equipment.getBonusLocalization(context, entry.key)[0]}: +${entry.value == (entry.value).toInt() ? (entry.value.toInt()).toString() : (entry.value).toString()}"
+          : "${Equipment.getBonusLocalization(context, entry.key)[0]}: +${entry.value * 100}%";
 
       if (entry.value != 0.0) {
         // ajouter seulement si différent de 0.0
@@ -137,7 +137,7 @@ class _EquipmentIconState extends State<EquipmentIcon> {
                               fontWeight: FontWeight.w900,
                               color: Colors.black,
                               decoration: TextDecoration.none))),
-                      Text(widget.equipment.rarity.toString(),
+                      Text(Equipment.getRarityLocalization(context, widget.equipment.rarity),
                           style: Style.fontFamily.merge(TextStyle(
                               fontSize: 16,
                               color:

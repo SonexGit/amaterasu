@@ -37,6 +37,7 @@ class Enemy {
   int moneyValue = 0;
   int expValue = 0;
   int id = 1;
+  late EnemyType type;
 
   // Getters
 
@@ -94,6 +95,7 @@ class Enemy {
     maxHealth = jsonData[rand]["health"];
     moneyValue = jsonData[rand]["moneyValue"];
     id = jsonData[rand]["id"];
+    type = EnemyType.values[jsonData[rand]["type"]];
     state = LifeState.alive;
   }
 }

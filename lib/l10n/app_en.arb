@@ -32,10 +32,25 @@
 
     "outOfStock": "Out of stock",
 
+    "pickEquipment": "Pick a {equipType} equipment",
+    "@pickEquipment": {
+        "placeholders": {
+            "equipType": {
+                "type": "String",
+                "example": "AppLocalizations.of(context)!.head.toLowerCase()"
+            }
+        }
+    },
+
     "head": "Head",
     "body": "Body",
     "legs": "Legs",
     "weapon": "Weapon",
+
+    "common": "Common",
+    "rare": "Rare",
+    "epic": "Epic",
+    "legendary": "Legendary",
 
     "healthBonus": "Health",
     "armorBonus": "Armor",

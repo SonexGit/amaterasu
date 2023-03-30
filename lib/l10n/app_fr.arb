@@ -32,10 +32,25 @@
 
     "outOfStock": "Rupture de stock",
 
+    "pickEquipment": "Sélectionnez un équipment de type {equipType}",
+    "@pickEquipment": {
+        "placeholders": {
+            "equipType": {
+                "type": "String",
+                "example": "AppLocalizations.of(context)!.head.toLowerCase()"
+            }
+        }
+    },
+
     "head": "Tête",
     "body": "Corps",
     "legs": "Jambes",
     "weapon": "Arme",
+
+    "common": "Commun",
+    "rare": "Rare",
+    "epic": "Épique",
+    "legendary": "Légendaire",
 
     "healthBonus": "Santé",
     "armorBonus": "Armure",

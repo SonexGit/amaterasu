@@ -182,12 +182,16 @@ class _FightScreenState extends State<FightScreen>
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        // TODO: à changer par un scale pour ne pas bouger les autres widgets autour
                         Text(enemy.name,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15)),
-                        const SizedBox(height: 5),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: (enemy.type == EnemyType.common)
+                                    ? 20
+                                    : 30)),
+                        const SizedBox(height: 10),
                         EnemyHealthBar(value: enemy.health / enemy.maxHealth),
-                        const SizedBox(height: 5),
+                        const SizedBox(height: 10),
                         Text("${enemy.health}/${enemy.maxHealth}"),
                         const SizedBox(height: 10),
                         AnimatedBuilder(
@@ -236,10 +240,14 @@ class EnemyHealthBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LinearProgressIndicator(
-      value: value,
-      color: Colors.red,
-      semanticsLabel: 'Enemy health bar',
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: LinearProgressIndicator(
+        minHeight: 8,
+        value: value,
+        color: Colors.red,
+        semanticsLabel: 'Enemy health bar',
+      ),
     );
   }
 }

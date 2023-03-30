@@ -2,15 +2,15 @@ import 'package:amaterasu/entities/equipment.dart';
 import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/widgets/equipment/equipment_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EquipmentSlot extends StatefulWidget {
   final String type;
   const EquipmentSlot({Key? key, required this.type}) : super(key: key);
 
   @override
-  _EquipmentSlotState createState() => _EquipmentSlotState();
+  State<EquipmentSlot> createState() => _EquipmentSlotState();
 }
 
 class _EquipmentSlotState extends State<EquipmentSlot> {
@@ -70,7 +70,7 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Sélectionnez un équipement'),
+          title: Text(AppLocalizations.of(context)!.pickEquipment(Equipment.getTypeLocalization(context, type!).toLowerCase())),
           content: SizedBox(
             height: 300,
             width: 200,
@@ -93,8 +93,7 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
                       margin: const EdgeInsets.all(4.0),
                       color: Colors.grey[300],
                       child: Center(
-                        child: Image.asset(
-                            "assets/equipments/images/${equipment.id}.png"),
+                        child: EquipmentIcon(equipment: equipment),
                       ),
                     ),
                   ),
@@ -118,7 +117,7 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
             equipmentIcon!,
             const SizedBox(width: 10),
             Text(
-              Equipment.typeArgToString(type!).toUpperCase(),
+              Equipment.getTypeLocalization(context, type!).toUpperCase(),
               style: TextStyle(
                   fontSize: 12, fontWeight: FontWeight.bold, color: svgColor),
             ),
