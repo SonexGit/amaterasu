@@ -1,8 +1,8 @@
 import 'package:amaterasu/entities/player.dart';
-import 'package:amaterasu/utils/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'dart:async';
 
 Player player = Player();
 final List<String> imgList = [
@@ -18,11 +18,10 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool showTutorial = true; // affiche la pop-up au début
   final List<Map<String, String>> tutorialPages = [
     {
       'title': 'Bienvenue dans Amaterasu_Clicker !',
@@ -40,133 +39,44 @@ class _HomeScreenState extends State<HomeScreen> {
           'Ce jeu est fait pour faire passer le temps et de vous amuser un maximum',
     }
   ];
+
   int currentPage = 0;
+  bool showTutorial = true;
+
   @override
   void initState() {
     super.initState();
+
     // affiche la pop-up au début
     Future.delayed(Duration.zero, () {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(tutorialPages[currentPage]['title']!),
-            content: Text(tutorialPages[currentPage]['content']!),
-            actions: [
-              TextButton(
-                child: const Text('Suivant'),
-                onPressed: () {
-                  if (currentPage < tutorialPages.length) {
-                    setState(() {
-                      currentPage++;
-                    });
-                    Navigator.of(context).pop();
-                    Future.delayed(Duration.zero, () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text(tutorialPages[currentPage]['title']!),
-                            content:
-                                Text(tutorialPages[currentPage]['content']!),
-                            actions: [
-                              TextButton(
-                                child: const Text('Suivant'),
-                                onPressed: () {
-                                  if (currentPage < tutorialPages.length - 1) {
-                                    setState(() {
-                                      currentPage++;
-                                    });
-                                    Navigator.of(context).pop();
-                                    Future.delayed(Duration.zero, () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text(
-                                                tutorialPages[currentPage]
-                                                    ['title']!),
-                                            content: Text(
-                                                tutorialPages[currentPage]
-                                                    ['content']!),
-                                            actions: [
-                                              TextButton(
-                                                child: const Text('Suivant'),
-                                                onPressed: () {
-                                                  if (currentPage <
-                                                      tutorialPages.length -
-                                                          1) {
-                                                    setState(() {
-                                                      currentPage++;
-                                                    });
-                                                  } else {
-                                                    setState(() {
-                                                      showTutorial = true;
-                                                    });
-                                                  }
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    });
-                                  } else {
-                                    setState(() {
-                                      showTutorial = true;
-                                    });
-                                    Navigator.of(context).pop();
-                                    Future.delayed(Duration.zero, () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text(
-                                                tutorialPages[currentPage]
-                                                    ['title']!),
-                                            content: Text(
-                                                tutorialPages[currentPage]
-                                                    ['content']!),
-                                            actions: [
-                                              TextButton(
-                                                child: const Text('Suivant'),
-                                                onPressed: () {
-                                                  if (currentPage <
-                                                      tutorialPages.length -
-                                                          1) {
-                                                    setState(() {
-                                                      currentPage++;
-                                                    });
-                                                  } else {
-                                                    setState(() {
-                                                      showTutorial = true;
-                                                    });
-                                                  }
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    });
-                                  }
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    });
-                  } else {
-                    setState(() {
-                      showTutorial = false;
-                    });
-                  }
-                },
-              ),
-            ],
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                title: Text(tutorialPages[currentPage]['title']!),
+                content: Text(tutorialPages[currentPage]['content']!),
+                actions: [
+                  TextButton(
+                    child: const Text('Suivant'),
+                    onPressed: () {
+                      if (currentPage < tutorialPages.length - 1 &&
+                          showTutorial == true) {
+                        setState(() {
+                          currentPage++;
+                        });
+                      } else {
+                        setState(() {
+                          showTutorial = false;
+                        });
+                        Navigator.of(context).pop();
+                      }
+                    },
+                  ),
+                ],
+              );
+            },
           );
         },
       );

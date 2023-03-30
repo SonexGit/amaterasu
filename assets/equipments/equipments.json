@@ -13,7 +13,7 @@
     "passiveAttackBonus": 0.0,
     "tapRegenBonus": 0.0,
     "passiveRegenBonus": 0.0,
-    "criticalChanceBonus": 0.0,
+    "criticalChanceBonus": 0.5,
     "criticalMultiplierBonus": 0.0
   },
   {

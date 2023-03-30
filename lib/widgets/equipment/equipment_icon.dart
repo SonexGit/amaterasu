@@ -9,7 +9,11 @@ class EquipmentIcon extends StatefulWidget {
   final String? imagePath;
   final bool? blackBorders;
 
-  const EquipmentIcon({super.key, this.imagePath, required this.equipment, this.blackBorders = false});
+  const EquipmentIcon(
+      {super.key,
+      this.imagePath,
+      required this.equipment,
+      this.blackBorders = false});
 
   @override
   State<EquipmentIcon> createState() => _EquipmentIconState();
@@ -44,7 +48,9 @@ class _EquipmentIconState extends State<EquipmentIcon> {
           Container(
             decoration: BoxDecoration(
                 border: Border.all(
-              color: widget.blackBorders! ? Colors.black : rarityColors[widget.equipment.rarity.index],
+              color: widget.blackBorders!
+                  ? Colors.black
+                  : rarityColors[widget.equipment.rarity.index],
               width: 2,
             )),
             child: Image.asset(widget.imagePath ??

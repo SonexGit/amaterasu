@@ -79,7 +79,7 @@ class Enemy {
   }
 
   void newEnemy(gameMode, gameModeFloor, step) {
-    var rand;
+    int rand;
     if (step != 10) {
       do {
         rand = Random().nextInt(jsonData.length);

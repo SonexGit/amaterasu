@@ -1,6 +1,7 @@
 library player;
 
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:amaterasu/entities/equipment.dart';
 import 'package:flutter/services.dart';
@@ -48,7 +49,7 @@ class Player {
   double tapRegen = 0.0;
   double passiveRegen = 0.0;
 
-  double tapAttack = 30.0;
+  double tapAttack = 1.0;
   double passiveAttack = 1.0;
 
   double criticalChance = 0.00;
@@ -61,7 +62,7 @@ class Player {
   double tapAttackBonus = 0.00;
   double passiveAttackBonus = 0.00;
   double criticalChanceBonus = 0.00;
-  double criticalMultiplierBonus = 0.00;
+  double criticalMultiplierBonus = 2.00;
 
   List<bool> dailyQuestsStatus = List.generate(3, (_) => false);
   List<bool> monthlyQuestsStatus = List.generate(3, (_) => false);
@@ -77,7 +78,7 @@ class Player {
 
   // Propriétés
 
-  double money = 10000.0;
+  double money = 400.0;
 
   List<Equipment> inventory = [];
 
@@ -90,6 +91,8 @@ class Player {
 
   List shopJsonData = List.filled(0, null, growable: true);
   List<int> shopUpgrades = List.filled(0, 0, growable: true);
+
+  List<int> upgradesLevel = List.filled(7, 0, growable: false);
 
   late Map<String, double> stats;
 
@@ -149,6 +152,24 @@ class Player {
     return totalBonus;
   }
 
+  void buy(int amount) {
+    player.money -= amount;
+  }
+
+  double attack() {
+    final randomNum = Random().nextInt(101);
+
+    if (getCriticalMultiplier() > 0.0 &&
+        getCriticalChance() > 0.0 &&
+        randomNum > (getCriticalChance() * 100).round()) {
+      // Critical hit
+      return getTapAttack() * getCriticalMultiplier();
+    } else {
+      // Normal hit
+      return getTapAttack();
+    }
+  }
+
   double getTapAttack() {
     return tapAttack + getEquippedBonus("tapAttackBonus");
   }
@@ -181,6 +202,10 @@ class Player {
     return criticalMultiplier + getEquippedBonus("criticalMultiplierBonus");
   }
 
+  int getUpgradeLevel(int index) {
+    return upgradesLevel[index];
+  }
+
   // Setters
 
   void setLocale(String loc) {
@@ -200,7 +225,7 @@ class Player {
   }
 
   void equip(Equipment equip) {
-    equipments[equip.typeToString()] = equip; 
+    equipments[equip.typeToString()] = equip;
   }
 
   void giveEquipmentById(int id) {
@@ -283,6 +308,10 @@ class Player {
           break;
         }
     }
+  }
+
+  void levelUpUpgrade(int index) {
+    upgradesLevel[index]++;
   }
 }
 

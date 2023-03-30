@@ -26,23 +26,49 @@ class _FightScreenState extends State<FightScreen>
 
   final Map<int, AnimationController> _animationControllers = {};
 
+  late AnimationController _imageAnimationController;
+  late Animation<double> _imageAnimation;
+
+  bool enemyTookDamage = false;
+  double enemyDims = 200;
+
   @override
   void initState() {
     super.initState();
+
     player.floor = 1;
     enemy.newEnemy(player.gameMode, player.gameModesFloor[player.gameMode], 1);
+
+    _imageAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 75),
+      vsync: this,
+    );
+
+    _imageAnimation = Tween<double>(begin: 1.0, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _imageAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _imageAnimationController.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          _imageAnimationController.stop();
+        }
+      });
   }
 
   final GlobalKey _stackKey = GlobalKey();
 
   _onTapDown(TapDownDetails details) {
+    final playerDamage = player.attack();
+
     final id = DateTime.now().microsecondsSinceEpoch;
     _animationControllers[id] = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-      upperBound: 1.0,
-      lowerBound: 0.0
-    );
+        vsync: this,
+        duration: const Duration(milliseconds: 300),
+        upperBound: 1.0,
+        lowerBound: 0.0);
 
     final RenderBox box =
         _stackKey.currentContext!.findRenderObject() as RenderBox;
@@ -64,12 +90,28 @@ class _FightScreenState extends State<FightScreen>
           );
         },
         child: Text(
-          "-${player.getTapAttack().round()}",
-          style: const TextStyle(
-            color: Colors.red,
-            fontSize: 26.0,
-            fontWeight: FontWeight.bold,
-          ),
+          "-${playerDamage.round()}",
+          style: playerDamage > player.getTapAttack()
+              ? TextStyle(
+                  color: Colors.yellow,
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.bold,
+                  shadows: <Shadow>[
+                      Shadow(
+                          offset: const Offset(0, 0),
+                          blurRadius: 3.0,
+                          color: Colors.black.withOpacity(0.5))
+                    ])
+              : TextStyle(
+                  color: Colors.red,
+                  fontSize: 26.0,
+                  fontWeight: FontWeight.bold,
+                  shadows: <Shadow>[
+                      Shadow(
+                          offset: const Offset(0, 0),
+                          blurRadius: 3.0,
+                          color: Colors.black.withOpacity(0.5))
+                    ]),
         ),
       ),
     );
@@ -82,16 +124,21 @@ class _FightScreenState extends State<FightScreen>
       }
       player.stats["Dégats infligés"] =
           player.stats["Clic"]! * player.tapAttack;
-      enemy.loseHealth(player.getTapAttack());
+
+      enemyTookDamage = true;
+
+      enemy.loseHealth(playerDamage);
 
       tapEffectsWidgets.add(widget);
       _widgetOpacity.add(1.0);
     });
 
+    _imageAnimationController.forward();
     _animationControllers[id]!.forward();
 
     Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
+        enemyTookDamage = false;
         tapEffectsWidgets.remove(widget);
         _widgetOpacity.removeAt(0);
       });
@@ -143,17 +190,25 @@ class _FightScreenState extends State<FightScreen>
                         const SizedBox(height: 5),
                         Text("${enemy.health}/${enemy.maxHealth}"),
                         const SizedBox(height: 10),
-                        SizedBox(
-                          width: 200,
-                          height: 200,
-                          child: Image.asset(
-                            "assets/enemies/images/${enemy.id}.png",
-                            errorBuilder: (BuildContext context,
-                                Object exception, StackTrace? stackTrace) {
-                              return const ColoredBox(color: Colors.purple);
+                        AnimatedBuilder(
+                            animation: _imageAnimation,
+                            builder: (BuildContext context, Widget? child) {
+                              return Transform.scale(
+                                scale: _imageAnimation.value,
+                                child: child,
+                              );
                             },
-                          ),
-                        ),
+                            child: SizedBox(
+                              width: enemyDims,
+                              height: enemyDims,
+                              child: Image.asset(
+                                "assets/enemies/images/${enemy.id}.png",
+                                errorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return const ColoredBox(color: Colors.purple);
+                                },
+                              ),
+                            )),
                         const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
