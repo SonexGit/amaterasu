@@ -33,8 +33,8 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     setState(() {
-      player.stats["Dégats par clic"] = player.tapAttack;
-      player.stats["Dégats par secondes"] = player.passiveAttack;
+      player.stats["Dégats par clic"] = player.getTapAttack();
+      player.stats["Dégats par secondes"] = player.getPassiveAttack();
     });
     return DefaultTabController(
       length: 2, // Nombre d'onglets

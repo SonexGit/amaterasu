@@ -1,0 +1,69 @@
+{
+"home": "Inicio",
+"adventure": "Aventura",
+"shop": "Tienda",
+"quests": "Misiones",
+"profile": "Perfil",
+
+"welcome": "Bienvenido",
+"hello": "Hola",
+"afkIncome": "Mientras no estuviste aquí, ganaste un total de",
+"goldsLower": "monedas de oro",
+"golds": "Monedas de oro",
+"gold": "Moneda de oro",
+
+"specialEvent": "Evento especial",
+
+"floor": "Piso",
+"step": "Paso",
+
+"equipments": "Equipamiento",
+
+"upgrades": "Mejoras",
+"buy": "Comprar",
+
+"dailyQuests": "Misiones diarias",
+"monthlyQuests": "Misiones mensuales",
+"reward": "Recompensa",
+"claim": "Reclamar",
+
+"inventory": "Inventario",
+"statistics": "Estadísticas",
+
+"outOfStock": "Agotado",
+
+"pickEquipment": "Elige un equipo {equipType}",
+"@pickEquipment": {
+    "placeholders": {
+        "equipType": {
+            "type": "String",
+            "example": "AppLocalizations.of(context)!.head.toLowerCase()"
+        }
+    }
+},
+
+"head": "Cabeza",
+"body": "Cuerpo",
+"legs": "Piernas",
+"weapon": "Arma",
+"level": "Nivel",
+
+"common": "Común",
+"rare": "Raro",
+"epic": "Épico",
+"legendary": "Legendario",
+
+"healthBonus": "Salud",
+"armorBonus": "Armadura",
+"tapAttackBonus": "Ataque por toque",
+"passiveAttackBonus": "Ataque pasivo",
+"tapRegenBonus": "Regeneración por toque",
+"passiveRegenBonus": "Regeneración pasiva",
+"criticalChanceBonus": "Probabilidad de crítico",
+"criticalMultiplierBonus": "Multiplicador de crítico",
+
+"menu": "Menú",
+"settings": "Configuración",
+"language": "Idioma",
+"close": "Cerrar"
+}

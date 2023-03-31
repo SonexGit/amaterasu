@@ -47,8 +47,6 @@ class Player {
 
   // Caractéristiques
 
-  double totalAttack = 0.0;
-
   double health = 100.0;
   double armor = 0.00;
 
@@ -79,7 +77,7 @@ class Player {
   bool isButtonClickedM0 = false;
   bool isButtonClickedM1 = false;
   bool isButtonClickedM2 = false;
-
+  double total = 0.0;
   double kill = 0.0;
 
   // Propriétés
@@ -126,7 +124,6 @@ class Player {
       double multiplier = data[i]['multiplier'].toDouble();
       upgradesMultiplier.add(multiplier);
     }
-    print("$upgradesMultiplier");
   }
 
   double getEquippedBonus(String bonus) {
@@ -190,6 +187,11 @@ class Player {
       return getTapAttack();
     }
   }
+
+  /*double totalAttack() {
+    total = player.stats["Clic"]! * player.attack();
+    return total;
+  }*/
 
   int getLevel() {
     return level;

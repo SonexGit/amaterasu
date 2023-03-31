@@ -65,6 +65,7 @@
     "body": "Body",
     "legs": "Legs",
     "weapon": "Weapon",
+    "level": "Level",
 
     "common": "Common",
     "rare": "Rare",
