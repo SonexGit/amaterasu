@@ -1,0 +1,68 @@
+{
+    "home": "Главная",
+    "adventure": "Приключения",
+    "shop": "Магазин",
+    "quests": "Задания",
+    "profile": "Профиль",
+    "welcome": "Добро пожаловать",
+"hello": "Здравствуйте",
+"afkIncome": "За время вашего отсутствия вы заработали",
+"goldsLower": "золотых монет",
+"golds": "Золотые монеты",
+"gold": "Золотая монета",
+
+"specialEvent": "Специальное мероприятие",
+
+"floor": "Этаж",
+"step": "Шаг",
+
+"equipments": "Снаряжение",
+
+"upgrades": "Улучшения",
+"buy": "Купить",
+
+"dailyQuests": "Ежедневные задания",
+"monthlyQuests": "Ежемесячные задания",
+"reward": "Награда",
+"claim": "Получить",
+
+"inventory": "Инвентарь",
+"statistics": "Статистика",
+
+"outOfStock": "Нет в наличии",
+
+"pickEquipment": "Выберите {equipType} снаряжение",
+"@pickEquipment": {
+    "placeholders": {
+        "equipType": {
+            "type": "String",
+            "example": "AppLocalizations.of(context)!.head.toLowerCase()"
+        }
+    }
+},
+
+"head": "Головной убор",
+"body": "Доспех",
+"legs": "Штаны",
+"weapon": "Оружие",
+"level": "уровень",
+
+"common": "Обычный",
+"rare": "Редкий",
+"epic": "Эпический",
+"legendary": "Легендарный",
+
+"healthBonus": "Здоровье",
+"armorBonus": "Броня",
+"tapAttackBonus": "Атака по клику",
+"passiveAttackBonus": "Пассивная атака",
+"tapRegenBonus": "Восстановление по клику",
+"passiveRegenBonus": "Пассивное восстановление",
+"criticalChanceBonus": "Шанс критического удара",
+"criticalMultiplierBonus": "Множитель критического удара",
+
+"menu": "Меню",
+"settings": "Настройки",
+"language": "Язык",
+"close": "Закрыть"
+}
