@@ -122,8 +122,8 @@ class _FightScreenState extends State<FightScreen>
         player.stats["Monstres battus"] =
             (player.stats["Monstres battus"]! + 1.0);
       }
-      player.total = (player.stats["Clic"]! * player.getTapAttack());
-      player.stats["Dégats infligés"] = player.total;
+      player.stats["Dégats infligés"] =
+          player.stats["Clic"]! * player.tapAttack;
 
       enemyTookDamage = true;
 

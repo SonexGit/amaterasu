@@ -50,10 +50,6 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [
         Locale('fr'),
         Locale('en'),
-        Locale('es'),
-        Locale('de'),
-        Locale('ru'),
-        Locale('ne')
       ],
       locale: _locale,
       theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
