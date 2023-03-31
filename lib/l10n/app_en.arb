@@ -11,6 +11,15 @@
     "goldsLower": "gold coins",
     "golds": "Gold coins",
     "gold": "Gold coin",
+    "level": "Level {level}",
+    "@level": {
+        "placeholders": {
+            "level": {
+                "type": "int",
+                "example": "player.level"
+            }
+        }
+    },
     
     "specialEvent": "Special Event",
 
@@ -29,6 +38,16 @@
 
     "inventory": "Inventory",
     "statistics": "Statistics",
+
+    "order": "Order",
+    "ascending": "Ascending",
+    "descending": "Descending",
+
+    "filter": "Filter",
+    "dateObtained": "Obtained date",
+    "rarity": "Rarity",
+    "levelRequired": "Level required",
+    "type": "Type",
 
     "outOfStock": "Out of stock",
 

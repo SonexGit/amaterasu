@@ -7,7 +7,41 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum EquipRarity { common, rare, epic, legendary }
 
+extension EquipRarityExtension on EquipRarity {
+  int get order {
+    switch (this) {
+      case EquipRarity.common:
+        return 0;
+      case EquipRarity.rare:
+        return 1;
+      case EquipRarity.epic:
+        return 2;
+      case EquipRarity.legendary:
+        return 3;
+      default:
+        return 0;
+    }
+  }
+}
+
 enum EquipType { head, body, legs, weapon }
+
+extension EquipTypeExtension on EquipType {
+  int get order {
+    switch (this) {
+      case EquipType.head:
+        return 0;
+      case EquipType.body:
+        return 1;
+      case EquipType.legs:
+        return 2;
+      case EquipType.weapon:
+        return 3;
+      default:
+        return 0;
+    }
+  }
+}
 
 Player player = Player();
 
@@ -17,8 +51,9 @@ class Equipment {
   final String desc;
   final int price;
   final EquipRarity rarity;
-  final int requiredFloor;
-  final EquipType? type;
+  final int requiredLevel;
+  final EquipType type;
+  late final DateTime? obtainedDate;
   final double? healthBonus;
   final double? armorBonus;
   final double? tapAttackBonus;
@@ -36,8 +71,9 @@ class Equipment {
     required this.desc,
     required this.price,
     required this.rarity,
-    required this.requiredFloor,
-    this.type,
+    required this.requiredLevel,
+    required this.type,
+    this.obtainedDate,
     this.healthBonus,
     this.armorBonus,
     this.tapAttackBonus,
@@ -55,7 +91,7 @@ class Equipment {
       desc: json["desc"],
       price: json["price"],
       rarity: EquipRarity.values[json["rarity"]],
-      requiredFloor: json["requiredFloor"],
+      requiredLevel: json["requiredLevel"],
       type: EquipType.values[json["type"]],
       healthBonus: json["healthBonus"],
       armorBonus: json["armorBonus"],
@@ -76,7 +112,8 @@ class Equipment {
           desc: "",
           price: 0,
           rarity: EquipRarity.common,
-          requiredFloor: 0),
+          requiredLevel: 0,
+          type: EquipType.weapon),
       growable: true);
 
   static Equipment getEquipmentById(int id) {
@@ -162,6 +199,11 @@ class Equipment {
 
   static String typeArgToString(EquipType type) {
     return type.toString().split('.').last;
+  }
+
+  Equipment setObtainedDate(DateTime date) {
+    obtainedDate = date;
+    return this;
   }
 
   static Future<void> setupEquipments() async {

@@ -4,8 +4,10 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:amaterasu/entities/equipment.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Player {
   // Singleton
@@ -85,6 +87,8 @@ class Player {
   int money = 2000;
 
   List<Equipment> inventory = [];
+  int inventoryFilterIndex = 0;
+  int inventoryOrderIndex = 0;
 
   Map<String, Equipment?> equipments = {
     "head": null,
@@ -119,7 +123,7 @@ class Player {
     final data = await json.decode(response);
     shopJsonData = data;
     for (int i = 0; i < data.length; i++) {
-      double multiplier = data[i]['multiplier'];
+      double multiplier = data[i]['multiplier'].toDouble();
       upgradesMultiplier.add(multiplier);
     }
     print("$upgradesMultiplier");
@@ -235,6 +239,40 @@ class Player {
     return upgradesLevel[index];
   }
 
+  static String getFilterLocalization(BuildContext context, int index) {
+    List<String> filters = [
+      AppLocalizations.of(context)!.dateObtained,
+      AppLocalizations.of(context)!.rarity,
+      AppLocalizations.of(context)!.levelRequired,
+      AppLocalizations.of(context)!.type
+    ];
+    return filters[index];
+  }
+
+  static List<String> getFiltersLocalization(BuildContext context) {
+    return [
+      AppLocalizations.of(context)!.dateObtained,
+      AppLocalizations.of(context)!.rarity,
+      AppLocalizations.of(context)!.levelRequired,
+      AppLocalizations.of(context)!.type
+    ];
+  }
+
+  static String getOrderLocalization(BuildContext context, int index) {
+    List<String> orders = [
+      AppLocalizations.of(context)!.descending,
+      AppLocalizations.of(context)!.ascending
+    ];
+    return orders[index];
+  }
+
+  static List<String> getOrdersLocalization(BuildContext context) {
+    return [
+      AppLocalizations.of(context)!.descending,
+      AppLocalizations.of(context)!.ascending
+    ];
+  }
+
   // Setters
 
   void setLocale(String loc) {
@@ -275,11 +313,11 @@ class Player {
   }
 
   void giveEquipmentById(int id) {
-    inventory.add(Equipment.getEquipmentById(id));
+    inventory.add(Equipment.getEquipmentById(id).setObtainedDate(DateTime.now()));
   }
 
   void giveEquipment(Equipment equip) {
-    inventory.add(equip);
+    inventory.add(equip.setObtainedDate(DateTime.now()));
   }
 
   void nextFloor() {
@@ -358,6 +396,47 @@ class Player {
 
   void levelUpUpgrade(int index) {
     upgradesLevel[index]++;
+  }
+
+  void updateOrder(int orderIndex) {
+    inventoryOrderIndex = orderIndex;
+    updateInventorySort();
+  }
+
+  void updateFilter(int filterIndex) {
+    inventoryFilterIndex = filterIndex;
+    updateInventorySort();
+  }
+
+  void updateInventorySort() {
+    switch (inventoryFilterIndex) {
+      case 0:
+        inventoryOrderIndex == 0
+            ? inventory.sort((a, b) => b.obtainedDate!.compareTo(a.obtainedDate!))
+            : inventory
+                .sort((a, b) => a.obtainedDate!.compareTo(b.obtainedDate!));
+        break;
+      case 1:
+        inventoryOrderIndex == 0
+            ? inventory.sort((a, b) => b.rarity.order.compareTo(a.rarity.order))
+            : inventory
+                .sort((a, b) => a.rarity.order.compareTo(b.rarity.order));
+        break;
+      case 2:
+        inventoryOrderIndex == 0
+            ? inventory.sort((a, b) => b.requiredLevel.compareTo(a.requiredLevel))
+            : inventory
+                .sort((a, b) => a.requiredLevel.compareTo(b.requiredLevel));
+        break;
+      case 3:
+        inventoryOrderIndex == 0
+            ? inventory.sort((a, b) => b.type.order.compareTo(a.type.order))
+            : inventory
+                .sort((a, b) => a.type.order.compareTo(b.type.order));
+        break;
+      default:
+        break;
+    }
   }
 }
 

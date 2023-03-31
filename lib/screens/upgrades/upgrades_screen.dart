@@ -233,7 +233,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                     : null,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blue,
-                                  minimumSize: const Size(80, 60),
+                                  minimumSize: const Size(90, 60),
                                   padding: EdgeInsets.zero,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -246,10 +246,19 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                       AppLocalizations.of(context)!.buy,
                                       style: const TextStyle(fontSize: 14.0),
                                     ),
-                                    Text(
-                                      '(${(NumberFormat.compactCurrency(decimalDigits: 0, symbol: '').format(_getPrice(index).round()))})',
-                                      style: const TextStyle(fontSize: 12.0),
-                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          NumberFormat.compactCurrency(decimalDigits: 0, symbol: '').format(_getPrice(index).round()),
+                                          style:
+                                              const TextStyle(fontSize: 12.0),
+                                        ),
+                                        const SizedBox(width: 4.0),
+                                        const Icon(Icons.toll, size: 10),
+                                      ],
+                                    )
                                   ],
                                 ),
                               )

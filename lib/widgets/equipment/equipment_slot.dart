@@ -120,7 +120,7 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
             Text(
               Equipment.getTypeLocalization(context, type!).toUpperCase(),
               style: TextStyle(
-                  fontSize: 12, fontWeight: FontWeight.bold, color: svgColor),
+                  fontSize: 14, fontWeight: FontWeight.bold, color: svgColor),
             ),
           ],
         ),

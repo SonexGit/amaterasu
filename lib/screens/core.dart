@@ -204,15 +204,16 @@ class _MyAppBarState extends State<MyAppBar> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text('Niveau ${player.level}', style: Style.moneyAppBar),
+            Text(AppLocalizations.of(context)!.level(player.level),
+                style: Style.moneyAppBar),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.max,
               children: [
-                const Icon(Icons.toll, size: 18),
-                const SizedBox(width: 8.0),
                 Text(player.formattedMoney(), style: Style.moneyAppBar),
+                const SizedBox(width: 4.0),
+                const Icon(Icons.toll, size: 18),
               ],
             ),
           ],

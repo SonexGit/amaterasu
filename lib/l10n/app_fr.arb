@@ -11,6 +11,15 @@
     "goldsLower": "pièces d'or",
     "golds": "Pièces d'or",
     "gold": "Pièce d'or",
+    "level": "Niveau {level}",
+    "@level": {
+        "placeholders": {
+            "level": {
+                "type": "int",
+                "example": "player.level"
+            }
+        }
+    },
 
     "specialEvent": "Événément spécial",
 
@@ -30,9 +39,19 @@
     "inventory": "Inventaire",
     "statistics": "Statistiques",
 
+    "order": "Ordre",
+    "ascending": "Croissant",
+    "descending": "Décroissant",
+
+    "filter": "Filtre",
+    "dateObtained": "Date d'obtention",
+    "rarity": "Rareté",
+    "levelRequired": "Niveau requis",
+    "type": "Type",
+
     "outOfStock": "Rupture de stock",
 
-    "pickEquipment": "Sélectionnez un équipment de type {equipType}",
+    "pickEquipment": "Sélectionnez un équipement de type {equipType}",
     "@pickEquipment": {
         "placeholders": {
             "equipType": {
