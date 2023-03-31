@@ -11,7 +11,8 @@ class Player {
   // Singleton
 
   Player._() {
-    readShopJson();
+    readUpgradeJson();
+    nextLevelExp = (500 * pow(1.1, getLevel()) - 500).round();
     shopUpgrades = List.filled(shopJsonData.length, 0, growable: true);
     stats = {
       "Dégats par clic": 0.0,
@@ -36,6 +37,7 @@ class Player {
 
   int level = 1;
   int experience = 0;
+  late int nextLevelExp = 0;
 
   String locale = "fr";
 
@@ -80,7 +82,7 @@ class Player {
 
   // Propriétés
 
-  int money = 4000000000;
+  int money = 2000;
 
   List<Equipment> inventory = [];
 
@@ -90,6 +92,8 @@ class Player {
     "legs": null,
     "weapon": null
   };
+
+  List<double> upgradesMultiplier = List.filled(0, 0, growable: true);
 
   List shopJsonData = List.filled(0, null, growable: true);
   List<int> shopUpgrades = List.filled(0, 0, growable: true);
@@ -109,11 +113,16 @@ class Player {
         .format(Player().money);
   }
 
-  Future<void> readShopJson() async {
+  Future<void> readUpgradeJson() async {
     final String response =
         await rootBundle.loadString('assets/upgrades/upgrades.json');
     final data = await json.decode(response);
     shopJsonData = data;
+    for (int i = 0; i < data.length; i++) {
+      double multiplier = data[i]['multiplier'];
+      upgradesMultiplier.add(multiplier);
+    }
+    print("$upgradesMultiplier");
   }
 
   double getEquippedBonus(String bonus) {
@@ -154,6 +163,12 @@ class Player {
     return totalBonus;
   }
 
+  double getUpgradeBonus(int index) {
+    double totalBonus = 0.0;
+    totalBonus = upgradesLevel[index] * upgradesMultiplier[index];
+    return totalBonus;
+  }
+
   void buy(int amount) {
     player.money -= amount;
   }
@@ -172,36 +187,48 @@ class Player {
     }
   }
 
+  int getLevel() {
+    return level;
+  }
+
   double getTapAttack() {
-    return tapAttack + getEquippedBonus("tapAttackBonus");
+    return tapAttack + getEquippedBonus("tapAttackBonus") + getUpgradeBonus(0);
   }
 
   double getPassiveAttack() {
-    return passiveAttack + getEquippedBonus("passiveAttackBonus");
+    return passiveAttack +
+        getEquippedBonus("passiveAttackBonus") +
+        getUpgradeBonus(1);
   }
 
   double getTapRegen() {
-    return tapRegen + getEquippedBonus("tapRegenBonus");
+    return tapRegen + getEquippedBonus("tapRegenBonus") + getUpgradeBonus(2);
   }
 
   double getPassiveRegen() {
-    return passiveRegen + getEquippedBonus("passiveRegenBonus");
+    return passiveRegen +
+        getEquippedBonus("passiveRegenBonus") +
+        getUpgradeBonus(3);
   }
 
   double getHealth() {
-    return health + getEquippedBonus("healthBonus");
+    return health + getEquippedBonus("healthBonus") + getUpgradeBonus(4);
   }
 
   double getArmor() {
-    return armor + getEquippedBonus("armorBonus");
+    return armor + getEquippedBonus("armorBonus") + getUpgradeBonus(5);
   }
 
   double getCriticalChance() {
-    return criticalChance + getEquippedBonus("criticalChanceBonus");
+    return criticalChance +
+        getEquippedBonus("criticalChanceBonus") +
+        getUpgradeBonus(6);
   }
 
   double getCriticalMultiplier() {
-    return criticalMultiplier + getEquippedBonus("criticalMultiplierBonus");
+    return criticalMultiplier +
+        getEquippedBonus("criticalMultiplierBonus") +
+        getUpgradeBonus(7);
   }
 
   int getUpgradeLevel(int index) {
@@ -224,6 +251,23 @@ class Player {
 
   void giveExp(int amount) {
     experience += amount;
+    while (experience >= nextLevelExp) {
+      level++;
+      experience -= nextLevelExp;
+      nextLevelExp += (500 * pow(1.1, level - 1) - 500).round();
+    }
+  }
+
+  void giveAfkMoney(DateTime quitTime, DateTime nowTime) {
+    // Calcul de la différence entre quitTime et nowTime en secondes
+    int secondsElapsed = nowTime.difference(quitTime).inSeconds;
+
+    if (secondsElapsed > 36000) {
+      secondsElapsed = 36000; // Limiter la différence à 10 heures
+    }
+
+    // TODO : changer le 1 par le taux de money par seconde
+    player.money += secondsElapsed * 1;
   }
 
   void equip(Equipment equip) {

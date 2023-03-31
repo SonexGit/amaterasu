@@ -13,6 +13,7 @@ import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Player player = Player();
 Enemy enemy = Enemy();
@@ -27,8 +28,12 @@ class Core extends StatefulWidget {
 // This value is equal to 0 because its equal to the Home index in the menu
 int selectedIndex = 0;
 
-class _CoreState extends State<Core> {
+class _CoreState extends State<Core> with WidgetsBindingObserver {
   late PageController _pageController;
+
+  SharedPreferences? _prefs;
+  final String _timestampKey = 'timestamp';
+  DateTime? _timestamp;
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
@@ -55,19 +60,44 @@ class _CoreState extends State<Core> {
     player;
     enemy;
     Equipment.setupEquipments();
+
+    // Preparation for when the user quits the app
+    WidgetsBinding.instance.addObserver(this);
+    _initPrefs();
+  }
+
+  Future<void> _initPrefs() async {
+    _prefs = await SharedPreferences.getInstance();
+    _getTimestamp();
+  }
+
+  Future<void> _getTimestamp() async {
+    int? timestamp = _prefs?.getInt(_timestampKey);
+    if (timestamp != null && player.haveSeenTutorial) {
+      _timestamp = DateTime.fromMillisecondsSinceEpoch(timestamp);
+      player.giveAfkMoney(_timestamp!, DateTime.now());
+    }
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    if (state == AppLifecycleState.paused) {
+      DateTime timestamp = DateTime.now();
+      await _prefs?.setInt(_timestampKey, timestamp.millisecondsSinceEpoch);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ignore: prefer_const_constructors
-      appBar: MyAppBar(),
+      appBar: const MyAppBar(),
       body: SafeArea(
           child: PageView(
         controller: _pageController,
@@ -158,30 +188,36 @@ class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-              [
-                AppLocalizations.of(context)!.home,
-                AppLocalizations.of(context)!.adventure,
-                AppLocalizations.of(context)!.shop,
-                AppLocalizations.of(context)!.quests,
-                AppLocalizations.of(context)!.profile
-              ][selectedIndex],
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, letterSpacing: 0.5)),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Icon(Icons.toll, size: 18),
-              const SizedBox(width: 8.0),
-              Text(player.formattedMoney(), style: Style.moneyAppBar),
-            ],
-          ),
-        ],
-      ),
+      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(
+            [
+              AppLocalizations.of(context)!.home,
+              AppLocalizations.of(context)!.adventure,
+              AppLocalizations.of(context)!.shop,
+              AppLocalizations.of(context)!.quests,
+              AppLocalizations.of(context)!.profile
+            ][selectedIndex],
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, letterSpacing: 0.5)),
+        Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text('Niveau ${player.level}', style: Style.moneyAppBar),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Icon(Icons.toll, size: 18),
+                const SizedBox(width: 8.0),
+                Text(player.formattedMoney(), style: Style.moneyAppBar),
+              ],
+            ),
+          ],
+        )
+      ]),
       actions: [
         PopupMenuButton<int>(
           icon: const Icon(Icons.menu),

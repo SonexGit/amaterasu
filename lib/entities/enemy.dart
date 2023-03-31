@@ -73,7 +73,7 @@ class Enemy {
     state = LifeState.dead;
     player.giveMoney(moneyValue);
     player.giveExp(expValue);
-    // give items?
+    // TODO : give items?
     player.nextFloor();
     newEnemy(
         player.gameMode, player.gameModesFloor[player.gameMode], player.floor);
@@ -96,6 +96,7 @@ class Enemy {
     moneyValue = jsonData[rand]["moneyValue"];
     id = jsonData[rand]["id"];
     type = EnemyType.values[jsonData[rand]["type"]];
+    expValue = jsonData[rand]["expValue"];
     state = LifeState.alive;
   }
 }

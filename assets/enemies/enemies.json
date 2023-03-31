@@ -5,7 +5,8 @@
         "health": 15,
         "attack": 1,
         "moneyValue": 14,
-        "type": 0
+        "type": 0,
+        "expValue": 10
     },
     {
         "id": 2,
@@ -13,7 +14,8 @@
         "health": 12,
         "attack": 2,
         "moneyValue": 8,
-        "type": 0
+        "type": 0,
+        "expValue": 8
     },
     {
         "id": 3,
@@ -21,7 +23,8 @@
         "health": 20,
         "attack": 3,
         "moneyValue": 21,
-        "type": 0
+        "type": 0,
+        "expValue": 15
     },
     {
         "id": 4,
@@ -29,6 +32,7 @@
         "health": 30,
         "attack": 5,
         "moneyValue": 50,
-        "type": 1
+        "type": 1,
+        "expValue": 25
     }
 ]

@@ -176,6 +176,7 @@ class _FightScreenState extends State<FightScreen>
                       padding: EdgeInsets.symmetric(vertical: 10.0),
                     ),
                   ),
+                  PlayerExpBar(value: player.experience / player.nextLevelExp),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50.0),
                     child: Column(
@@ -217,8 +218,8 @@ class _FightScreenState extends State<FightScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("${player.tapAttack} dpc"),
-                            Text("${player.passiveAttack} dps"),
+                            Text("${player.getTapAttack()} dpc"),
+                            Text("${player.getPassiveAttack()} dps"),
                           ],
                         ),
                       ],
@@ -248,6 +249,22 @@ class EnemyHealthBar extends StatelessWidget {
         color: Colors.red,
         semanticsLabel: 'Enemy health bar',
       ),
+    );
+  }
+}
+
+class PlayerExpBar extends StatelessWidget {
+  const PlayerExpBar({super.key, required this.value});
+
+  final double value;
+
+  @override
+  Widget build(BuildContext context) {
+    return LinearProgressIndicator(
+      minHeight: 8,
+      value: value,
+      color: Colors.blue,
+      semanticsLabel: 'Player experience bar',
     );
   }
 }

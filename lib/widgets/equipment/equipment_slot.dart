@@ -70,7 +70,8 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(AppLocalizations.of(context)!.pickEquipment(Equipment.getTypeLocalization(context, type!).toLowerCase())),
+          title: Text(AppLocalizations.of(context)!.pickEquipment(
+              Equipment.getTypeLocalization(context, type!).toLowerCase())),
           content: SizedBox(
             height: 300,
             width: 200,
