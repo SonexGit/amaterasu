@@ -34,7 +34,6 @@ class Player {
   }
 
   // Identité
-
   String name = "Allan";
 
   int level = 1;
