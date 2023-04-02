@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -59,7 +60,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 15.0),
+      padding: const EdgeInsets.symmetric(vertical: 0.0),
       child: Column(
         children: [
           Expanded(
@@ -79,8 +80,9 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            multiplier == 1.0 ? Colors.grey[300] : Colors.blue,
+                        backgroundColor: multiplier == 1.0
+                            ? Colors.grey[300]
+                            : Style.primaryColor,
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -103,8 +105,9 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            multiplier == 10.0 ? Colors.grey[300] : Colors.blue,
+                        backgroundColor: multiplier == 10.0
+                            ? Colors.grey[300]
+                            : Style.primaryColor,
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -127,8 +130,9 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            multiplier == 50.0 ? Colors.grey[300] : Colors.blue,
+                        backgroundColor: multiplier == 50.0
+                            ? Colors.grey[300]
+                            : Style.primaryColor,
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -153,7 +157,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: multiplier == 100.0
                             ? Colors.grey[300]
-                            : Colors.blue,
+                            : Style.primaryColor,
                         minimumSize: const Size(50, 40),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -232,7 +236,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                       }
                                     : null,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: Style.primaryColor,
                                   minimumSize: const Size(90, 60),
                                   padding: EdgeInsets.zero,
                                   shape: RoundedRectangleBorder(
@@ -247,11 +251,15 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                       style: const TextStyle(fontSize: 14.0),
                                     ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          NumberFormat.compactCurrency(decimalDigits: 0, symbol: '').format(_getPrice(index).round()),
+                                          NumberFormat.compactCurrency(
+                                                  decimalDigits: 0, symbol: '')
+                                              .format(_getPrice(index).round()),
                                           style:
                                               const TextStyle(fontSize: 12.0),
                                         ),

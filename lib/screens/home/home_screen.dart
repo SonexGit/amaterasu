@@ -1,4 +1,5 @@
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/utils/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -8,9 +9,9 @@ import 'package:lottie/lottie.dart';
 
 Player player = Player();
 final List<String> txtList = [
-  'Le Saviez vous! Vous pouvez voir le descriptif de chaque équipements en maintenant le doigt sur l\'équipement de votre choix.',
-  'Le Profil permet de voir chaque statistiques du joueur',
-  'Des nouvelles quêtes chaque jour pour vous donner encore plus envie de jouer'
+  'Vous pouvez voir le descriptif d\'un équipement en maintenant votre doigt sur l\'icône d\'un l\'équipement',
+  'Le Profil permet de voir toutes les statistiques du joueur comme l\'entièreté des dégâts infligés',
+  'Jouez au jeu tous les jours pour avoir de nouvelles quêtes journalières'
 ];
 
 class HomeScreen extends StatefulWidget {
@@ -101,13 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     Text(
-                      "${AppLocalizations.of(context)!.hello} ${player.name}",
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    )
+                        "${AppLocalizations.of(context)!.hello} ${player.name}",
+                        style: Style.headlineStyleHome)
                   ],
                 ),
                 const SizedBox(height: 5),
@@ -116,49 +112,67 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Flexible(
                             child: Text(
-                              "${AppLocalizations.of(context)!.afkIncome} ${player.lastAfkIncome} ${AppLocalizations.of(context)!.goldsLower}",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                              ),
-                            ),
+                                "${AppLocalizations.of(context)!.afkIncome} ${player.lastAfkIncome} ${AppLocalizations.of(context)!.goldsLower}",
+                                style: Style.sublineStyleHome),
                           ),
                         ],
                       )
                     : Container(),
+                Align(
+                  child: Lottie.asset(
+                    'assets/lottie/animation.json',
+                    fit: BoxFit.fill,
+                    alignment: Alignment.bottomCenter,
+                  ),
+                ),
                 CarouselSlider.builder(
                   itemCount: txtList.length,
                   itemBuilder:
                       (BuildContext context, int index, int realIndex) {
                     final text = txtList[index];
-                    return Container(
-                      color: Colors.grey,
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.lightbulb_outline_rounded,
-                              size: 26,
-                              color: Colors.yellow,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              text,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        decoration: BoxDecoration(
+                            color: Style.primaryColor,
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                spreadRadius: 0,
+                                blurRadius: 10,
                               ),
-                            ),
-                          ],
+                            ]),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.lightbulb_outline_rounded,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                text,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
                   },
                   options: CarouselOptions(
-                    height: 100,
+                    height: 170,
                     aspectRatio: 1.0,
-                    viewportFraction: 0.9,
+                    viewportFraction: 1,
                     initialPage: 0,
                     enableInfiniteScroll: true,
                     reverse: false,
@@ -169,14 +183,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     scrollDirection: Axis.horizontal,
-                  ),
-                ),
-                Align(
-                  child: Lottie.asset(
-                    'assets/lottie/animation.json',
-                    height: 500,
-                    width: 350,
-                    fit: BoxFit.fill,
                   ),
                 ),
               ],

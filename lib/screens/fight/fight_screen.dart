@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
-import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/upgrades/upgrades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasu/utils/style.dart';
@@ -22,12 +21,13 @@ class _FightScreenState extends State<FightScreen>
   Enemy enemy = Enemy();
 
   final tapEffectsWidgets = <Widget>[];
-  final List<double> _widgetOpacity = List.empty(growable: true);
 
   final Map<int, AnimationController> _animationControllers = {};
 
   late AnimationController _imageAnimationController;
   late Animation<double> _imageAnimation;
+
+  Map<int, Timer> animTimers = {};
 
   bool enemyTookDamage = false;
   double enemyDims = 200;
@@ -56,6 +56,18 @@ class _FightScreenState extends State<FightScreen>
           _imageAnimationController.stop();
         }
       });
+  }
+
+  @override
+  void dispose() {
+    animTimers.forEach((key, value) {
+      value.cancel();
+    });
+    _animationControllers.forEach((key, value) {
+      value.dispose();
+    });
+    _imageAnimationController.dispose();
+    super.dispose();
   }
 
   final GlobalKey _stackKey = GlobalKey();
@@ -128,109 +140,113 @@ class _FightScreenState extends State<FightScreen>
       enemyTookDamage = true;
 
       enemy.loseHealth(playerDamage);
-
       tapEffectsWidgets.add(widget);
-      _widgetOpacity.add(1.0);
     });
 
     _imageAnimationController.forward();
     _animationControllers[id]!.forward();
 
-    Future.delayed(const Duration(milliseconds: 500), () {
+    animTimers[id] = Timer(const Duration(milliseconds: 500), () {
       setState(() {
         enemyTookDamage = false;
         tapEffectsWidgets.remove(widget);
-        _widgetOpacity.removeAt(0);
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Style.whiteColor,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => selectedIndex.value = 0,
-        ),
-        title: Text(
-          "${AppLocalizations.of(context)!.floor} ${player.gameModesFloor[player.gameMode]} • ${AppLocalizations.of(context)!.step} ${player.floor}/10",
-          textAlign: TextAlign.center,
-        ),
-      ),
-      body: SnappingSheet(
+    return SnappingSheet(
         grabbingHeight: 50,
         grabbing: const UpgradesGrab(),
         sheetBelow: SnappingSheetContent(child: const UpgradesScreen()),
-        child: GestureDetector(
-          onTapDown: (TapDownDetails details) => _onTapDown(details),
-          behavior: HitTestBehavior.opaque,
-          child: Stack(
-            key: _stackKey,
-            children: <Widget>[
-                  // ignore: prefer_const_constructors
-                  ColoredBox(
-                    color: Colors.white,
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
+        child: Column(
+          children: [
+            Container(
+                decoration: const BoxDecoration(color: Style.primaryColor),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: Text(
+                        "${AppLocalizations.of(context)!.floor} ${player.gameModesFloor[player.gameMode]} • ${AppLocalizations.of(context)!.step} ${player.floor}/10",
+                        textAlign: TextAlign.center,
+                        style: Style.fightFloor,
+                      ),
                     ),
-                  ),
-                  PlayerExpBar(value: player.experience / player.nextLevelExp),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        // TODO: à changer par un scale pour ne pas bouger les autres widgets autour
-                        Text(enemy.name,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: (enemy.type == EnemyType.common)
-                                    ? 20
-                                    : 30)),
-                        const SizedBox(height: 10),
-                        EnemyHealthBar(value: enemy.health / enemy.maxHealth),
-                        const SizedBox(height: 10),
-                        Text("${enemy.health}/${enemy.maxHealth}"),
-                        const SizedBox(height: 10),
-                        AnimatedBuilder(
-                            animation: _imageAnimation,
-                            builder: (BuildContext context, Widget? child) {
-                              return Transform.scale(
-                                scale: _imageAnimation.value,
-                                child: child,
-                              );
-                            },
-                            child: SizedBox(
-                              width: enemyDims,
-                              height: enemyDims,
-                              child: Image.asset(
-                                "assets/enemies/images/${enemy.id}.png",
-                                errorBuilder: (BuildContext context,
-                                    Object exception, StackTrace? stackTrace) {
-                                  return const ColoredBox(color: Colors.purple);
-                                },
+                  ],
+                )),
+            Expanded(
+              child: GestureDetector(
+                onTapDown: (TapDownDetails details) => _onTapDown(details),
+                behavior: HitTestBehavior.opaque,
+                child: Stack(
+                  key: _stackKey,
+                  children: <Widget>[
+                        PlayerExpBar(
+                            value: player.experience / player.nextLevelExp),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              // TODO: à changer par un scale pour ne pas bouger les autres widgets autour
+                              Text(enemy.name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: (enemy.type == EnemyType.common)
+                                          ? 20
+                                          : 30)),
+                              const SizedBox(height: 10),
+                              EnemyHealthBar(
+                                  value: enemy.health / enemy.maxHealth),
+                              const SizedBox(height: 10),
+                              Text("${enemy.health}/${enemy.maxHealth}"),
+                              const SizedBox(height: 10),
+                              AnimatedBuilder(
+                                  animation: _imageAnimation,
+                                  builder:
+                                      (BuildContext context, Widget? child) {
+                                    return Transform.scale(
+                                      scale: _imageAnimation.value,
+                                      child: child,
+                                    );
+                                  },
+                                  child: SizedBox(
+                                    width: enemyDims,
+                                    height: enemyDims,
+                                    child: Image.asset(
+                                      "assets/enemies/images/${enemy.id}.png",
+                                      errorBuilder: (BuildContext context,
+                                          Object exception,
+                                          StackTrace? stackTrace) {
+                                        return const ColoredBox(
+                                            color: Colors.purple);
+                                      },
+                                    ),
+                                  )),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("${player.getTapAttack()} dpc"),
+                                  Text("${player.getPassiveAttack()} dps"),
+                                ],
                               ),
-                            )),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("${player.getTapAttack()} dpc"),
-                            Text("${player.getPassiveAttack()} dps"),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ] +
-                tapEffectsWidgets,
-          ),
-        ),
-      ),
-    );
+                            ],
+                          ),
+                        )
+                      ] +
+                      tapEffectsWidgets,
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
 

@@ -38,16 +38,17 @@ class _ProfileScreenState extends State<ProfileScreen>
     });
     return DefaultTabController(
       length: 2, // Nombre d'onglets
-      child: Scaffold(
-        body: Column(
+      child: Container(
+        decoration: const BoxDecoration(color: Colors.white),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(15.0),
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: Colors.grey[300],
                 ),
                 height: kToolbarHeight - 8,
                 child: TabBar(
@@ -93,10 +94,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              AppLocalizations.of(context)!.statistics,
-                              style: Style.profileHeadline
-                            ),
+                            Text(AppLocalizations.of(context)!.statistics,
+                                style: Style.profileHeadline),
                             const SizedBox(height: 20),
                             Padding(
                                 padding: EdgeInsets.symmetric(
@@ -110,14 +109,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              entry.key,
-                                              style: Style.profileStats.merge( const TextStyle(fontWeight: FontWeight.bold))
-                                            ),
-                                            Text(
-                                              entry.value.toStringAsFixed(2),
-                                              style: Style.profileStats
-                                            ),
+                                            Text(entry.key,
+                                                style: Style.profileStats.merge(
+                                                    const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold))),
+                                            Text(entry.value.toStringAsFixed(2),
+                                                style: Style.profileStats),
                                           ],
                                         ),
                                       )
@@ -127,10 +125,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                                       .toList(),
                                 )),
                             const SizedBox(height: 40),
-                            Text(
-                              AppLocalizations.of(context)!.equipments,
-                              style: Style.profileHeadline
-                            ),
+                            Text(AppLocalizations.of(context)!.equipments,
+                                style: Style.profileHeadline),
                             const SizedBox(height: 20),
                             Row(
                               children: [
@@ -154,8 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16.0, horizontal: 24.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Column(
                       children: [
                         Wrap(

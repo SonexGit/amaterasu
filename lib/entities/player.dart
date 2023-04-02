@@ -126,7 +126,6 @@ class Player {
       double multiplier = data[i]['multiplier'].toDouble();
       upgradesMultiplier.add(multiplier);
     }
-    print("$upgradesMultiplier");
   }
 
   double getEquippedBonus(String bonus) {

@@ -238,14 +238,14 @@ class _MyAppBarState extends State<MyAppBar> {
                       children: [
                         Text(player.formattedMoney(), style: Style.appBarInfo),
                         const SizedBox(width: 4.0),
-                        Icon(Icons.toll, size: 18, color: Style.primaryColor),
+                        const Icon(Icons.toll, size: 18, color: Style.primaryColor),
                       ],
                     ),
                   ],
                 ),
                 const SizedBox(width: 10),
                 PopupMenuButton<int>(
-                  icon: Icon(Icons.menu, color: Style.primaryColor),
+                  icon: const Icon(Icons.menu, color: Style.primaryColor),
                   itemBuilder: (context) => [
                     PopupMenuItem(
                         onTap: () {

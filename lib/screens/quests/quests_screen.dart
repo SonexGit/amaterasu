@@ -38,8 +38,9 @@ class _QuestsPageState extends State<QuestsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Container(
+      decoration: const BoxDecoration(color: Colors.white),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(

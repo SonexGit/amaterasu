@@ -36,12 +36,12 @@ class Style {
       TextStyle(fontSize: 16, color: primaryColor, fontWeight: FontWeight.w500);
 
   static const TextStyle headlineStyleHome =
-      TextStyle(fontSize: 28, color: textColor, fontWeight: FontWeight.w800);
-  static TextStyle sublineStyleHome = TextStyle(
-      fontSize: 16, color: Colors.grey.shade600, fontWeight: FontWeight.w500);
+      TextStyle(fontSize: 24, color: primaryColor, fontWeight: FontWeight.bold);
+  static TextStyle sublineStyleHome =
+      TextStyle(fontSize: 16, color: Colors.grey.shade600);
 
-  static const TextStyle headlineStyleHomeCard =
-      TextStyle(fontSize: 20, color: whiteColor, fontWeight: FontWeight.w700);
+  static const TextStyle fightFloor =
+      TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
 
   static const TextStyle profileHeadline = TextStyle(
     fontSize: 22,
