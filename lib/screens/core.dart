@@ -35,13 +35,7 @@ class _CoreState extends State<Core> with WidgetsBindingObserver {
   final String _timestampKey = 'timestamp';
   DateTime? _timestamp;
 
-  static final List<Widget> _widgetOptions = <Widget>[
-    const HomeScreen(),
-    const AdventureScreen(),
-    const ShopScreen(),
-    const QuestsPage(),
-    const ProfileScreen(),
-  ];
+  static late final List<Widget> _widgetOptions;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -55,6 +49,14 @@ class _CoreState extends State<Core> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     _pageController = PageController();
+
+    _widgetOptions = const <Widget>[
+      HomeScreen(),
+      AdventureScreen(),
+      ShopScreen(),
+      QuestsPage(),
+      ProfileScreen(),
+    ];
 
     // Initialize the important entities
     player;
@@ -97,24 +99,34 @@ class _CoreState extends State<Core> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
+      backgroundColor: Style.altColor,
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight * 1.1),
+          child: MyAppBar()),
       body: SafeArea(
-          child: PageView(
-        controller: _pageController,
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        children: _widgetOptions,
-        onPageChanged: (index) {
-          setState(() {
-            selectedIndex = index;
-          });
-        },
-      )),
+          child: Padding(
+              padding:
+                  const EdgeInsets.only(bottom: 10, left: 20, right: 20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                    10.0), //définir le rayon de bordure arrondie souhaité
+                child: PageView(
+                  controller: _pageController,
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: _widgetOptions,
+                  onPageChanged: (index) {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+                  },
+                ),
+              ))),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 26,
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.grey[700],
-        unselectedItemColor: Colors.grey[700]?.withOpacity(0.3),
+        backgroundColor: Colors.transparent,
+        selectedItemColor: Style.secondaryColor,
+        unselectedItemColor: Style.primaryColor.withOpacity(0.3),
         currentIndex: selectedIndex,
         onTap: _onItemTapped,
         elevation: 0,
@@ -123,13 +135,13 @@ class _CoreState extends State<Core> with WidgetsBindingObserver {
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home_filled), label: "Accueil"),
-          BottomNavigationBarItem(icon: Icon(Icons.park), label: "Aventure"),
+              icon: Icon(Icons.home_rounded), label: "Accueil"),
+          BottomNavigationBarItem(icon: Icon(Icons.park_rounded), label: "Aventure"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.storefront), label: "Boutique"),
+              icon: Icon(Icons.storefront_rounded), label: "Boutique"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.assignment), label: "Quêtes"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
+              icon: Icon(Icons.assignment_rounded), label: "Quêtes"),
+          BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: "Profil"),
         ],
       ),
     );
@@ -174,9 +186,6 @@ class _MyAppBarState extends State<MyAppBar> {
   void initState() {
     super.initState();
     _timer = Timer.periodic(const Duration(milliseconds: 100), _updateMoney);
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   menuNames = AppLocalizations.of(context)!.menuNames.split(':');
-    // });
   }
 
   @override
@@ -188,68 +197,74 @@ class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(
-            [
-              AppLocalizations.of(context)!.home,
-              AppLocalizations.of(context)!.adventure,
-              AppLocalizations.of(context)!.shop,
-              AppLocalizations.of(context)!.quests,
-              AppLocalizations.of(context)!.profile
-            ][selectedIndex],
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, letterSpacing: 0.5)),
-        Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(AppLocalizations.of(context)!.level(player.level),
-                style: Style.moneyAppBar),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(player.formattedMoney(), style: Style.moneyAppBar),
-                const SizedBox(width: 4.0),
-                const Icon(Icons.toll, size: 18),
-              ],
-            ),
-          ],
-        )
-      ]),
-      actions: [
-        PopupMenuButton<int>(
-          icon: const Icon(Icons.menu),
-          itemBuilder: (context) => [
-            PopupMenuItem(
-                onTap: () {
-                  Future.delayed(
-                    const Duration(seconds: 0),
-                    () => showDialog(
-                      context: context,
-                      builder: (context) => const SettingsScreen(),
-                    ),
-                  );
-                },
-                value: 0,
-                child: Text(AppLocalizations.of(context)!.settings))
-          ],
-          tooltip: AppLocalizations.of(context)!.menu,
-        ),
-      ],
       systemOverlayStyle:
           const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: false,
-      flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: Style.mainGradient,
-            transform: GradientRotation(90),
-          ),
+      flexibleSpace: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                    [
+                      AppLocalizations.of(context)!.home,
+                      AppLocalizations.of(context)!.adventure,
+                      AppLocalizations.of(context)!.shop,
+                      AppLocalizations.of(context)!.quests,
+                      AppLocalizations.of(context)!.profile
+                    ][selectedIndex],
+                    style: Style.appBarTitle),
+              ],
+            ),
+            Row(
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(AppLocalizations.of(context)!.level(player.level),
+                        style: Style.appBarInfo.merge(const TextStyle(fontWeight: FontWeight.bold))),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(player.formattedMoney(), style: Style.appBarInfo),
+                        const SizedBox(width: 4.0),
+                        Icon(Icons.toll, size: 18, color: Style.primaryColor),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 10),
+                PopupMenuButton<int>(
+                  icon: Icon(Icons.menu, color: Style.primaryColor),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                        onTap: () {
+                          Future.delayed(
+                            const Duration(seconds: 0),
+                            () => showDialog(
+                              context: context,
+                              builder: (context) => const SettingsScreen(),
+                            ),
+                          );
+                        },
+                        value: 0,
+                        child: Text(AppLocalizations.of(context)!.settings))
+                  ],
+                  tooltip: AppLocalizations.of(context)!.menu,
+                ),
+              ],
+            ),
+          ]),
         ),
       ),
     );

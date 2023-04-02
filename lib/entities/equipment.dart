@@ -53,9 +53,9 @@ class Equipment {
   final EquipRarity rarity;
   final int requiredLevel;
   final EquipType type;
-  late final DateTime? obtainedDate;
+  late DateTime? obtainedDate;
   final double? healthBonus;
-  final double? armorBonus;
+  final double? armorBonus; 
   final double? tapAttackBonus;
   final double? passiveAttackBonus;
   final double? tapRegenBonus;

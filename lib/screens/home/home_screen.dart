@@ -114,11 +114,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     const SizedBox(height: 5),
-                    Row(
+                    player.lastAfkIncome != 0 ? Row(
                       children: [
                         Flexible(
                           child: Text(
-                            "${AppLocalizations.of(context)!.afkIncome} 2416 ${AppLocalizations.of(context)!.goldsLower}",
+                            "${AppLocalizations.of(context)!.afkIncome} ${player.lastAfkIncome} ${AppLocalizations.of(context)!.goldsLower}",
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.grey[600],
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ],
-                    ),
+                    ) : Container(),
                     CarouselSlider(
                       options: CarouselOptions(
                         height: 400.0,

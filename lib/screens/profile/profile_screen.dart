@@ -1,5 +1,5 @@
-import 'package:amaterasu/entities/equipment.dart';
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/utils/style.dart';
 import 'package:amaterasu/widgets/equipment/equipment_icon.dart';
 import 'package:amaterasu/widgets/equipment/equipment_slot.dart';
 import 'package:flutter/material.dart';
@@ -42,20 +42,27 @@ class _ProfileScreenState extends State<ProfileScreen>
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              color: Colors.blue, // Couleur de fond de la tab bar
-              child: TabBar(
-                controller: _tabController,
-                indicatorColor:
-                    Colors.white, // Couleur de la barre de sélection
-                labelColor:
-                    Colors.white, // Couleur de texte de l'onglet sélectionné
-                unselectedLabelColor:
-                    Colors.white60, // Couleur de texte des autres onglets
-                tabs: [
-                  Tab(text: AppLocalizations.of(context)!.profile),
-                  Tab(text: AppLocalizations.of(context)!.inventory),
-                ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.grey[300],
+                ),
+                height: kToolbarHeight - 8,
+                child: TabBar(
+                  controller: _tabController,
+                  unselectedLabelColor: Colors.black,
+                  labelColor: Colors.white,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Style.primaryColor,
+                  ),
+                  tabs: [
+                    Tab(text: AppLocalizations.of(context)!.profile),
+                    Tab(text: AppLocalizations.of(context)!.inventory),
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -76,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 5),
                         Text(
                             "${AppLocalizations.of(context)!.level(player.level)} • ${player.experience}/${player.nextLevelExp}",
                             textAlign: TextAlign.center,
@@ -88,10 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           children: [
                             Text(
                               AppLocalizations.of(context)!.statistics,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Style.profileHeadline
                             ),
                             const SizedBox(height: 20),
                             Padding(
@@ -108,15 +112,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                                           children: [
                                             Text(
                                               entry.key,
-                                              style: const TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                              style: Style.profileStats.merge( const TextStyle(fontWeight: FontWeight.bold))
                                             ),
                                             Text(
                                               entry.value.toStringAsFixed(2),
-                                              style:
-                                                  const TextStyle(fontSize: 16),
+                                              style: Style.profileStats
                                             ),
                                           ],
                                         ),
@@ -129,10 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             const SizedBox(height: 40),
                             Text(
                               AppLocalizations.of(context)!.equipments,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Style.profileHeadline
                             ),
                             const SizedBox(height: 20),
                             Row(

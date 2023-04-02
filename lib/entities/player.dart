@@ -85,6 +85,7 @@ class Player {
   // Propriétés
 
   int money = 2000;
+  int lastAfkIncome = 0;
 
   List<Equipment> inventory = [];
   int inventoryFilterIndex = 0;
@@ -305,7 +306,8 @@ class Player {
     }
 
     // TODO : changer le 1 par le taux de money par seconde
-    player.money += secondsElapsed * 1;
+    lastAfkIncome = secondsElapsed * 1;
+    money += lastAfkIncome;
   }
 
   void equip(Equipment equip) {
@@ -313,7 +315,8 @@ class Player {
   }
 
   void giveEquipmentById(int id) {
-    inventory.add(Equipment.getEquipmentById(id).setObtainedDate(DateTime.now()));
+    inventory
+        .add(Equipment.getEquipmentById(id).setObtainedDate(DateTime.now()));
   }
 
   void giveEquipment(Equipment equip) {
@@ -412,7 +415,8 @@ class Player {
     switch (inventoryFilterIndex) {
       case 0:
         inventoryOrderIndex == 0
-            ? inventory.sort((a, b) => b.obtainedDate!.compareTo(a.obtainedDate!))
+            ? inventory
+                .sort((a, b) => b.obtainedDate!.compareTo(a.obtainedDate!))
             : inventory
                 .sort((a, b) => a.obtainedDate!.compareTo(b.obtainedDate!));
         break;
@@ -424,15 +428,15 @@ class Player {
         break;
       case 2:
         inventoryOrderIndex == 0
-            ? inventory.sort((a, b) => b.requiredLevel.compareTo(a.requiredLevel))
+            ? inventory
+                .sort((a, b) => b.requiredLevel.compareTo(a.requiredLevel))
             : inventory
                 .sort((a, b) => a.requiredLevel.compareTo(b.requiredLevel));
         break;
       case 3:
         inventoryOrderIndex == 0
             ? inventory.sort((a, b) => b.type.order.compareTo(a.type.order))
-            : inventory
-                .sort((a, b) => a.type.order.compareTo(b.type.order));
+            : inventory.sort((a, b) => a.type.order.compareTo(b.type.order));
         break;
       default:
         break;

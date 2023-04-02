@@ -1,5 +1,6 @@
 import 'package:amaterasu/entities/equipment.dart';
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/utils/style.dart';
 import 'package:amaterasu/widgets/equipment/equipment_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,8 +24,6 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
 
   List<Equipment> filteredInventory = [];
 
-  Color? svgColor;
-
   @override
   void initState() {
     super.initState();
@@ -32,25 +31,24 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
         .firstWhere((type) => type.toString().split('.')[1] == widget.type);
     _selectedEquipment = player.equipments[Equipment.typeArgToString(type!)];
 
-    double svgSize = 30.0;
-    svgColor = Colors.grey[800];
+    double svgSize = 25.0;
 
     switch (Equipment.typeArgToString(type!)) {
       case "head":
         equipmentIcon = SvgPicture.asset("assets/equipments/icons/head.svg",
-            width: svgSize, height: svgSize, color: svgColor);
+            width: svgSize, height: svgSize, color: Style.secondaryColor);
         break;
       case "body":
         equipmentIcon = SvgPicture.asset("assets/equipments/icons/body.svg",
-            width: svgSize, height: svgSize, color: svgColor);
+            width: svgSize, height: svgSize, color: Style.secondaryColor);
         break;
       case "legs":
         equipmentIcon = SvgPicture.asset("assets/equipments/icons/legs.svg",
-            width: svgSize, height: svgSize, color: svgColor);
+            width: svgSize, height: svgSize, color: Style.secondaryColor);
         break;
       case "weapon":
         equipmentIcon = SvgPicture.asset("assets/equipments/icons/weapon.svg",
-            width: svgSize, height: svgSize, color: svgColor);
+            width: svgSize, height: svgSize, color: Style.secondaryColor);
         break;
       default:
         equipmentIcon =
@@ -116,25 +114,25 @@ class _EquipmentSlotState extends State<EquipmentSlot> {
           mainAxisSize: MainAxisSize.min,
           children: [
             equipmentIcon!,
-            const SizedBox(width: 10),
+            const SizedBox(width: 5),
             Text(
               Equipment.getTypeLocalization(context, type!).toUpperCase(),
-              style: TextStyle(
-                  fontSize: 14, fontWeight: FontWeight.bold, color: svgColor),
+              style: const TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.bold, color: Style.secondaryColor),
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         SizedBox(
-            width: 100.0,
-            height: 100.0,
+            width: 90.0,
+            height: 90.0,
             child: GestureDetector(
               onTap: _handleTap,
               child: Card(
                 child: _selectedEquipment != null
                     ? EquipmentIcon(equipment: _selectedEquipment!)
                     : IconButton(
-                        icon: const Icon(Icons.add, size: 40),
+                        icon: const Icon(Icons.add, size: 40, color: Style.secondaryColor),
                         onPressed: _handleTap,
                       ),
               ),
