@@ -42,113 +42,79 @@ class AdventureSelectionScreen extends StatefulWidget {
 class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(height: 50),
-            Stack(
-              children: [
-                AnimatedButton(
-                  color: Colors.green,
-                  onPressed: () => selectedIndex.value = 1,
-                  enabled: true,
-                  shadowDegree: ShadowDegree.light,
-                  duration: 400,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.white,
-                    highlightColor: Colors.grey,
-                    child: Text(
-                      AppLocalizations.of(context)!.adventure,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                    image: AssetImage("assets/images/adventure.png"))),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green.withOpacity(0.8),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+              ),
+              onPressed: () => selectedIndex.value = 1,
+              child: Shimmer.fromColors(
+                baseColor: Colors.white,
+                highlightColor: Colors.grey,
+                child: Text(
+                  AppLocalizations.of(context)!.adventure,
+                  style: const TextStyle(
+                    fontSize: 32,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Positioned.fill(
-                  left: 150,
-                  bottom: 30,
-                  child: Icon(
-                    Icons.lock_open,
-                    color: Colors.black,
-                    size: 20,
-                  ),
-                ),
-              ],
+              ),
             ),
-            const SizedBox(height: 20),
-            Stack(
-              children: [
-                AnimatedButton(
-                  color: Colors.blue,
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          backgroundColor: Colors.grey[200],
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Text(
-                                  'Evenement Spécial',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                SizedBox(height: 20),
-                                Text('Disponible le 15 mai à 00h'),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-
-                    Future.delayed(const Duration(seconds: 2), () {
-                      Navigator.of(context).pop();
-                    });
-                  },
-                  enabled: true,
-                  shadowDegree: ShadowDegree.light,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.white,
-                    highlightColor: Colors.blue,
-                    child: Text(
-                      AppLocalizations.of(context)!.specialEvent,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-                const Positioned(
-                  right: 10,
-                  top: 10,
-                  child: Icon(
-                    Icons.lock,
-                    color: Colors.black,
-                    size: 20,
-                  ),
-                ),
-              ],
-            )
-          ],
+          ),
         ),
-      ),
+        Expanded(
+          child: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                    image: AssetImage("assets/images/specialevent.png"))),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepPurple.withOpacity(0.8),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+              ),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const AlertDialog(
+                        content: Text('Disponible le 15 mai à 00h'),
+                      );
+                    });
+              },
+              child: Shimmer.fromColors(
+                baseColor: Colors.white,
+                highlightColor: Colors.grey,
+                child: Text(
+                  AppLocalizations.of(context)!.specialEvent,
+                  style: const TextStyle(
+                    fontSize: 32,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

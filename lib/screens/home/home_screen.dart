@@ -9,7 +9,7 @@ import 'package:lottie/lottie.dart';
 
 Player player = Player();
 final List<String> txtList = [
-  'Vous pouvez voir le descriptif d\'un équipement en maintenant votre doigt sur l\'icône d\'un l\'équipement',
+  'Vous pouvez voir le descriptif d\'un équipement en maintenant votre doigt sur l\'icône d\'un équipement',
   'Le Profil permet de voir toutes les statistiques du joueur comme l\'entièreté des dégâts infligés',
   'Jouez au jeu tous les jours pour avoir de nouvelles quêtes journalières'
 ];
