@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Fist of Fury",
+        "description": "Increases the damage of each of your clicks",
+        "price": 50.0,
+        "multiplier": 1.5,
+        "maxLevel": 0,
+        "requiredLevel":2
+    },
+    {
+        "id": 2,
+        "name": "Murderous Aura",
+        "description": "Increases your passive damage",
+        "price": 50.0,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel": 4
+    },
+    {
+        "id": 3,
+        "name": "Keen Eyes",
+        "description": "Chance to perform a critical hit",
+        "price": 50.0,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel": 2
+    },
+    {
+        "id": 4,
+        "name": "Overwhelming Luck",
+        "description": "Critical hit chance multiplier",
+        "price": 50.0,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel": 7
+    },
+    {
+        "id": 5,
+        "name": "Armored Shell",
+        "description": "Increases your health points",
+        "price": 50.0,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":2
+    },
+    {
+        "id": 6,
+        "name": "Impenetrable Shield",
+        "description": "Reduces the damage you take",
+        "price": 50.0,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":5
+    },
+    {
+        "id": 7,
+        "name": "Heart of Stone",
+        "description": "Regenerate passively",
+        "price": 50.0,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":4
+    },
+    {
+        "id": 8,
+        "name": "Bloodthirsty Leech",
+        "description": "Regenerate with each attack made",
+        "price": 50.0,
+        "multiplier": 14,
+        "maxLevel": 0,
+        "requiredLevel":4
+    }
+]

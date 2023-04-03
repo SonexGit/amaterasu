@@ -119,7 +119,7 @@ class Player {
 
   Future<void> readUpgradeJson() async {
     final String response =
-        await rootBundle.loadString('assets/upgrades/upgrades.json');
+        await rootBundle.loadString('assets/upgrades/upgrades_$locale.json');
     final data = await json.decode(response);
     shopJsonData = data;
     for (int i = 0; i < data.length; i++) {
@@ -276,6 +276,8 @@ class Player {
 
   void setLocale(String loc) {
     locale = loc;
+    readUpgradeJson();
+    Equipment.setupEquipments();
   }
 
   void giveMoney(int amount) {

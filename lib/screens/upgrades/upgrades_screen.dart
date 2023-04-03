@@ -26,8 +26,8 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
   List<int> basePrice = List.empty(growable: true);
 
   Future<void> loadData() async {
-    String jsonString =
-        await rootBundle.loadString('assets/upgrades/upgrades.json');
+    String jsonString = await rootBundle
+        .loadString('assets/upgrades/upgrades_${player.locale}.json');
     List<dynamic>? jsonList = jsonDecode(jsonString);
     if (jsonList != null) {
       data = jsonList.cast<Map<String, dynamic>>();

@@ -55,7 +55,7 @@ class Equipment {
   final EquipType type;
   late DateTime? obtainedDate;
   final double? healthBonus;
-  final double? armorBonus; 
+  final double? armorBonus;
   final double? tapAttackBonus;
   final double? passiveAttackBonus;
   final double? tapRegenBonus;
@@ -212,8 +212,8 @@ class Equipment {
   }
 
   static Future<void> readEquipmentJson() async {
-    final String response =
-        await rootBundle.loadString('assets/equipments/equipments.json');
+    final String response = await rootBundle
+        .loadString('assets/equipments/equipments_${player.locale}.json');
     final List data = await json.decode(response);
     equipmentList = data.map((json) => Equipment.fromJson(json)).toList();
   }

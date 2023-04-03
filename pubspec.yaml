@@ -88,8 +88,8 @@ flutter:
     - assets/enemies/images/
     - assets/enemies/enemies.json
     - assets/screen/
-    - assets/upgrades/upgrades.json
-    - assets/equipments/equipments.json
+    - assets/upgrades/
+    - assets/equipments/
     - assets/quests/monthly_quests.json
     - assets/quests/daily_quests.json
     - assets/equipments/images/
