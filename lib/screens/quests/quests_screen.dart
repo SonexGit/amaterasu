@@ -23,6 +23,7 @@ class _QuestsPageState extends State<QuestsPage> {
     player.setupQuests();
   }
 
+  final playerAudio = AudioPlayer();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,129 +61,148 @@ class _QuestsPageState extends State<QuestsPage> {
                   questWidgets.add(
                     Column(
                       children: [
-                        Column(
-                          children: [
-                            ListTile(
-                              title: Text(dailyQuests[0]['title']),
-                              subtitle: Text(
-                                  'Récompense: ${dailyQuests[0]['reward']}'),
-                              trailing: Text('$questProgress0 / $questGoal0'),
-                              leading: CircularProgressIndicator(
-                                value: questProgress0 / questGoal0,
+                        ListTile(
+                          title: Text(dailyQuests[0]['title']),
+                          subtitle:
+                              Text('Récompense: ${dailyQuests[0]['reward']}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('$questProgress0 / $questGoal0'),
+                              ElevatedButton(
+                                onPressed: (isComplete0 == true) &&
+                                        (player.isButtonClicked0 == false) &&
+                                        (player.dailyQuestsStatus[0] == false)
+                                    ? () {
+                                        setState(() {
+                                          player.giveMoney(
+                                              dailyQuests[0]['reward']);
+                                          isComplete0 = false;
+                                          player.isButtonClicked0 = true;
+                                          player.dailyQuestsStatus[0] = true;
+                                          playerAudio
+                                              .play(AssetSource('piece.mp3'));
+                                        });
+                                      }
+                                    : null,
+                                child:
+                                    Text(AppLocalizations.of(context)!.claim),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: LinearProgressIndicator(
-                                value: questProgress0 / questGoal0,
-                                backgroundColor: Colors.grey[300],
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                    Colors.blue),
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: (isComplete0 == true) &&
-                                      (player.isButtonClicked0 == false) &&
-                                      (player.dailyQuestsStatus[0] == false)
-                                  ? () {
-                                      setState(() {
-                                        player.giveMoney(
-                                            dailyQuests[0]['reward']);
-                                        isComplete0 = false;
-                                        player.isButtonClicked0 = true;
-                                        player.dailyQuestsStatus[0] = true;
-                                        final sound = AudioCache();
-                                        //await sound
-                                        //  .play('asset/sound/piece.mp3');
-                                      });
-                                    }
-                                  : null,
-                              child: Text(AppLocalizations.of(context)!.claim),
-                            ),
-                          ],
+                            ],
+                          ),
+                          leading: CircularProgressIndicator(
+                            value: questProgress0 / questGoal0,
+                          ),
                         ),
-                        Column(
-                          children: [
-                            ListTile(
-                              title: Text(dailyQuests[1]['title']),
-                              subtitle: Text(
-                                  'Récompense: ${dailyQuests[1]['reward']}'),
-                              trailing: Text('$questProgress1 / $questGoal1'),
-                              leading: CircularProgressIndicator(
-                                value: questProgress1 / questGoal1,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: LinearProgressIndicator(
-                                value: questProgress1 / questGoal1,
-                                backgroundColor: Colors.grey[300],
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                    Colors.blue),
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: (isComplete1 == true) &&
-                                      (player.isButtonClicked1 == false) &&
-                                      (player.dailyQuestsStatus[1] == false)
-                                  ? () {
-                                      setState(() {
-                                        player.giveMoney(
-                                            dailyQuests[1]['reward']);
-                                        isComplete1 = false;
-                                        player.isButtonClicked1 = true;
-                                        player.dailyQuestsStatus[1] = true;
-                                      });
-                                    }
-                                  : null,
-                              child: Text(AppLocalizations.of(context)!.claim),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: LinearProgressIndicator(
+                            value: questProgress0 / questGoal0,
+                            backgroundColor: Colors.grey[300],
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                Colors.blue),
+                          ),
                         ),
-                        Column(
-                          children: [
-                            ListTile(
-                              title: Text(dailyQuests[2]['title']),
-                              subtitle: Text(
-                                  'Récompense: ${dailyQuests[2]['reward']}'),
-                              trailing: Text('$questProgress2/ $questGoal2'),
-                              leading: CircularProgressIndicator(
-                                value: questProgress2 / questGoal2,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: LinearProgressIndicator(
-                                value: questProgress2 / questGoal2,
-                                backgroundColor: Colors.grey[300],
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                    Colors.blue),
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: (isComplete2 == true) &&
-                                      (player.isButtonClicked2 == false) &&
-                                      (player.dailyQuestsStatus[2] == false)
-                                  ? () {
-                                      setState(() {
-                                        player.giveMoney(
-                                            dailyQuests[2]['reward']);
-                                        isComplete2 = false;
-                                        player.isButtonClicked2 = true;
-                                        player.dailyQuestsStatus[2] = true;
-                                      });
-                                    }
-                                  : null,
-                              child: Text(AppLocalizations.of(context)!.claim),
-                            ),
-                          ],
-                        )
                       ],
                     ),
                   );
+                  questWidgets.add(
+                    Column(
+                      children: [
+                        ListTile(
+                          title: Text(dailyQuests[1]['title']),
+                          subtitle:
+                              Text('Récompense: ${dailyQuests[1]['reward']}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('$questProgress1 / $questGoal1'),
+                              ElevatedButton(
+                                onPressed: (isComplete1 == true) &&
+                                        (player.isButtonClicked1 == false) &&
+                                        (player.dailyQuestsStatus[1] == false)
+                                    ? () {
+                                        setState(() {
+                                          player.giveMoney(
+                                              dailyQuests[1]['reward']);
+                                          isComplete1 = false;
+                                          player.isButtonClicked1 = true;
+                                          player.dailyQuestsStatus[1] = true;
+                                          playerAudio
+                                              .play(AssetSource('piece.mp3'));
+                                        });
+                                      }
+                                    : null,
+                                child:
+                                    Text(AppLocalizations.of(context)!.claim),
+                              ),
+                            ],
+                          ),
+                          leading: CircularProgressIndicator(
+                            value: questProgress1 / questGoal1,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: LinearProgressIndicator(
+                            value: questProgress1 / questGoal1,
+                            backgroundColor: Colors.grey[300],
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                  questWidgets.add(
+                    Column(
+                      children: [
+                        ListTile(
+                          title: Text(dailyQuests[2]['title']),
+                          subtitle:
+                              Text('Récompense: ${dailyQuests[2]['reward']}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('$questProgress2 / $questGoal2'),
+                              ElevatedButton(
+                                onPressed: (isComplete2 == true) &&
+                                        (player.isButtonClicked2 == false) &&
+                                        (player.dailyQuestsStatus[2] == false)
+                                    ? () {
+                                        setState(() {
+                                          player.giveMoney(
+                                              dailyQuests[2]['reward']);
+                                          isComplete2 = false;
+                                          player.isButtonClicked2 = true;
+                                          player.dailyQuestsStatus[2] = true;
+                                          playerAudio
+                                              .play(AssetSource('piece.mp3'));
+                                        });
+                                      }
+                                    : null,
+                                child:
+                                    Text(AppLocalizations.of(context)!.claim),
+                              ),
+                            ],
+                          ),
+                          leading: CircularProgressIndicator(
+                            value: questProgress2 / questGoal2,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: LinearProgressIndicator(
+                            value: questProgress2 / questGoal2,
+                            backgroundColor: Colors.grey[300],
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+
                   return Column(
                     children: [
                       const SizedBox(height: 13),
@@ -231,117 +251,143 @@ class _QuestsPageState extends State<QuestsPage> {
                   questWidgets.add(
                     Column(
                       children: [
-                        Column(
-                          children: [
-                            ListTile(
-                              title: Text(monthlyQuests[0]['title']),
-                              subtitle: Text(
-                                  '${AppLocalizations.of(context)!.reward}: ${monthlyQuests[0]['reward']}'),
-                              trailing: Text('$questMProgress0 / $questMGoal0'),
-                              leading: CircularProgressIndicator(
-                                value: questMProgress0 / questMGoal0,
+                        ListTile(
+                          title: Text(monthlyQuests[0]['title']),
+                          subtitle:
+                              Text('Récompense: ${monthlyQuests[0]['reward']}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('$questMProgress0 / $questMGoal0'),
+                              ElevatedButton(
+                                onPressed: (isCompleteM0 == true) &&
+                                        (player.isButtonClickedM0 == false) &&
+                                        (player.dailyQuestsStatus[0] == false)
+                                    ? () {
+                                        setState(() {
+                                          player.giveMoney(
+                                              monthlyQuests[0]['reward']);
+                                          isCompleteM0 = false;
+                                          player.isButtonClickedM0 = true;
+                                          player.monthlyQuestsStatus[0] = true;
+                                          playerAudio
+                                              .play(AssetSource('piece.mp3'));
+                                        });
+                                      }
+                                    : null,
+                                child:
+                                    Text(AppLocalizations.of(context)!.claim),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: LinearProgressIndicator(
-                                value: questMProgress0 / questMGoal0,
-                                backgroundColor: Colors.grey[300],
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                    Colors.blue),
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: (isCompleteM0 == true) &&
-                                      (player.isButtonClickedM0 == false) &&
-                                      (player.monthlyQuestsStatus[0] == false)
-                                  ? () {
-                                      setState(() {
-                                        player.giveMoney(
-                                            monthlyQuests[0]['reward']);
-                                        isCompleteM0 = false;
-                                        player.isButtonClickedM0 = true;
-                                        player.monthlyQuestsStatus[0] = true;
-                                      });
-                                    }
-                                  : null,
-                              child: Text(AppLocalizations.of(context)!.claim),
-                            ),
-                          ],
+                            ],
+                          ),
+                          leading: CircularProgressIndicator(
+                            value: questMProgress0 / questMGoal0,
+                          ),
                         ),
-                        Column(
-                          children: [
-                            ListTile(
-                              title: Text(monthlyQuests[1]['title']),
-                              subtitle: Text(
-                                  'Récompense: ${monthlyQuests[1]['reward']}'),
-                              trailing: Text('$questMProgress1 / $questMGoal1'),
-                              leading: CircularProgressIndicator(
-                                value: questMProgress1 / questMGoal1,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: LinearProgressIndicator(
-                                value: questMProgress1 / questMGoal1,
-                                backgroundColor: Colors.grey[300],
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                    Colors.blue),
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: (isCompleteM1 == true) &&
-                                      (player.isButtonClickedM1 == false) &&
-                                      (player.monthlyQuestsStatus[1] == false)
-                                  ? () {
-                                      player.giveMoney(
-                                          monthlyQuests[1]['reward']);
-                                      isCompleteM1 = false;
-                                      player.isButtonClickedM1 = true;
-                                      player.monthlyQuestsStatus[1] = true;
-                                    }
-                                  : null,
-                              child: Text(AppLocalizations.of(context)!.claim),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: LinearProgressIndicator(
+                            value: questMProgress0 / questMGoal0,
+                            backgroundColor: Colors.grey[300],
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                Colors.blue),
+                          ),
                         ),
-                        Column(
-                          children: [
-                            ListTile(
-                              title: Text(monthlyQuests[2]['title']),
-                              subtitle: Text(
-                                  'Récompense: ${monthlyQuests[2]['reward']}'),
-                              trailing: Text('$questMProgress2 / $questMGoal2'),
-                              leading: CircularProgressIndicator(
-                                value: questMProgress2 / questMGoal2,
+                      ],
+                    ),
+                  );
+                  questWidgets.add(
+                    Column(
+                      children: [
+                        ListTile(
+                          title: Text(monthlyQuests[1]['title']),
+                          subtitle:
+                              Text('Récompense: ${monthlyQuests[1]['reward']}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('$questMProgress1 / $questMGoal1'),
+                              ElevatedButton(
+                                onPressed: (isCompleteM1 == true) &&
+                                        (player.isButtonClickedM1 == false) &&
+                                        (player.monthlyQuestsStatus[1] == false)
+                                    ? () {
+                                        setState(() {
+                                          player.giveMoney(
+                                              monthlyQuests[1]['reward']);
+                                          isCompleteM1 = false;
+                                          player.isButtonClickedM1 = true;
+                                          player.dailyQuestsStatus[1] = true;
+                                          playerAudio
+                                              .play(AssetSource('piece.mp3'));
+                                        });
+                                      }
+                                    : null,
+                                child:
+                                    Text(AppLocalizations.of(context)!.claim),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: LinearProgressIndicator(
-                                value: questMProgress2 / questMGoal2,
-                                backgroundColor: Colors.grey[300],
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                    Colors.blue),
+                            ],
+                          ),
+                          leading: CircularProgressIndicator(
+                            value: questMProgress1 / questMGoal1,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: LinearProgressIndicator(
+                            value: questMProgress1 / questMGoal1,
+                            backgroundColor: Colors.grey[300],
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                  questWidgets.add(
+                    Column(
+                      children: [
+                        ListTile(
+                          title: Text(monthlyQuests[2]['title']),
+                          subtitle:
+                              Text('Récompense: ${monthlyQuests[2]['reward']}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('$questMProgress2 / $questMGoal2'),
+                              ElevatedButton(
+                                onPressed: (isCompleteM2 == true) &&
+                                        (player.isButtonClickedM2 == false) &&
+                                        (player.monthlyQuestsStatus[2] == false)
+                                    ? () {
+                                        setState(() {
+                                          player.giveMoney(
+                                              monthlyQuests[2]['reward']);
+                                          isCompleteM2 = false;
+                                          player.isButtonClickedM2 = true;
+                                          player.dailyQuestsStatus[2] = true;
+                                          playerAudio
+                                              .play(AssetSource('piece.mp3'));
+                                        });
+                                      }
+                                    : null,
+                                child:
+                                    Text(AppLocalizations.of(context)!.claim),
                               ),
-                            ),
-                            ElevatedButton(
-                              onPressed: (isCompleteM2 == true) &&
-                                      (player.isButtonClickedM2 == false) &&
-                                      (player.monthlyQuestsStatus[2] == false)
-                                  ? () {
-                                      player.giveMoney(
-                                          monthlyQuests[2]['reward']);
-                                      isCompleteM2 = false;
-                                      player.monthlyQuestsStatus[2] = true;
-                                    }
-                                  : null,
-                              child: Text(AppLocalizations.of(context)!.claim),
-                            ),
-                          ],
+                            ],
+                          ),
+                          leading: CircularProgressIndicator(
+                            value: questMProgress2 / questMGoal2,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: LinearProgressIndicator(
+                            value: questMProgress2 / questMGoal2,
+                            backgroundColor: Colors.grey[300],
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                Colors.blue),
+                          ),
                         ),
                       ],
                     ),
