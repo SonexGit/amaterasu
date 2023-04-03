@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:animated_button/animated_button.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+import 'dart:math';
 
 class AdventureScreen extends StatefulWidget {
   const AdventureScreen({super.key});
@@ -90,26 +92,37 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
                   borderRadius: BorderRadius.zero,
                 ),
               ),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const AlertDialog(
-                        content: Text('Disponible le 15 mai à 00h'),
-                      );
-                    });
-              },
-              child: Shimmer.fromColors(
-                baseColor: Colors.white,
-                highlightColor: Colors.grey,
-                child: Text(
-                  AppLocalizations.of(context)!.specialEvent,
-                  style: const TextStyle(
-                    fontSize: 32,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+              onPressed: () {},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Shimmer.fromColors(
+                    baseColor: Colors.white,
+                    highlightColor: Colors.grey,
+                    child: Text(
+                      AppLocalizations.of(context)!.specialEvent,
+                      style: const TextStyle(
+                        fontSize: 32,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                  const Text("Disponible dans:"),
+                  CountdownTimer(
+                    endTime: DateTime(2023, 5, 15).millisecondsSinceEpoch,
+                    widgetBuilder: (_, time) {
+                      return Text(
+                        '${time?.days ?? "0"}d ${time?.hours ?? "0"}h ${time?.min ?? "0"}m ${time?.sec ?? "0"}s',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ),

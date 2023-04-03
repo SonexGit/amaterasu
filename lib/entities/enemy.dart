@@ -91,8 +91,9 @@ class Enemy {
       } while (jsonData[rand]["type"] != EnemyType.boss.index);
     }
     name = jsonData[rand]["name"];
-    health = jsonData[rand]["health"];
-    maxHealth = jsonData[rand]["health"];
+    health = jsonData[rand]["health"] * player.gameModesFloor[player.gameMode];
+    maxHealth =
+        jsonData[rand]["health"] * player.gameModesFloor[player.gameMode];
     moneyValue = jsonData[rand]["moneyValue"];
     id = jsonData[rand]["id"];
     type = EnemyType.values[jsonData[rand]["type"]];
