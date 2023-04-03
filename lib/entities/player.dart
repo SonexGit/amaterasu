@@ -274,10 +274,30 @@ class Player {
 
   // Setters
 
+  late Future<List<Map<String, dynamic>>> dailyQuestsFuture;
+  late Future<List<Map<String, dynamic>>> monthlyQuestsFuture;
+
+  Future<List<Map<String, dynamic>>> loadQuestsData(String filePath) async {
+    try {
+      String jsonData = await rootBundle.loadString(filePath);
+      List<dynamic> data = json.decode(jsonData);
+      List<Map<String, dynamic>> quests = List<Map<String, dynamic>>.from(data);
+      return quests;
+    } catch (error) {
+      throw ErrorDescription('Erreur de chargement de données: $error');
+    }
+  }
+
+  void setupQuests() {
+    dailyQuestsFuture = loadQuestsData('assets/quests/daily_quests_$locale.json'); 
+    monthlyQuestsFuture = loadQuestsData('assets/quests/monthly_quests_$locale.json');
+  }
+
   void setLocale(String loc) {
     locale = loc;
     readUpgradeJson();
     Equipment.setupEquipments();
+    setupQuests();
   }
 
   void giveMoney(int amount) {

@@ -14,26 +14,13 @@ class QuestsPage extends StatefulWidget {
 }
 
 class _QuestsPageState extends State<QuestsPage> {
-  late Future<List<Map<String, dynamic>>> dailyQuestsFuture;
-  late Future<List<Map<String, dynamic>>> monthlyQuestsFuture;
-
   Player player = Player();
+
   @override
   void initState() {
     super.initState();
-    dailyQuestsFuture = loadQuestsData('assets/quests/daily_quests.json');
-    monthlyQuestsFuture = loadQuestsData('assets/quests/monthly_quests.json');
-  }
 
-  Future<List<Map<String, dynamic>>> loadQuestsData(String filePath) async {
-    try {
-      String jsonData = await rootBundle.loadString(filePath);
-      List<dynamic> data = json.decode(jsonData);
-      List<Map<String, dynamic>> quests = List<Map<String, dynamic>>.from(data);
-      return quests;
-    } catch (error) {
-      throw ErrorDescription('Erreur de chargement de données: $error');
-    }
+    player.setupQuests();
   }
 
   @override
@@ -52,7 +39,7 @@ class _QuestsPageState extends State<QuestsPage> {
           ),
           Expanded(
             child: FutureBuilder<List<Map<String, dynamic>>>(
-              future: dailyQuestsFuture,
+              future: player.dailyQuestsFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final dailyQuests = snapshot.data!;
@@ -223,7 +210,7 @@ class _QuestsPageState extends State<QuestsPage> {
           ),
           Expanded(
             child: FutureBuilder<List<Map<String, dynamic>>>(
-              future: monthlyQuestsFuture,
+              future: player.monthlyQuestsFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final monthlyQuests = snapshot.data!;

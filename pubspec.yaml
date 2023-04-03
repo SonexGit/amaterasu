@@ -90,8 +90,7 @@ flutter:
     - assets/screen/
     - assets/upgrades/
     - assets/equipments/
-    - assets/quests/monthly_quests.json
-    - assets/quests/daily_quests.json
+    - assets/quests/
     - assets/equipments/images/
     - assets/equipments/icons/
     - assets/sound/piece.mp3
