@@ -34,7 +34,7 @@ class Player {
   }
 
   // Identité
-  String name = "Allan";
+  String name = "";
 
   int level = 1;
   int experience = 0;
@@ -54,7 +54,7 @@ class Player {
   double tapRegen = 0.0;
   double passiveRegen = 0.0;
 
-  double tapAttack = 1.0;
+  double tapAttack = 400.0;
   double passiveAttack = 1.0;
 
   double criticalChance = 0.00;
@@ -83,7 +83,7 @@ class Player {
 
   // Propriétés
 
-  int money = 2000;
+  double money = 1000000.0;
   int lastAfkIncome = 0;
 
   List<Equipment> inventory = [];
@@ -289,8 +289,10 @@ class Player {
   }
 
   void setupQuests() {
-    dailyQuestsFuture = loadQuestsData('assets/quests/daily_quests_$locale.json'); 
-    monthlyQuestsFuture = loadQuestsData('assets/quests/monthly_quests_$locale.json');
+    dailyQuestsFuture =
+        loadQuestsData('assets/quests/daily_quests_$locale.json');
+    monthlyQuestsFuture =
+        loadQuestsData('assets/quests/monthly_quests_$locale.json');
   }
 
   void setLocale(String loc) {

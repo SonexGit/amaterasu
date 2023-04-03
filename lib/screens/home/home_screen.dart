@@ -46,8 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    bool isNameValid = false;
 
-    // affiche la pop-up au début
+    // show the tutorial popup at the beginning
     if (showTutorial) {
       player.haveSeenTutorial = true;
       Future.delayed(Duration.zero, () {
@@ -58,10 +59,34 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, setState) {
                 return AlertDialog(
                   title: Text(tutorialPages[currentPage]['title']!),
-                  content: Text(tutorialPages[currentPage]['content']!),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(tutorialPages[currentPage]['content']!),
+                      if (currentPage == tutorialPages.length - 1)
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: 'Enter your name',
+                          ),
+                          onChanged: (text) {
+                            player.name = text;
+                            setState(() {
+                              isNameValid = (text.trim().length >= 3);
+                            });
+                          },
+                          validator: (value) {
+                            if ((value?.trim().length ?? 0) < 3) {}
+                            return null;
+                          },
+                        ),
+                    ],
+                  ),
                   actions: [
                     TextButton(
-                      child: const Text('Suivant'),
+                      child: Text((currentPage < tutorialPages.length - 1 &&
+                              player.name.length <= 3)
+                          ? 'Next'
+                          : 'Fermer'),
                       onPressed: () {
                         if (currentPage < tutorialPages.length - 1 &&
                             showTutorial == true) {

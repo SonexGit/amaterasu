@@ -1,0 +1,20 @@
+[
+    {
+    "title": "Make 10,000 clicks",
+    "goal": 10000,
+    "reward": 5000,
+    "progress": 0
+    },
+    {
+    "title": "Damage per click",
+    "goal": 400,
+    "reward": 10000,
+    "progress": 0
+    },
+    {
+    "title": "Earn 100,000 gold",
+    "goal": 100000,
+    "reward": 10000,
+    "progress": 0
+    }
+    ]

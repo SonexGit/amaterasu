@@ -35,6 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     setState(() {
       player.stats["Dégats par clic"] = player.tapAttack;
       player.stats["Dégats par secondes"] = player.passiveAttack;
+      player.stats["Or gagné"] = player.money;
     });
     return DefaultTabController(
       length: 2, // Nombre d'onglets
