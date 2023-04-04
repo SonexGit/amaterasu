@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/upgrades/upgrades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasu/utils/style.dart';
@@ -162,22 +163,19 @@ class _FightScreenState extends State<FightScreen>
         sheetBelow: SnappingSheetContent(child: const UpgradesScreen()),
         child: Column(
           children: [
-            Container(
-                decoration: const BoxDecoration(color: Style.primaryColor),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text(
-                        "${AppLocalizations.of(context)!.floor} ${player.gameModesFloor[player.gameMode]} • ${AppLocalizations.of(context)!.step} ${player.floor}/10",
-                        textAlign: TextAlign.center,
-                        style: Style.fightFloor,
-                      ),
-                    ),
-                  ],
-                )),
+            AppBar(
+              backgroundColor: Style.primaryColor,
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () =>
+                  selectedIndex.value = 0
+              ),
+              title: Text(
+                  "${AppLocalizations.of(context)!.floor} ${player.gameModesFloor[player.gameMode]} • ${AppLocalizations.of(context)!.step} ${player.floor}/10",
+                  textAlign: TextAlign.center,
+                  style: Style.fightFloor),
+              centerTitle: true,
+            ),
             Expanded(
               child: GestureDetector(
                 onTapDown: (TapDownDetails details) => _onTapDown(details),

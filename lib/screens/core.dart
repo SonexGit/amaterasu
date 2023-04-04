@@ -9,6 +9,7 @@ import 'package:amaterasu/screens/profile/profile_screen.dart';
 import 'package:amaterasu/screens/quests/quests_screen.dart';
 import 'package:amaterasu/screens/settings/settings_screen.dart';
 import 'package:amaterasu/screens/shop/shop_screen.dart';
+import 'package:amaterasu/screens/tutorial/tutorial_screen.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -96,8 +97,20 @@ class _CoreState extends State<Core> with WidgetsBindingObserver {
     }
   }
 
+  bool _showTutorial = true;
+
+  void _closeTutorial() {
+    setState(() {
+      _showTutorial = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_showTutorial) {
+      return TutorialScreen(onTutorialClosed: _closeTutorial);
+    }
+
     return Scaffold(
       backgroundColor: Style.altColor,
       appBar: const PreferredSize(

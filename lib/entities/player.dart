@@ -34,7 +34,7 @@ class Player {
   }
 
   // Identité
-  String name = "";
+  String name = "Aventurier";
 
   int level = 1;
   int experience = 0;

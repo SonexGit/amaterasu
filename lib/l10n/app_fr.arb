@@ -5,6 +5,11 @@
     "quests": "Quêtes",
     "profile": "Profil",
 
+    "pickName": "Il est temps de se choisir un nom !",
+    "insertName": "Entrez votre nom",
+    "nameMinLength": "3 caractères minimum",
+    "play": "Jouer",
+
     "welcome": "Bienvenue",
     "hello": "Bonjour",
     "afkIncome": "Pendant que vous n'étiez pas là, vous avez gagné un total de",
@@ -31,6 +36,8 @@
     "upgrades": "Améliorations",
     "buy": "Acheter",
 
+    "dailyEquipments": "Équipements du jour",
+    
     "dailyQuests": "Quêtes journalières",
     "monthlyQuests": "Quêtes mensuelles",
     "reward": "Récompense",
