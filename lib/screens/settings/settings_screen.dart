@@ -16,6 +16,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Map<String, String> locToLanguages = {"en": "English", "fr": "Français"};
   Map<String, String> languagesToLoc = {"English": "en", "Français": "fr"};
 
+  // TODO : Ajouter des paramètres ?
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

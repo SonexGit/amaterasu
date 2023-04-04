@@ -327,7 +327,6 @@ class Player {
       secondsElapsed = 36000; // Limiter la différence à 10 heures
     }
 
-    // TODO : changer le 1 par le taux de money par seconde
     lastAfkIncome = secondsElapsed * 1;
     money += lastAfkIncome;
   }

@@ -16,6 +16,8 @@ class _ShopScreenState extends State<ShopScreen> {
   final List<Equipment> equipments = Equipment.shopEquipments.keys.toList();
   int _currentCarouselIndex = 0;
 
+  // TODO : Lors du changement de langue, les équipements ne sont pas traduits
+
   @override
   Widget build(BuildContext context) {
     return Container(

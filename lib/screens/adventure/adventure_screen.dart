@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
-import 'dart:math';
 
 class AdventureScreen extends StatefulWidget {
   const AdventureScreen({super.key});
@@ -107,7 +106,8 @@ class _AdventureSelectionScreenState extends State<AdventureSelectionScreen> {
                       ),
                     ),
                   ),
-                  const Text("Disponible dans:"),
+                  const SizedBox(height: 10),
+                  Text(AppLocalizations.of(context)!.availableIn),
                   CountdownTimer(
                     endTime: DateTime(2023, 5, 15).millisecondsSinceEpoch,
                     widgetBuilder: (_, time) {

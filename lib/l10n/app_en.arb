@@ -27,6 +27,7 @@
     },
     
     "specialEvent": "Special Event",
+    "availableIn": "Available in",
 
     "floor": "Floor",
     "step": "Step",

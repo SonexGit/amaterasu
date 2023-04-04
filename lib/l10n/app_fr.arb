@@ -27,6 +27,7 @@
     },
 
     "specialEvent": "Événément spécial",
+    "availableIn": "Disponible dans",
 
     "floor": "Étage",
     "step": "Étape",

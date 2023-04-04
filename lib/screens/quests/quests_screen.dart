@@ -1,8 +1,6 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:amaterasu/entities/player.dart';
+import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audioplayers/audioplayers.dart';
 
@@ -27,15 +25,16 @@ class _QuestsPageState extends State<QuestsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(16.0),
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text(
               AppLocalizations.of(context)!.dailyQuests,
-              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              style: Style.questsHeadline,
             ),
           ),
           Expanded(
@@ -68,7 +67,6 @@ class _QuestsPageState extends State<QuestsPage> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('$questProgress0 / $questGoal0'),
                               ElevatedButton(
                                 onPressed: (isComplete0 == true) &&
                                         (player.isButtonClicked0 == false) &&
@@ -85,8 +83,11 @@ class _QuestsPageState extends State<QuestsPage> {
                                         });
                                       }
                                     : null,
-                                child:
-                                    Text(AppLocalizations.of(context)!.claim),
+                                child: Text((isComplete0 == true) &&
+                                        (player.isButtonClicked0 == false) &&
+                                        (player.dailyQuestsStatus[0] == false)
+                                    ? AppLocalizations.of(context)!.claim
+                                    : '$questProgress0 / $questGoal0'),
                               ),
                             ],
                           ),
@@ -113,7 +114,6 @@ class _QuestsPageState extends State<QuestsPage> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('$questProgress1 / $questGoal1'),
                               ElevatedButton(
                                 onPressed: (isComplete1 == true) &&
                                         (player.isButtonClicked1 == false) &&
@@ -130,8 +130,11 @@ class _QuestsPageState extends State<QuestsPage> {
                                         });
                                       }
                                     : null,
-                                child:
-                                    Text(AppLocalizations.of(context)!.claim),
+                                child: Text((isComplete1 == true) &&
+                                        (player.isButtonClicked1 == false) &&
+                                        (player.dailyQuestsStatus[1] == false)
+                                    ? AppLocalizations.of(context)!.claim
+                                    : '$questProgress1 / $questGoal1'),
                               ),
                             ],
                           ),
@@ -158,7 +161,6 @@ class _QuestsPageState extends State<QuestsPage> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('$questProgress2 / $questGoal2'),
                               ElevatedButton(
                                 onPressed: (isComplete2 == true) &&
                                         (player.isButtonClicked2 == false) &&
@@ -175,8 +177,11 @@ class _QuestsPageState extends State<QuestsPage> {
                                         });
                                       }
                                     : null,
-                                child:
-                                    Text(AppLocalizations.of(context)!.claim),
+                                child: Text((isComplete2 == true) &&
+                                        (player.isButtonClicked2 == false) &&
+                                        (player.dailyQuestsStatus[2] == false)
+                                    ? AppLocalizations.of(context)!.claim
+                                    : '$questProgress2 / $questGoal2'),
                               ),
                             ],
                           ),
@@ -196,7 +201,6 @@ class _QuestsPageState extends State<QuestsPage> {
 
                   return Column(
                     children: [
-                      const SizedBox(height: 13),
                       Expanded(
                         child: ListView(children: questWidgets),
                       ),
@@ -213,10 +217,10 @@ class _QuestsPageState extends State<QuestsPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text(
               AppLocalizations.of(context)!.monthlyQuests,
-              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              style: Style.questsHeadline,
             ),
           ),
           Expanded(
@@ -249,7 +253,6 @@ class _QuestsPageState extends State<QuestsPage> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('$questMProgress0 / $questMGoal0'),
                               ElevatedButton(
                                 onPressed: (isCompleteM0 == true) &&
                                         (player.isButtonClickedM0 == false) &&
@@ -266,8 +269,11 @@ class _QuestsPageState extends State<QuestsPage> {
                                         });
                                       }
                                     : null,
-                                child:
-                                    Text(AppLocalizations.of(context)!.claim),
+                                child: Text((isCompleteM0 == true) &&
+                                        (player.isButtonClickedM0 == false) &&
+                                        (player.dailyQuestsStatus[0] == false)
+                                    ? AppLocalizations.of(context)!.claim
+                                    : '$questMProgress0 / $questMGoal0'),
                               ),
                             ],
                           ),
@@ -294,7 +300,6 @@ class _QuestsPageState extends State<QuestsPage> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('$questMProgress1 / $questMGoal1'),
                               ElevatedButton(
                                 onPressed: (isCompleteM1 == true) &&
                                         (player.isButtonClickedM1 == false) &&
@@ -311,8 +316,11 @@ class _QuestsPageState extends State<QuestsPage> {
                                         });
                                       }
                                     : null,
-                                child:
-                                    Text(AppLocalizations.of(context)!.claim),
+                                child: Text((isCompleteM1 == true) &&
+                                        (player.isButtonClickedM1 == false) &&
+                                        (player.monthlyQuestsStatus[1] == false)
+                                    ? AppLocalizations.of(context)!.claim
+                                    : '$questMProgress1 / $questMGoal1'),
                               ),
                             ],
                           ),
@@ -339,7 +347,6 @@ class _QuestsPageState extends State<QuestsPage> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('$questMProgress2 / $questMGoal2'),
                               ElevatedButton(
                                 onPressed: (isCompleteM2 == true) &&
                                         (player.isButtonClickedM2 == false) &&
@@ -356,8 +363,11 @@ class _QuestsPageState extends State<QuestsPage> {
                                         });
                                       }
                                     : null,
-                                child:
-                                    Text(AppLocalizations.of(context)!.claim),
+                                child: Text((isCompleteM2 == true) &&
+                                        (player.isButtonClickedM2 == false) &&
+                                        (player.monthlyQuestsStatus[2] == false)
+                                    ? AppLocalizations.of(context)!.claim
+                                    : '$questMProgress2 / $questMGoal2'),
                               ),
                             ],
                           ),
@@ -376,7 +386,6 @@ class _QuestsPageState extends State<QuestsPage> {
                   );
                   return Column(
                     children: [
-                      const SizedBox(height: 13),
                       Expanded(
                         child: ListView(children: questWidgets),
                       ),

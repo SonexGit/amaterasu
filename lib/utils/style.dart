@@ -52,6 +52,9 @@ class Style {
   static const TextStyle profileStats =
       TextStyle(fontSize: 16, color: secondaryColor);
 
+    static const TextStyle questsHeadline =
+      TextStyle(fontSize: 22, color: primaryColor, fontWeight: FontWeight.bold);
+
   static TextStyle equipmentTextStyle =
       TextStyle(fontFamily: GoogleFonts.inter().fontFamily, fontSize: 16);
 }

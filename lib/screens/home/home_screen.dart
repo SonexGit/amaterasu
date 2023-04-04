@@ -3,9 +3,9 @@ import 'package:amaterasu/utils/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:lottie/lottie.dart';
 
+// TODO : Traduire les tips
 final List<String> txtList = [
   'Vous pouvez voir le descriptif d\'un équipement en maintenant votre doigt sur l\'icône d\'un équipement',
   'Le Profil permet de voir toutes les statistiques du joueur comme l\'entièreté des dégâts infligés',
