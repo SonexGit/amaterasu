@@ -49,7 +49,7 @@ class _QuestsPageState extends State<QuestsPage> {
                   int questProgress0 = player.stats["Clic"]!.toInt();
 
                   int questGoal1 = dailyQuests[1]['goal']!.toInt();
-                  int questProgress1 = player.tapAttack.toInt();
+                  int questProgress1 = player.attack().toInt();
 
                   int questGoal2 = dailyQuests[2]['goal']!.toInt();
                   int questProgress2 = player.stats["Monstres battus"]!.toInt();
@@ -89,9 +89,6 @@ class _QuestsPageState extends State<QuestsPage> {
                                     Text(AppLocalizations.of(context)!.claim),
                               ),
                             ],
-                          ),
-                          leading: CircularProgressIndicator(
-                            value: questProgress0 / questGoal0,
                           ),
                         ),
                         Padding(
@@ -138,9 +135,6 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ],
                           ),
-                          leading: CircularProgressIndicator(
-                            value: questProgress1 / questGoal1,
-                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -185,9 +179,6 @@ class _QuestsPageState extends State<QuestsPage> {
                                     Text(AppLocalizations.of(context)!.claim),
                               ),
                             ],
-                          ),
-                          leading: CircularProgressIndicator(
-                            value: questProgress2 / questGoal2,
                           ),
                         ),
                         Padding(
@@ -239,7 +230,7 @@ class _QuestsPageState extends State<QuestsPage> {
                   int questMProgress0 = player.stats["Clic"]!.toInt();
 
                   int questMGoal1 = monthlyQuests[1]['goal']!.toInt();
-                  int questMProgress1 = player.tapAttack.toInt();
+                  int questMProgress1 = player.attack().toInt();
 
                   int questMGoal2 = monthlyQuests[2]['goal']!.toInt();
                   int questMProgress2 = player.money.toInt();
@@ -279,9 +270,6 @@ class _QuestsPageState extends State<QuestsPage> {
                                     Text(AppLocalizations.of(context)!.claim),
                               ),
                             ],
-                          ),
-                          leading: CircularProgressIndicator(
-                            value: questMProgress0 / questMGoal0,
                           ),
                         ),
                         Padding(
@@ -328,9 +316,6 @@ class _QuestsPageState extends State<QuestsPage> {
                               ),
                             ],
                           ),
-                          leading: CircularProgressIndicator(
-                            value: questMProgress1 / questMGoal1,
-                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -375,9 +360,6 @@ class _QuestsPageState extends State<QuestsPage> {
                                     Text(AppLocalizations.of(context)!.claim),
                               ),
                             ],
-                          ),
-                          leading: CircularProgressIndicator(
-                            value: questMProgress2 / questMGoal2,
                           ),
                         ),
                         Padding(

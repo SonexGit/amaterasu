@@ -54,7 +54,7 @@ class Player {
   double tapRegen = 0.0;
   double passiveRegen = 0.0;
 
-  double tapAttack = 400.0;
+  double tapAttack = 1.0;
   double passiveAttack = 1.0;
 
   double criticalChance = 0.00;
@@ -83,7 +83,7 @@ class Player {
 
   // Propriétés
 
-  double money = 1000000.0;
+  double money = 0.0;
   int lastAfkIncome = 0;
 
   List<Equipment> inventory = [];
