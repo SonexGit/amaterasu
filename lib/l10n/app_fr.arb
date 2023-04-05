@@ -26,6 +26,18 @@
         }
     },
 
+    "tips1": "Vous pouvez voir le descriptif d'un équipement en maintenant votre doigt sur l'icône d'un équipement",
+    "tips2": "Le Profil permet de voir toutes les statistiques du joueur comme l'entièreté des dégâts infligés",
+    "tips3": "Jouez au jeu tous les jours pour avoir de nouvelles quêtes journalières",
+
+    "stat1": "Dégâts par clic",
+    "stat2": "Dégâts par secondes",
+    "stat3": "Monstres battus",
+    "stat4": "Clics",
+    "stat5": "Or gagné",
+    "stat6": "Temps passé",
+    "stat7": "Dégâts infligés",
+    
     "specialEvent": "Événément spécial",
     "availableIn": "Disponible dans",
 
@@ -38,6 +50,7 @@
     "buy": "Acheter",
 
     "dailyEquipments": "Équipements du jour",
+    "refreshedIn": "Renouvellement dans",
     
     "dailyQuests": "Quêtes journalières",
     "monthlyQuests": "Quêtes mensuelles",

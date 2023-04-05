@@ -206,7 +206,7 @@ class _UpgradesScreenState extends State<UpgradesScreen> {
                                     ),
                                     const SizedBox(height: 2.0),
                                     Text(
-                                        "Niveau ${player.getUpgradeLevel(index)}",
+                                        AppLocalizations.of(context)!.level(player.getUpgradeLevel(index)),
                                         style: const TextStyle(fontSize: 12.0)),
                                     const SizedBox(height: 8.0),
                                     Text(

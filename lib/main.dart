@@ -1,4 +1,5 @@
 import 'package:amaterasu/screens/core.dart';
+import 'package:amaterasu/screens/home/widgets/splash_screen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -53,13 +54,7 @@ class _MyAppState extends State<MyApp> {
       ],
       locale: _locale,
       theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
-      home: AnimatedSplashScreen(
-        splash: Image.asset("assets/screen/Bienvenue.png"),
-        splashIconSize: 500,
-        duration: 100,
-        nextScreen: const Core(),
-        splashTransition: SplashTransition.scaleTransition,
-      ),
+      home: SplashScreen()
     );
   }
 }

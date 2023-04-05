@@ -73,7 +73,7 @@ class _FightScreenState extends State<FightScreen>
 
   final GlobalKey _stackKey = GlobalKey();
 
-  _onTapDown(TapDownDetails details) {
+  _onTapDown(TapDownDetails details, BuildContext context) {
     final playerDamage = player.attack();
 
     final id = DateTime.now().microsecondsSinceEpoch;
@@ -130,13 +130,13 @@ class _FightScreenState extends State<FightScreen>
     );
 
     setState(() {
-      player.stats["Clic"] = (player.stats["Clic"]! + 1.0);
+      player.stats[3]++;
       if (enemy.health <= 1) {
-        player.stats["Monstres battus"] =
-            (player.stats["Monstres battus"]! + 1.0);
+        player.stats[2] =
+            (player.stats[2] + 1.0);
       }
-      player.stats["Dégats infligés"] =
-          player.stats["Clic"]! * player.tapAttack;
+      player.stats[6] =
+          player.stats[3] * player.tapAttack;
 
       enemyTookDamage = true;
 
@@ -178,7 +178,7 @@ class _FightScreenState extends State<FightScreen>
             ),
             Expanded(
               child: GestureDetector(
-                onTapDown: (TapDownDetails details) => _onTapDown(details),
+                onTapDown: (TapDownDetails details) => _onTapDown(details, context),
                 behavior: HitTestBehavior.opaque,
                 child: Stack(
                   key: _stackKey,

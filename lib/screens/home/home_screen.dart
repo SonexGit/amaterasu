@@ -5,13 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lottie/lottie.dart';
 
-// TODO : Traduire les tips
-final List<String> txtList = [
-  'Vous pouvez voir le descriptif d\'un équipement en maintenant votre doigt sur l\'icône d\'un équipement',
-  'Le Profil permet de voir toutes les statistiques du joueur comme l\'entièreté des dégâts infligés',
-  'Jouez au jeu tous les jours pour avoir de nouvelles quêtes journalières'
-];
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -64,10 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 CarouselSlider.builder(
-                  itemCount: txtList.length,
+                  itemCount: player.getTips(context).length,
                   itemBuilder:
                       (BuildContext context, int index, int realIndex) {
-                    final text = txtList[index];
+                    final text = player.getTips(context)[index];
                     return Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Container(

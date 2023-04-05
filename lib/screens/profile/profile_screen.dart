@@ -33,9 +33,9 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     setState(() {
-      player.stats["Dégats par clic"] = player.tapAttack;
-      player.stats["Dégats par secondes"] = player.passiveAttack;
-      player.stats["Or gagné"] = player.money;
+      player.stats[0] = player.tapAttack;
+      player.stats[1] = player.passiveAttack;
+      player.stats[4] = player.money;
     });
     return DefaultTabController(
       length: 2, // Nombre d'onglets
@@ -104,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                         MediaQuery.of(context).size.width *
                                             0.05),
                                 child: Column(
-                                  children: player.stats.entries
+                                  children: player.getStats(context).entries
                                       .map(
                                         (entry) => Row(
                                           mainAxisAlignment:
@@ -122,7 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                       )
                                       .expand((element) =>
                                           [element, const Divider()])
-                                      .take(player.stats.entries.length * 2 - 1)
+                                      .take(player.getStats(context).entries.length * 2 - 1)
                                       .toList(),
                                 )),
                             const SizedBox(height: 40),

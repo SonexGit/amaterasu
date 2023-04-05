@@ -16,15 +16,6 @@ class Player {
     readUpgradeJson();
     nextLevelExp = (500 * pow(1.1, getLevel()) - 500).round();
     shopUpgrades = List.filled(shopJsonData.length, 0, growable: true);
-    stats = {
-      "Dégats par clic": 0.0,
-      "Dégats par secondes": 0.0,
-      "Monstres battus": 0.0,
-      "Clic": 0.0,
-      "Or gagné": 0.0,
-      "Temps passé": 0.0,
-      "Dégats infligés": 0.0
-    };
   }
 
   static final Player _instance = Player._();
@@ -104,7 +95,7 @@ class Player {
 
   List<int> upgradesLevel = List.filled(8, 0, growable: false);
 
-  late Map<String, double> stats;
+  List<double> stats = List.filled(7, 0.0);
 
   String gameMode = GameModes.story;
   Map<String, int> gameModesFloor = {"story": 1, "event1": 0};
@@ -188,6 +179,26 @@ class Player {
       // Normal hit
       return getTapAttack();
     }
+  }
+
+  List<String> getTips(BuildContext context) {
+    return [
+      AppLocalizations.of(context)!.tips1,
+      AppLocalizations.of(context)!.tips2,
+      AppLocalizations.of(context)!.tips3
+    ];
+  }
+
+  Map<String, double> getStats(BuildContext context) {
+    return Map.fromEntries([
+      MapEntry(AppLocalizations.of(context)!.stat1, stats[0]),
+      MapEntry(AppLocalizations.of(context)!.stat2, stats[1]),
+      MapEntry(AppLocalizations.of(context)!.stat3, stats[2]),
+      MapEntry(AppLocalizations.of(context)!.stat4, stats[3]),
+      MapEntry(AppLocalizations.of(context)!.stat5, stats[4]),
+      MapEntry(AppLocalizations.of(context)!.stat6, stats[5]),
+      MapEntry(AppLocalizations.of(context)!.stat7, stats[6]),
+    ]);
   }
 
   int getLevel() {

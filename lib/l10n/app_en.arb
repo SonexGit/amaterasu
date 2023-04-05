@@ -26,6 +26,18 @@
         }
     },
     
+    "tips1": "You can view the description of an equipment by holding your finger on the icon of the equipment",
+    "tips2": "The Profile allows you to see all the player's statistics such as the total damage dealt",
+    "tips3": "Play the game every day to get new daily quests",
+
+    "stat1": "Damage per tap",
+    "stat2": "Damage per second",
+    "stat3": "Monsters defeated",
+    "stat4": "Taps",
+    "stat5": "Gold earned",
+    "stat6": "Time spent",
+    "stat7": "Damage dealt",
+
     "specialEvent": "Special Event",
     "availableIn": "Available in",
 
@@ -38,6 +50,7 @@
     "buy": "Buy",
 
     "dailyEquipments": "Equipments of the day",
+    "refreshedIn": "Refreshed in",
 
     "dailyQuests": "Daily quests",
     "monthlyQuests": "Monthly quests",

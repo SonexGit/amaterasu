@@ -45,13 +45,13 @@ class _QuestsPageState extends State<QuestsPage> {
                   final dailyQuests = snapshot.data!;
                   List<Widget> questWidgets = [];
                   int questGoal0 = dailyQuests[0]['goal']!.toInt();
-                  int questProgress0 = player.stats["Clic"]!.toInt();
+                  int questProgress0 = player.stats[3].toInt();
 
                   int questGoal1 = dailyQuests[1]['goal']!.toInt();
                   int questProgress1 = player.attack().toInt();
 
                   int questGoal2 = dailyQuests[2]['goal']!.toInt();
-                  int questProgress2 = player.stats["Monstres battus"]!.toInt();
+                  int questProgress2 = player.stats[2].toInt();
 
                   bool isComplete0 = questProgress0 >= questGoal0;
                   bool isComplete1 = questProgress1 >= questGoal1;
@@ -63,7 +63,7 @@ class _QuestsPageState extends State<QuestsPage> {
                         ListTile(
                           title: Text(dailyQuests[0]['title']),
                           subtitle:
-                              Text('Récompense: ${dailyQuests[0]['reward']}'),
+                              Text('${AppLocalizations.of(context)!.reward} : ${dailyQuests[0]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -98,7 +98,7 @@ class _QuestsPageState extends State<QuestsPage> {
                             value: questProgress0 / questGoal0,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.blue),
+                                Style.primaryColor),
                           ),
                         ),
                       ],
@@ -110,7 +110,7 @@ class _QuestsPageState extends State<QuestsPage> {
                         ListTile(
                           title: Text(dailyQuests[1]['title']),
                           subtitle:
-                              Text('Récompense: ${dailyQuests[1]['reward']}'),
+                              Text('${AppLocalizations.of(context)!.reward} : ${dailyQuests[1]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -145,7 +145,7 @@ class _QuestsPageState extends State<QuestsPage> {
                             value: questProgress1 / questGoal1,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.blue),
+                                Style.primaryColor),
                           ),
                         ),
                       ],
@@ -157,7 +157,7 @@ class _QuestsPageState extends State<QuestsPage> {
                         ListTile(
                           title: Text(dailyQuests[2]['title']),
                           subtitle:
-                              Text('Récompense: ${dailyQuests[2]['reward']}'),
+                              Text('${AppLocalizations.of(context)!.reward} : ${dailyQuests[2]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -192,7 +192,7 @@ class _QuestsPageState extends State<QuestsPage> {
                             value: questProgress2 / questGoal2,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.blue),
+                                Style.primaryColor),
                           ),
                         ),
                       ],
@@ -231,7 +231,7 @@ class _QuestsPageState extends State<QuestsPage> {
                   final monthlyQuests = snapshot.data!;
                   List<Widget> questWidgets = [];
                   int questMGoal0 = monthlyQuests[0]['goal']!.toInt();
-                  int questMProgress0 = player.stats["Clic"]!.toInt();
+                  int questMProgress0 = player.stats[3].toInt();
 
                   int questMGoal1 = monthlyQuests[1]['goal']!.toInt();
                   int questMProgress1 = player.attack().toInt();
@@ -249,7 +249,7 @@ class _QuestsPageState extends State<QuestsPage> {
                         ListTile(
                           title: Text(monthlyQuests[0]['title']),
                           subtitle:
-                              Text('Récompense: ${monthlyQuests[0]['reward']}'),
+                              Text('${AppLocalizations.of(context)!.reward} : ${monthlyQuests[0]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -284,7 +284,7 @@ class _QuestsPageState extends State<QuestsPage> {
                             value: questMProgress0 / questMGoal0,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.blue),
+                                Style.primaryColor),
                           ),
                         ),
                       ],
@@ -296,7 +296,7 @@ class _QuestsPageState extends State<QuestsPage> {
                         ListTile(
                           title: Text(monthlyQuests[1]['title']),
                           subtitle:
-                              Text('Récompense: ${monthlyQuests[1]['reward']}'),
+                              Text('${AppLocalizations.of(context)!.reward} : ${monthlyQuests[1]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -331,7 +331,7 @@ class _QuestsPageState extends State<QuestsPage> {
                             value: questMProgress1 / questMGoal1,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.blue),
+                                Style.primaryColor),
                           ),
                         ),
                       ],
@@ -343,7 +343,7 @@ class _QuestsPageState extends State<QuestsPage> {
                         ListTile(
                           title: Text(monthlyQuests[2]['title']),
                           subtitle:
-                              Text('Récompense: ${monthlyQuests[2]['reward']}'),
+                              Text('${AppLocalizations.of(context)!.reward} : ${monthlyQuests[2]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -378,7 +378,7 @@ class _QuestsPageState extends State<QuestsPage> {
                             value: questMProgress2 / questMGoal2,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.blue),
+                                Style.primaryColor),
                           ),
                         ),
                       ],
