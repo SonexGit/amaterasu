@@ -1,0 +1,74 @@
+[
+    {
+    "id": 1,
+    "name": "Vuist van Woede",
+    "description": "Verhoogt de schade van elke klik",
+    "price": 50.0,
+    "multiplier": 1.5,
+    "maxLevel": 0,
+    "requiredLevel":2
+    },
+    {
+    "id": 2,
+    "name": "Moordlustige Aura",
+    "description": "Verhoogt je passieve schade",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 4
+    },
+    {
+    "id": 3,
+    "name": "Scherp Zicht",
+    "description": "Kans op een kritieke treffer",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 2
+    },
+    {
+    "id": 4,
+    "name": "Overweldigend Geluk",
+    "description": "Multiplier voor kritieke treffer kans",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 7
+    },
+    {
+    "id": 5,
+    "name": "Gepantserde Schaal",
+    "description": "Verhoogt je levenspunten",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":2
+    },
+    {
+    "id": 6,
+    "name": "Ondoordringbaar Schild",
+    "description": "Vermindert de schade die je krijgt",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":5
+    },
+    {
+    "id": 7,
+    "name": "Hart van Steen",
+    "description": "Passief herstel",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":4
+    },
+    {
+    "id": 8,
+    "name": "Bloeddorstige Bloedzuiger",
+    "description": "Herstel met elke gemaakte aanval",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":4
+    }
+    ]

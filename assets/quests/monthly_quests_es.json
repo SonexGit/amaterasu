@@ -1,0 +1,20 @@
+[
+    {
+    "title": "Hacer 10.000 clics",
+    "goal": 10000,
+    "reward": 5000,
+    "progress": 0
+    },
+    {
+    "title": "Daño por clic",
+    "goal": 400,
+    "reward": 10000,
+    "progress": 0
+    },
+    {
+    "title": "Ganar 100.000 de oro",
+    "goal": 100000,
+    "reward": 10000,
+    "progress": 0
+    }
+    ]

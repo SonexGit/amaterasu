@@ -1,0 +1,74 @@
+[
+    {
+    "id": 1,
+    "name": "Puño de Furia",
+    "description": "Aumenta el daño de cada uno de tus clics",
+    "price": 50.0,
+    "multiplier": 1.5,
+    "maxLevel": 0,
+    "requiredLevel":2
+    },
+    {
+    "id": 2,
+    "name": "Aura Asesina",
+    "description": "Aumenta tu daño pasivo",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 4
+    },
+    {
+    "id": 3,
+    "name": "Ojos Agudos",
+    "description": "Posibilidad de realizar un golpe crítico",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 2
+    },
+    {
+    "id": 4,
+    "name": "Suerte Abrumadora",
+    "description": "Multiplicador de la posibilidad de golpe crítico",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 7
+    },
+    {
+    "id": 5,
+    "name": "Caparazón Blindado",
+    "description": "Aumenta tus puntos de salud",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":2
+    },
+    {
+    "id": 6,
+    "name": "Escudo Impenetrable",
+    "description": "Reduce el daño que recibes",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":5
+    },
+    {
+    "id": 7,
+    "name": "Corazón de Piedra",
+    "description": "Regenera pasivamente",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":4
+    },
+    {
+    "id": 8,
+    "name": "Sed de Sangre",
+    "description": "Regenera con cada ataque realizado",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":4
+    }
+    ]

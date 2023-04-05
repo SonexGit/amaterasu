@@ -1,0 +1,74 @@
+[
+    {
+    "id": 1,
+    "name": "Faust des Zorns",
+    "description": "Erhöht den Schaden jedes deiner Klicks",
+    "price": 50.0,
+    "multiplier": 1.5,
+    "maxLevel": 0,
+    "requiredLevel":2
+    },
+    {
+    "id": 2,
+    "name": "Mörderische Aura",
+    "description": "Erhöht deinen passiven Schaden",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 4
+    },
+    {
+    "id": 3,
+    "name": "Scharfe Augen",
+    "description": "Chance für einen kritischen Treffer",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 2
+    },
+    {
+    "id": 4,
+    "name": "Überwältigendes Glück",
+    "description": "Multiplikator für kritische Trefferchance",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 7
+    },
+    {
+    "id": 5,
+    "name": "Gepanzerte Hülle",
+    "description": "Erhöht deine Lebenspunkte",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":2
+    },
+    {
+    "id": 6,
+    "name": "Undurchdringliches Schild",
+    "description": "Verringert den Schaden, den du erleidest",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":5
+    },
+    {
+    "id": 7,
+    "name": "Herz aus Stein",
+    "description": "Regeneriert passiv",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":4
+    },
+    {
+    "id": 8,
+    "name": "Blutdurstiger Blutsauger",
+    "description": "Regeneriert mit jedem Angriff",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":4
+    }
+    ]

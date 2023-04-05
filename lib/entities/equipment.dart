@@ -4,6 +4,7 @@ import 'package:amaterasu/entities/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:collection/collection.dart';
 
 enum EquipRarity { common, rare, epic, legendary }
 
@@ -116,8 +117,8 @@ class Equipment {
           type: EquipType.weapon),
       growable: true);
 
-  static Equipment getEquipmentById(int id) {
-    return equipmentList.firstWhere((equip) => equip.id == id);
+  static Equipment? getEquipmentById(int id) {
+    return equipmentList.firstWhereOrNull((equip) => equip.id == id);
   }
 
   Map<String, double> getGivenStats() {
@@ -220,10 +221,10 @@ class Equipment {
 
   static generateShopEquipment() {
     shopEquipments = {
-      getEquipmentById(1): false,
-      getEquipmentById(2): false,
-      getEquipmentById(3): false,
-      getEquipmentById(4): false,
+      getEquipmentById(1)!: false,
+      getEquipmentById(2)!: false,
+      getEquipmentById(3)!: false,
+      getEquipmentById(4)!: false,
     };
   }
 }

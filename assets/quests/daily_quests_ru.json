@@ -1,0 +1,20 @@
+[
+    {
+    "title": "Сделать 100 кликов",
+    "goal": 100,
+    "reward": 100,
+    "progress": 0
+    },
+    {
+    "title": "Урон за клик",
+    "goal": 20,
+    "reward": 50,
+    "progress": 0
+    },
+    {
+    "title": "Убить 5 монстров",
+    "goal": 5,
+    "reward": 200,
+    "progress": 0
+    }
+    ]

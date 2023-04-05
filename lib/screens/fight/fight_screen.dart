@@ -4,6 +4,7 @@ import 'package:amaterasu/entities/enemy.dart';
 import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/screens/adventure/adventure_screen.dart';
 import 'package:amaterasu/screens/upgrades/upgrades_screen.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
@@ -72,6 +73,8 @@ class _FightScreenState extends State<FightScreen>
   }
 
   final GlobalKey _stackKey = GlobalKey();
+  final playerHit = AudioPlayer();
+  final playerDeath = AudioPlayer();
 
   _onTapDown(TapDownDetails details, BuildContext context) {
     final playerDamage = player.attack();
@@ -131,13 +134,10 @@ class _FightScreenState extends State<FightScreen>
 
     setState(() {
       player.stats[3]++;
+      player.stats[6] = player.stats[3] * player.tapAttack;
       if (enemy.health <= 1) {
-        player.stats[2] =
-            (player.stats[2] + 1.0);
+        playerDeath.play(AssetSource('sound/death.mp3'));
       }
-      player.stats[6] =
-          player.stats[3] * player.tapAttack;
-
       enemyTookDamage = true;
 
       enemy.loseHealth(playerDamage);
@@ -166,10 +166,8 @@ class _FightScreenState extends State<FightScreen>
             AppBar(
               backgroundColor: Style.primaryColor,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () =>
-                  selectedIndex.value = 0
-              ),
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => selectedIndex.value = 0),
               title: Text(
                   "${AppLocalizations.of(context)!.floor} ${player.gameModesFloor[player.gameMode]} • ${AppLocalizations.of(context)!.step} ${player.floor}/10",
                   textAlign: TextAlign.center,
@@ -178,7 +176,8 @@ class _FightScreenState extends State<FightScreen>
             ),
             Expanded(
               child: GestureDetector(
-                onTapDown: (TapDownDetails details) => _onTapDown(details, context),
+                onTapDown: (TapDownDetails details) =>
+                    _onTapDown(details, context),
                 behavior: HitTestBehavior.opaque,
                 child: Stack(
                   key: _stackKey,
@@ -232,7 +231,7 @@ class _FightScreenState extends State<FightScreen>
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text("${player.getTapAttack()} dpc"),
-                                  Text("${player.getPassiveAttack()} dps"),
+                                  //Text("${player.getPassiveAttack()} dps"),
                                 ],
                               ),
                             ],

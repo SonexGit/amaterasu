@@ -97,7 +97,7 @@ class _CoreState extends State<Core> with WidgetsBindingObserver {
     }
   }
 
-  bool _showTutorial = true;
+  bool _showTutorial = !player.haveSeenTutorial;
 
   void _closeTutorial() {
     setState(() {
@@ -118,8 +118,7 @@ class _CoreState extends State<Core> with WidgetsBindingObserver {
           child: MyAppBar()),
       body: SafeArea(
           child: Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 10, left: 20, right: 20),
+              padding: const EdgeInsets.only(bottom: 10, left: 20, right: 20),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(
                     10.0), //définir le rayon de bordure arrondie souhaité
@@ -149,12 +148,14 @@ class _CoreState extends State<Core> with WidgetsBindingObserver {
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home_rounded), label: "Accueil"),
-          BottomNavigationBarItem(icon: Icon(Icons.park_rounded), label: "Aventure"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.park_rounded), label: "Aventure"),
           BottomNavigationBarItem(
               icon: Icon(Icons.storefront_rounded), label: "Boutique"),
           BottomNavigationBarItem(
               icon: Icon(Icons.assignment_rounded), label: "Quêtes"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: "Profil"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_rounded), label: "Profil"),
         ],
       ),
     );
@@ -218,66 +219,71 @@ class _MyAppBarState extends State<MyAppBar> {
       flexibleSpace: SafeArea(
         child: Container(
           padding: const EdgeInsets.only(left: 20, right: 20),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                    [
-                      AppLocalizations.of(context)!.home,
-                      AppLocalizations.of(context)!.adventure,
-                      AppLocalizations.of(context)!.shop,
-                      AppLocalizations.of(context)!.quests,
-                      AppLocalizations.of(context)!.profile
-                    ][selectedIndex],
-                    style: Style.appBarTitle),
-              ],
-            ),
-            Row(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(AppLocalizations.of(context)!.level(player.level),
-                        style: Style.appBarInfo.merge(const TextStyle(fontWeight: FontWeight.bold))),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    Text(
+                        [
+                          AppLocalizations.of(context)!.home,
+                          AppLocalizations.of(context)!.adventure,
+                          AppLocalizations.of(context)!.shop,
+                          AppLocalizations.of(context)!.quests,
+                          AppLocalizations.of(context)!.profile
+                        ][selectedIndex],
+                        style: Style.appBarTitle),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Column(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(player.formattedMoney(), style: Style.appBarInfo),
-                        const SizedBox(width: 4.0),
-                        const Icon(Icons.toll, size: 18, color: Style.primaryColor),
+                        Text(AppLocalizations.of(context)!.level(player.level),
+                            style: Style.appBarInfo.merge(
+                                const TextStyle(fontWeight: FontWeight.bold))),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(player.formattedMoney(),
+                                style: Style.appBarInfo),
+                            const SizedBox(width: 4.0),
+                            const Icon(Icons.toll,
+                                size: 18, color: Style.primaryColor),
+                          ],
+                        ),
                       ],
+                    ),
+                    const SizedBox(width: 10),
+                    PopupMenuButton<int>(
+                      icon: const Icon(Icons.menu, color: Style.primaryColor),
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                            onTap: () {
+                              Future.delayed(
+                                const Duration(seconds: 0),
+                                () => showDialog(
+                                  context: context,
+                                  builder: (context) => const SettingsScreen(),
+                                ),
+                              );
+                            },
+                            value: 0,
+                            child: Text(AppLocalizations.of(context)!.settings))
+                      ],
+                      tooltip: AppLocalizations.of(context)!.menu,
                     ),
                   ],
                 ),
-                const SizedBox(width: 10),
-                PopupMenuButton<int>(
-                  icon: const Icon(Icons.menu, color: Style.primaryColor),
-                  itemBuilder: (context) => [
-                    PopupMenuItem(
-                        onTap: () {
-                          Future.delayed(
-                            const Duration(seconds: 0),
-                            () => showDialog(
-                              context: context,
-                              builder: (context) => const SettingsScreen(),
-                            ),
-                          );
-                        },
-                        value: 0,
-                        child: Text(AppLocalizations.of(context)!.settings))
-                  ],
-                  tooltip: AppLocalizations.of(context)!.menu,
-                ),
-              ],
-            ),
-          ]),
+              ]),
         ),
       ),
     );

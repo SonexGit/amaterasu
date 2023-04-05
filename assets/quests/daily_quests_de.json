@@ -1,0 +1,21 @@
+[
+    {
+    "title": "100 Klicks machen",
+    "goal": 100,
+    "reward": 100,
+    "progress": 0
+    },
+    {
+    "title": "Schaden pro Klick",
+    "goal": 20,
+    "reward": 50,
+    "progress": 0
+    },
+    {
+    "title": "5 Monster töten",
+    "goal": 5,
+    "reward": 200,
+    "progress": 0
+    }
+    ]
+      

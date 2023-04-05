@@ -1,0 +1,106 @@
+{
+    "home": "Thuis",
+    "adventure": "Avontuur",
+    "shop": "Winkel",
+    "quests": "Opdrachten",
+    "profile": "Profiel",
+    "pickName": "Tijd om een naam te kiezen!",
+"insertName": "Voer je naam in",
+"nameMinLength": "Minimaal 3 tekens",
+"play": "Spelen",
+
+"welcome": "Welkom",
+"hello": "Hallo",
+"afkIncome": "Terwijl je weg was, heb je in totaal gewonnen",
+"goldsLower": "goudstukken",
+"golds": "Goudstukken",
+"gold": "Goudstuk",
+"level": "Niveau {level}",
+"@level": {
+    "placeholders": {
+        "level": {
+            "type": "int",
+            "example": "player.level"
+        }
+    }
+},
+
+"tips1": "Je kunt de beschrijving van een uitrusting bekijken door je vinger op het pictogram van de uitrusting te houden",
+"tips2": "Het profiel stelt je in staat om alle statistieken van de speler te zien, zoals de totale veroorzaakte schade",
+"tips3": "Speel elke dag het spel om nieuwe dagelijkse opdrachten te krijgen",
+
+"stat1": "Schade per tik",
+"stat2": "Schade per seconde",
+"stat3": "Verslagen monsters",
+"stat4": "Tikken",
+"stat5": "Verdiend goud",
+"stat6": "Tijd besteed",
+"stat7": "Veroorzaakte schade",
+
+"specialEvent": "Speciaal evenement",
+"availableIn": "Beschikbaar in",
+
+"floor": "Vloer",
+"step": "Stap",
+
+"equipments": "Uitrusting",
+
+"upgrades": "Upgrades",
+"buy": "Kopen",
+
+"dailyEquipments": "Uitrusting van de dag",
+"refreshedIn": "Vernieuwd in",
+
+"dailyQuests": "Dagelijkse opdrachten",
+"monthlyQuests": "Maandelijkse opdrachten",
+"reward": "Beloning",
+"claim": "Opeisen",
+
+"inventory": "Inventaris",
+"statistics": "Statistieken",
+
+"order": "Bestellen",
+"ascending": "Oplopend",
+"descending": "Aflopend",
+
+"filter": "Filteren",
+"dateObtained": "Datum verkregen",
+"rarity": "Zeldzaamheid",
+"levelRequired": "Vereist niveau",
+"type": "Type",
+
+"outOfStock": "Uitverkocht",
+
+"pickEquipment": "Kies een {equipType} uitrusting",
+"@pickEquipment": {
+    "placeholders": {
+        "equipType": {
+            "type": "String",
+            "example": "AppLocalizations.of(context)!.head.toLowerCase()"
+        }
+    }
+},
+
+"head": "Hoofd",
+"body": "Lichaam",
+"legs": "Benen",
+"weapon": "Wapen",
+
+"common": "Gewoon",
+"rare": "Zeldzaam",
+"epic": "Episch",
+"legendary": "Legendarisch",
+"healthBonus": "Gezondheid",
+"armorBonus": "Pantser",
+"tapAttackBonus": "Aanval per tik",
+"passiveAttackBonus": "Passieve aanval",
+"tapRegenBonus": "Regeneratie per tik",
+"passiveRegenBonus": "Passieve regeneratie",
+"criticalChanceBonus": "Kans op kritiek",
+"criticalMultiplierBonus": "Kritieke vermenigvuldiger",
+
+"menu": "Menu",
+"settings": "Instellingen",
+"language": "Taal",
+"close": "Sluiten"
+}

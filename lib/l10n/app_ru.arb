@@ -1,0 +1,106 @@
+{
+    "home": "Домой",
+    "adventure": "Приключения",
+    "shop": "Магазин",
+    "quests": "Задания",
+    "profile": "Профиль",
+    "pickName": "Пришло время выбрать имя!",
+"insertName": "Введите свое имя",
+"nameMinLength": "Минимальная длина - 3 символа",
+"play": "Играть",
+
+"welcome": "Добро пожаловать",
+"hello": "Привет",
+"afkIncome": "Пока вы были отсутствовали, вы заработали",
+"goldsLower": "золотых монет",
+"golds": "Золотые монеты",
+"gold": "Золотая монета",
+"level": "Уровень {level}",
+"@level": {
+    "placeholders": {
+        "level": {
+            "type": "int",
+            "example": "player.level"
+        }
+    }
+},
+
+"tips1": "Вы можете просмотреть описание снаряжения, удерживая палец на иконке снаряжения",
+"tips2": "В профиле можно увидеть все статистические данные игрока, такие как общий нанесенный урон",
+"tips3": "Играйте в игру каждый день, чтобы получать новые ежедневные задания",
+
+"stat1": "Урон за касание",
+"stat2": "Урон в секунду",
+"stat3": "Побежденные монстры",
+"stat4": "Касания",
+"stat5": "Заработанное золото",
+"stat6": "Время, проведенное в игре",
+"stat7": "Нанесенный урон",
+
+"specialEvent": "Специальное событие",
+"availableIn": "Доступно через",
+
+"floor": "Этаж",
+"step": "Шаг",
+
+"equipments": "Снаряжение",
+
+"upgrades": "Улучшения",
+"buy": "Купить",
+
+"dailyEquipments": "Ежедневное снаряжение",
+"refreshedIn": "Обновлено через",
+
+"dailyQuests": "Ежедневные задания",
+"monthlyQuests": "Ежемесячные задания",
+"reward": "Награда",
+"claim": "Получить",
+
+"inventory": "Инвентарь",
+"statistics": "Статистика",
+
+"order": "Порядок",
+"ascending": "По возрастанию",
+"descending": "По убыванию",
+
+"filter": "Фильтр",
+"dateObtained": "Дата получения",
+"rarity": "Редкость",
+"levelRequired": "Требуемый уровень",
+"type": "Тип",
+
+"outOfStock": "Нет в наличии",
+"pickEquipment": "Выберите {equipType} оборудование",
+    "@pickEquipment": {
+        "placeholders": {
+            "equipType": {
+                "type": "String",
+                "example": "AppLocalizations.of(context)!.head.toLowerCase()"
+            }
+        }
+    },
+
+    "head": "Голова",
+    "body": "Тело",
+    "legs": "Ноги",
+    "weapon": "Оружие",
+
+    "common": "Обычный",
+    "rare": "Редкий",
+    "epic": "Эпический",
+    "legendary": "Легендарный",
+
+    "healthBonus": "Здоровье",
+    "armorBonus": "Броня",
+    "tapAttackBonus": "Атака при нажатии",
+    "passiveAttackBonus": "Пассивная атака",
+    "tapRegenBonus": "Восстановление при нажатии",
+    "passiveRegenBonus": "Пассивное восстановление",
+    "criticalChanceBonus": "Шанс критического удара",
+    "criticalMultiplierBonus": "Множитель критического удара",
+
+    "menu": "Меню",
+    "settings": "Настройки",
+    "language": "Язык",
+    "close": "Закрыть"
+}

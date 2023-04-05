@@ -1,0 +1,74 @@
+[
+    {
+    "id": 1,
+    "name": "Кулак ярости",
+    "description": "Увеличивает урон каждого клика",
+    "price": 50.0,
+    "multiplier": 1.5,
+    "maxLevel": 0,
+    "requiredLevel":2
+    },
+    {
+    "id": 2,
+    "name": "Убийственная аура",
+    "description": "Увеличивает ваш пассивный урон",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 4
+    },
+    {
+    "id": 3,
+    "name": "Острый глаз",
+    "description": "Шанс на критический удар",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 2
+    },
+    {
+    "id": 4,
+    "name": "Ошеломляющее везение",
+    "description": "Множитель шанса критического удара",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel": 7
+    },
+    {
+    "id": 5,
+    "name": "Бронированный панцирь",
+    "description": "Увеличивает ваши очки здоровья",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":2
+    },
+    {
+    "id": 6,
+    "name": "Не пробиваемый щит",
+    "description": "Снижает получаемый урон",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":5
+    },
+    {
+    "id": 7,
+    "name": "Каменное сердце",
+    "description": "Пассивное восстановление",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":4
+    },
+    {
+    "id": 8,
+    "name": "Кровожадный пиявка",
+    "description": "Восстанавливает здоровье с каждой совершенной атакой",
+    "price": 50.0,
+    "multiplier": 14,
+    "maxLevel": 0,
+    "requiredLevel":4
+    }
+    ]

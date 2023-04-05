@@ -73,8 +73,10 @@ class Enemy {
     state = LifeState.dead;
     player.giveMoney(moneyValue);
     player.giveExp(expValue);
-    // TODO : give items?
     player.nextFloor();
+    if (health < 1) {
+      player.stats[2] = (player.stats[2] + 1.0);
+    }
     newEnemy(
         player.gameMode, player.gameModesFloor[player.gameMode], player.floor);
   }

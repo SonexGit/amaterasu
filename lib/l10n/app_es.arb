@@ -1,0 +1,106 @@
+{
+    "home": "Inicio",
+    "adventure": "Aventura",
+    "shop": "Tienda",
+    "quests": "Misiones",
+    "profile": "Perfil",
+    "pickName": "¡Es hora de elegir un nombre!",
+"insertName": "Ingrese su nombre",
+"nameMinLength": "Mínimo 3 caracteres",
+"play": "Jugar",
+
+"welcome": "Bienvenido",
+"hello": "Hola",
+"afkIncome": "Mientras no estabas aquí, ganaste un total de",
+"goldsLower": "monedas de oro",
+"golds": "Monedas de oro",
+"gold": "Moneda de oro",
+"level": "Nivel {level}",
+"@level": {
+    "placeholders": {
+        "level": {
+            "type": "int",
+            "example": "player.level"
+        }
+    }
+},
+
+"tips1": "Puedes ver la descripción de un equipo manteniendo presionado el dedo sobre el icono del equipo",
+"tips2": "El Perfil te permite ver todas las estadísticas del jugador, como el daño total infligido",
+"tips3": "Juega todos los días para obtener nuevas misiones diarias",
+
+"stat1": "Daño por toque",
+"stat2": "Daño por segundo",
+"stat3": "Monstruos derrotados",
+"stat4": "Toques",
+"stat5": "Oro ganado",
+"stat6": "Tiempo empleado",
+"stat7": "Daño infligido",
+
+"specialEvent": "Evento especial",
+"availableIn": "Disponible en",
+
+"floor": "Piso",
+"step": "Paso",
+
+"equipments": "Equipos",
+
+"upgrades": "Mejoras",
+"buy": "Comprar",
+
+"dailyEquipments": "Equipos del día",
+"refreshedIn": "Actualizado en",
+
+"dailyQuests": "Misiones diarias",
+"monthlyQuests": "Misiones mensuales",
+"reward": "Recompensa",
+"claim": "Reclamar",
+
+"inventory": "Inventario",
+"statistics": "Estadísticas",
+
+"order": "Ordenar",
+"ascending": "Ascendente",
+"descending": "Descendente",
+
+"filter": "Filtrar",
+"dateObtained": "Fecha de obtención",
+"rarity": "Rareza",
+"levelRequired": "Nivel requerido",
+"type": "Tipo",
+
+"outOfStock": "Agotado",
+
+"pickEquipment": "Elige un equipo de {equipType}",
+"@pickEquipment": {
+    "placeholders": {
+        "equipType": {
+            "type": "String",
+            "example": "AppLocalizations.of(context)!.head.toLowerCase()"
+        }
+    }
+},
+
+"head": "Cabeza",
+"body": "Cuerpo",
+"legs": "Piernas",
+"weapon": "Arma",
+
+"common": "Común",
+"rare": "Raro",
+"epic": "Épico",
+"legendary": "Legendario",
+
+"healthBonus": "Salud",
+"armorBonus": "Armadura",
+"tapAttackBonus": "Ataque por toque",
+"passiveAttackBonus": "Ataque pasivo",
+"tapRegenBonus": "Regeneración de toque",
+"passiveRegenBonus": "Regeneración pasiva",
+"criticalChanceBonus": "Probabilidad crítica",
+"criticalMultiplierBonus": "Multiplicador crítico",
+"menu": "Menú",
+"settings": "Configuración",
+"language": "Idioma",
+"close": "Cerrar"
+}

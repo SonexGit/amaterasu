@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:amaterasu/entities/player.dart';
 import 'package:amaterasu/utils/style.dart';
 import 'package:flutter/material.dart';
@@ -62,12 +64,14 @@ class _QuestsPageState extends State<QuestsPage> {
                       children: [
                         ListTile(
                           title: Text(dailyQuests[0]['title']),
-                          subtitle:
-                              Text('${AppLocalizations.of(context)!.reward} : ${dailyQuests[0]['reward']}'),
+                          subtitle: Text(
+                              '${AppLocalizations.of(context)!.reward} : ${dailyQuests[0]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Style.primaryColor),
                                 onPressed: (isComplete0 == true) &&
                                         (player.isButtonClicked0 == false) &&
                                         (player.dailyQuestsStatus[0] == false)
@@ -78,8 +82,8 @@ class _QuestsPageState extends State<QuestsPage> {
                                           isComplete0 = false;
                                           player.isButtonClicked0 = true;
                                           player.dailyQuestsStatus[0] = true;
-                                          playerAudio
-                                              .play(AssetSource('piece.mp3'));
+                                          playerAudio.play(
+                                              AssetSource('sound/piece.mp3'));
                                         });
                                       }
                                     : null,
@@ -109,12 +113,14 @@ class _QuestsPageState extends State<QuestsPage> {
                       children: [
                         ListTile(
                           title: Text(dailyQuests[1]['title']),
-                          subtitle:
-                              Text('${AppLocalizations.of(context)!.reward} : ${dailyQuests[1]['reward']}'),
+                          subtitle: Text(
+                              '${AppLocalizations.of(context)!.reward} : ${dailyQuests[1]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Style.primaryColor),
                                 onPressed: (isComplete1 == true) &&
                                         (player.isButtonClicked1 == false) &&
                                         (player.dailyQuestsStatus[1] == false)
@@ -125,8 +131,8 @@ class _QuestsPageState extends State<QuestsPage> {
                                           isComplete1 = false;
                                           player.isButtonClicked1 = true;
                                           player.dailyQuestsStatus[1] = true;
-                                          playerAudio
-                                              .play(AssetSource('piece.mp3'));
+                                          playerAudio.play(
+                                              AssetSource('sound/piece.mp3'));
                                         });
                                       }
                                     : null,
@@ -156,12 +162,14 @@ class _QuestsPageState extends State<QuestsPage> {
                       children: [
                         ListTile(
                           title: Text(dailyQuests[2]['title']),
-                          subtitle:
-                              Text('${AppLocalizations.of(context)!.reward} : ${dailyQuests[2]['reward']}'),
+                          subtitle: Text(
+                              '${AppLocalizations.of(context)!.reward} : ${dailyQuests[2]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Style.primaryColor),
                                 onPressed: (isComplete2 == true) &&
                                         (player.isButtonClicked2 == false) &&
                                         (player.dailyQuestsStatus[2] == false)
@@ -172,8 +180,8 @@ class _QuestsPageState extends State<QuestsPage> {
                                           isComplete2 = false;
                                           player.isButtonClicked2 = true;
                                           player.dailyQuestsStatus[2] = true;
-                                          playerAudio
-                                              .play(AssetSource('piece.mp3'));
+                                          playerAudio.play(
+                                              AssetSource('sound/piece.mp3'));
                                         });
                                       }
                                     : null,
@@ -248,12 +256,14 @@ class _QuestsPageState extends State<QuestsPage> {
                       children: [
                         ListTile(
                           title: Text(monthlyQuests[0]['title']),
-                          subtitle:
-                              Text('${AppLocalizations.of(context)!.reward} : ${monthlyQuests[0]['reward']}'),
+                          subtitle: Text(
+                              '${AppLocalizations.of(context)!.reward} : ${monthlyQuests[0]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Style.primaryColor),
                                 onPressed: (isCompleteM0 == true) &&
                                         (player.isButtonClickedM0 == false) &&
                                         (player.dailyQuestsStatus[0] == false)
@@ -264,8 +274,8 @@ class _QuestsPageState extends State<QuestsPage> {
                                           isCompleteM0 = false;
                                           player.isButtonClickedM0 = true;
                                           player.monthlyQuestsStatus[0] = true;
-                                          playerAudio
-                                              .play(AssetSource('piece.mp3'));
+                                          playerAudio.play(
+                                              AssetSource('sound/piece.mp3'));
                                         });
                                       }
                                     : null,
@@ -295,12 +305,14 @@ class _QuestsPageState extends State<QuestsPage> {
                       children: [
                         ListTile(
                           title: Text(monthlyQuests[1]['title']),
-                          subtitle:
-                              Text('${AppLocalizations.of(context)!.reward} : ${monthlyQuests[1]['reward']}'),
+                          subtitle: Text(
+                              '${AppLocalizations.of(context)!.reward} : ${monthlyQuests[1]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Style.primaryColor),
                                 onPressed: (isCompleteM1 == true) &&
                                         (player.isButtonClickedM1 == false) &&
                                         (player.monthlyQuestsStatus[1] == false)
@@ -311,8 +323,8 @@ class _QuestsPageState extends State<QuestsPage> {
                                           isCompleteM1 = false;
                                           player.isButtonClickedM1 = true;
                                           player.dailyQuestsStatus[1] = true;
-                                          playerAudio
-                                              .play(AssetSource('piece.mp3'));
+                                          playerAudio.play(
+                                              AssetSource('sound/piece.mp3'));
                                         });
                                       }
                                     : null,
@@ -342,12 +354,14 @@ class _QuestsPageState extends State<QuestsPage> {
                       children: [
                         ListTile(
                           title: Text(monthlyQuests[2]['title']),
-                          subtitle:
-                              Text('${AppLocalizations.of(context)!.reward} : ${monthlyQuests[2]['reward']}'),
+                          subtitle: Text(
+                              '${AppLocalizations.of(context)!.reward} : ${monthlyQuests[2]['reward']}'),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Style.primaryColor),
                                 onPressed: (isCompleteM2 == true) &&
                                         (player.isButtonClickedM2 == false) &&
                                         (player.monthlyQuestsStatus[2] == false)
@@ -358,8 +372,8 @@ class _QuestsPageState extends State<QuestsPage> {
                                           isCompleteM2 = false;
                                           player.isButtonClickedM2 = true;
                                           player.dailyQuestsStatus[2] = true;
-                                          playerAudio
-                                              .play(AssetSource('piece.mp3'));
+                                          playerAudio.play(
+                                              AssetSource('sound/piece.mp3'));
                                         });
                                       }
                                     : null,

@@ -1,0 +1,106 @@
+{
+    "home": "Startseite",
+    "adventure": "Abenteuer",
+    "shop": "Laden",
+    "quests": "Aufgaben",
+    "profile": "Profil",
+    "pickName": "Zeit, um dir einen Namen zu geben!",
+"insertName": "Gib deinen Namen ein",
+"nameMinLength": "Mindestens 3 Zeichen",
+"play": "Spielen",
+
+"welcome": "Willkommen",
+"hello": "Hallo",
+"afkIncome": "Während du nicht da warst, hast du insgesamt gewonnen",
+"goldsLower": "Goldmünzen",
+"golds": "Goldmünzen",
+"gold": "Goldmünze",
+"level": "Level {level}",
+"@level": {
+    "placeholders": {
+        "level": {
+            "type": "int",
+            "example": "player.level"
+        }
+    }
+},
+
+"tips1": "Du kannst die Beschreibung einer Ausrüstung anzeigen, indem du deinen Finger auf das Symbol der Ausrüstung hältst",
+"tips2": "Das Profil ermöglicht es dir, alle Statistiken des Spielers wie den insgesamt verursachten Schaden zu sehen",
+"tips3": "Spiele jeden Tag, um neue tägliche Aufgaben zu erhalten",
+
+"stat1": "Schaden pro Tippen",
+"stat2": "Schaden pro Sekunde",
+"stat3": "Besiegte Monster",
+"stat4": "Tipps",
+"stat5": "Verdientes Gold",
+"stat6": "Zeit verbracht",
+"stat7": "Verursachter Schaden",
+
+"specialEvent": "Besonderes Ereignis",
+"availableIn": "Verfügbar in",
+
+"floor": "Stockwerk",
+"step": "Schritt",
+
+"equipments": "Ausrüstungen",
+
+"upgrades": "Upgrades",
+"buy": "Kaufen",
+
+"dailyEquipments": "Tagesausrüstungen",
+"refreshedIn": "Aktualisiert in",
+
+"dailyQuests": "Tägliche Aufgaben",
+"monthlyQuests": "Monatliche Aufgaben",
+"reward": "Belohnung",
+"claim": "Fordern",
+
+"inventory": "Inventar",
+"statistics": "Statistiken",
+
+"order": "Reihenfolge",
+"ascending": "Aufsteigend",
+"descending": "Absteigend",
+
+"filter": "Filter",
+"dateObtained": "Erhaltungsdatum",
+"rarity": "Seltenheit",
+"levelRequired": "Benötigtes Level",
+"type": "Typ",
+
+"outOfStock": "Ausverkauft",
+
+"pickEquipment": "Wähle eine {equipType} Ausrüstung",
+"@pickEquipment": {
+    "placeholders": {
+        "equipType": {
+            "type": "String",
+            "example": "AppLocalizations.of(context)!.head.toLowerCase()"
+        }
+    }
+},
+
+"head": "Kopf",
+"body": "Körper",
+"legs": "Beine",
+"weapon": "Waffe",
+
+"common": "Gewöhnlich",
+"rare": "Selten",
+"epic": "Episch",
+"legendary": "Legendär",
+"healthBonus": "Gesundheit",
+"armorBonus": "Rüstung",
+"tapAttackBonus": "Tap-Angriff",
+"passiveAttackBonus": "Passiver Angriff",
+"tapRegenBonus": "Tap-Regeneration",
+"passiveRegenBonus": "Passive Regeneration",
+"criticalChanceBonus": "Kritische Trefferchance",
+"criticalMultiplierBonus": "Kritischer Multiplikator",
+
+"menu": "Menü",
+"settings": "Einstellungen",
+"language": "Sprache",
+"close": "Schließen"
+}

@@ -74,7 +74,7 @@ class Player {
 
   // Propriétés
 
-  double money = 0.0;
+  double money = 1000.0;
   int lastAfkIncome = 0;
 
   List<Equipment> inventory = [];
@@ -192,11 +192,9 @@ class Player {
   Map<String, double> getStats(BuildContext context) {
     return Map.fromEntries([
       MapEntry(AppLocalizations.of(context)!.stat1, stats[0]),
-      MapEntry(AppLocalizations.of(context)!.stat2, stats[1]),
       MapEntry(AppLocalizations.of(context)!.stat3, stats[2]),
       MapEntry(AppLocalizations.of(context)!.stat4, stats[3]),
       MapEntry(AppLocalizations.of(context)!.stat5, stats[4]),
-      MapEntry(AppLocalizations.of(context)!.stat6, stats[5]),
       MapEntry(AppLocalizations.of(context)!.stat7, stats[6]),
     ]);
   }
@@ -348,7 +346,7 @@ class Player {
 
   void giveEquipmentById(int id) {
     inventory
-        .add(Equipment.getEquipmentById(id).setObtainedDate(DateTime.now()));
+        .add(Equipment.getEquipmentById(id)!.setObtainedDate(DateTime.now()));
   }
 
   void giveEquipment(Equipment equip) {

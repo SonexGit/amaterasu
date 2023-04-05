@@ -13,8 +13,22 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  Map<String, String> locToLanguages = {"en": "English", "fr": "Français"};
-  Map<String, String> languagesToLoc = {"English": "en", "Français": "fr"};
+  Map<String, String> locToLanguages = {
+    "en": "English",
+    "fr": "Français",
+    "ru": "Русский",
+    "de": "Deutsch",
+    "es": "Español",
+    "ne": "Nederlands"
+  };
+  Map<String, String> languagesToLoc = {
+    "English": "en",
+    "Français": "fr",
+    "Русский": "ru",
+    "Deutsch": "de",
+    "Español": "es",
+    "Nederlands": "ne"
+  };
 
   // TODO : Ajouter des paramètres ?
 
@@ -36,8 +50,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   MyApp.setLocale(context, Locale(player.locale));
                 });
               },
-              items: <String>['Français', 'English']
-                  .map<DropdownMenuItem<String>>((String value) {
+              items: <String>[
+                'Français',
+                'English',
+                'Русский',
+                'Deutsch',
+                'Español',
+                'Nederlands'
+              ].map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),

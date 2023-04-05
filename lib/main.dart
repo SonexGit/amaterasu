@@ -40,22 +40,25 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Amaterasu',
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('fr'),
-        Locale('en'),
-      ],
-      locale: _locale,
-      theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
-      home: SplashScreen()
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Amaterasu',
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('fr'),
+          Locale('en'),
+          Locale('ru'),
+          Locale('ne'),
+          Locale('de'),
+          Locale('es')
+        ],
+        locale: _locale,
+        theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
+        home: SplashScreen());
   }
 }
 

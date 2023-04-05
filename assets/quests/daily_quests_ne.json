@@ -1,0 +1,20 @@
+[
+    {
+    "title": "Maak 100 kliks",
+    "goal": 100,
+    "reward": 100,
+    "progress": 0
+    },
+    {
+    "title": "Schade per klik",
+    "goal": 20,
+    "reward": 50,
+    "progress": 0
+    },
+    {
+    "title": "Dood 5 monsters",
+    "goal": 5,
+    "reward": 200,
+    "progress": 0
+    }
+    ]    
